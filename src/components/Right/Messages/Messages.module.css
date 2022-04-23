@@ -1,0 +1,63 @@
+.body, .header,.main, .message, .notification {
+    display: flex;
+}
+.body, .message__column {
+    flex-direction: column;
+}
+.header, .main {
+    justify-content: space-between;
+}
+.title {
+    font-weight: 500;
+    margin-bottom: 12px;
+    font-size: 18px;
+}
+.block__dots {
+    width: 21px;
+    height: 5px;
+}
+.block__dots img {
+    width: 100%;
+    height: 100%;
+}
+.main {
+    align-items: center;
+}
+.main:not(:last-of-type) {
+    margin-bottom: 10px;
+}
+.message__column>:first-child {
+    margin-bottom: 10px;
+}
+.ava {
+    width: 57px;
+    height: 57px;
+    margin-right: 10px;
+}
+.ava img {
+    width: 100%;
+    height: 100%;
+    border-radius: 50%;
+}
+.name {
+    font-weight: 500;
+    font-size: 16px;
+}
+.text {
+    color: #9BA6BD;
+    font-size: 14px;
+}
+.time {
+    font-size: 10px;
+    color: #9BA6BD;
+}
+.notification {
+    justify-content: center;
+    align-items: center;
+    width: 20px;
+    height: 20px;
+    border-radius: 50%;
+    background-color: #015CEE;
+    color: #fff;
+    font-size: 8px;
+}

@@ -1,0 +1,42 @@
+.body, .header, .photos {
+    display: flex;
+}
+.body {
+    flex-direction: column;
+}
+.header {
+    justify-content: space-between;
+    margin-bottom: 20px;
+}
+.name {
+    font-weight: 500;
+    margin-bottom: 12px;
+    font-size: 18px;
+}
+.desc {
+    color: #A8B1C5;
+    font-size: 12px;
+}
+.block__dots {
+    margin-top: 2px;
+    width: 21px;
+    height: 5px;
+}
+.block__dots img {
+    width: 100%;
+    height: 100%;
+}
+.photos {
+    flex-wrap: wrap;
+    justify-content: center;
+}
+.photo {
+    margin: 7px;
+    width: 75px;
+    height: 75px;
+}
+.photo img {
+    width: 100%;
+    height: 100%;
+    border-radius: 10px;
+}

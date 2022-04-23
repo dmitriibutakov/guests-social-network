@@ -1,0 +1,12 @@
+.contactsTitle {
+    font-size: 18px;
+    margin-bottom: 30px;
+}
+.contactsPush {
+    margin-left: 20px;
+    padding: 4px 14px;
+    background-color: #E7EFFB;
+    font-size: 12px;
+    color: #0062FF;
+    border-radius: 10px;
+}

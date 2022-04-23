@@ -1,0 +1,17 @@
+.body,
+.body__users {
+    display: flex;
+}
+.body {
+    flex-direction: column;
+    margin-bottom: 10px;
+}
+
+.users {
+    border-right: 1px solid rgba(10, 84, 227, 0.37);
+    flex: 0 1 35%;
+}
+
+.messages {
+    margin-left: 30px;
+}

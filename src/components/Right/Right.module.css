@@ -1,0 +1,9 @@
+.right>*:not(:last-child) {
+    margin-bottom: 20px;
+}
+.right__block {
+    padding: 20px;
+    background-color: #fff;
+    box-shadow: 0px 20px 90px rgba(205, 217, 224, 0.5);
+    border-radius: 30px;
+}

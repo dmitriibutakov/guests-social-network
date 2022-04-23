@@ -1,0 +1,32 @@
+.friend {
+    position: relative;
+    display: flex;
+    text-decoration: none;
+    align-items: center;
+    color: #151922;
+}
+.friend:not(:last-of-type) {
+    margin-bottom: 10px;
+}
+.avatar {
+    margin-right: 15px;
+    height: 35px;
+    width: 35px;
+    border-radius: 50%;
+}
+.user{
+    margin-right: 20px;
+}
+.name {
+    font-size: 16px;
+    margin-bottom: 5px;
+}
+.city {
+    font-size: 14px;
+    color: #9BA6BD;
+}
+.message {
+    position: absolute;
+    right: 0;
+    height: 15px;
+}
