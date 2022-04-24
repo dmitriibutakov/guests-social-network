@@ -1,9 +1,9 @@
 import React from 'react';
 import s from "./Messages.module.css"
-import dots from "../../../cons/right/icon1.png";
-import message1 from "../../../cons/right/message1.png"
-import message2 from "../../../cons/right/message2.png"
-import message3 from "../../../cons/right/message3.png"
+import dots from "../../../cons/icons/dots.png";
+import message1 from "../../../cons/friends/friend10.png"
+import message2 from "../../../cons/friends/friend9.png"
+import message3 from "../../../cons/friends/friend8.png"
 
 const Messages = () => {
     return (
@@ -12,9 +12,9 @@ const Messages = () => {
                 <div>
                     <h4 className={s.title}>Messages</h4>
                 </div>
-                <a href={"/"} className={s.block__dots}>
+                <div className={s.block__dots}>
                     <img src={dots} alt="dots"/>
-                </a>
+                </div>
             </div>
             <div className={s.main}>
                 <div className={s.ava}><img src={message1} alt="ava1"/></div>

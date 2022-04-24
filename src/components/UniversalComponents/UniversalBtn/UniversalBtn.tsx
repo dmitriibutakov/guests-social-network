@@ -3,23 +3,20 @@ import s from "./UniversalBtn.module.css"
 
 type BtnType = {
     name: string
-    onClick: () => void
+    callback: () => void
     error?: boolean
     className?: string
 }
 const UniversalBtn: React.FC<BtnType> = ({
                                              className,
                                              name,
-                                             onClick,
                                              error,
+                                             callback
                                          }) => {
-    const classNameHandler =  `${s.default} ${className}`
-        // className ? className : s.default
-    const onClickHandler = () => {
-        onClick()
-    }
+    const classNameHandler = `${s.default} ${className}`
+    // className ? className : s.default
     return (
-        <button disabled={error} className={classNameHandler} onClick={onClickHandler}>
+        <button disabled={error} className={classNameHandler} onClick={callback}>
             {name}</button>
     );
 };

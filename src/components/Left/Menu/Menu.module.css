@@ -31,7 +31,7 @@
     margin-bottom: 30px;
 }
 .item:hover {
-    font-weight: 700;
+    scale: 1.1;
 }
 .item__active {
     color: #0062FF;
@@ -53,8 +53,6 @@
     font-size: 16px;
     color: #5D668A;
     text-decoration: none;
-}
-.link:hover {
 }
 .contactsPush {
     position: absolute;

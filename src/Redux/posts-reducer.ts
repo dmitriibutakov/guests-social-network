@@ -1,26 +1,34 @@
 import {ChangeEvent} from "react";
-import {ActionType, ProfilePageType} from "./redux-store";
+import {ActionType, PostsPageType} from "./redux-store";
+import {v1} from "uuid";
+import ava from "../cons/ava.png"
+import dots from "../cons/icons/dots.png"
+import photo1 from "../cons/posts/posts-photo-1.jpeg"
+import photo2 from "../cons/posts/posts-photo-2.jpeg"
+import photo3 from "../cons/posts/posts-photo-3.jpeg"
+import photo4 from "../cons/posts/posts-photo-4.jpeg"
 
 const ADD_POST = "ADD-POST"
 const UPDATE_NEW_POST = "UPDATE-NEW-TEXT"
 
 let initialState = {
     posts: [
-        {id: 1, message: 'How are you?! You are Welcome!', likes: 22},
-        {id: 2, message: 'Hi! It\'s my first post!', likes: 13}
+        {id: v1(), ava,dots,photo1,photo2,photo3,photo4, message: 'I find a new Collection', likes: 22},
+        {id: v1(), ava,dots,photo1,photo2,photo3,photo4, message: 'Hi! It\'s my first post!', likes: 13}
     ],
     newPostText: " ",
 }
-const ProfileReducer = (state: ProfilePageType = initialState, action: ActionType) => {
+const PostsReducer = (state: PostsPageType = initialState, action: ActionType) => {
     switch (action.type) {
         case "ADD-POST":
             const newPost = {
-                id: 0,
+                id: v1(),
                 message: state.newPostText,
-                likes: 5
+                likes: 5,
+                ava, dots,photo1,photo2,photo3,photo4
             }
-            state.posts.push(newPost)
-            state.newPostText = " "
+            state.posts = [newPost, ...state.posts]
+            state.newPostText = ""
             return state
         case "UPDATE-NEW-TEXT":
             state.newPostText = action.newText
@@ -38,4 +46,4 @@ export const updateNewPostTextActionCreator = (event: ChangeEvent<HTMLInputEleme
     )
 }
 
-export default ProfileReducer;
+export default PostsReducer;

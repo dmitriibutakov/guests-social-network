@@ -1,21 +1,21 @@
 import {combineReducers, createStore, EmptyObject} from "redux";
-import DialogsReducer from "./dialogs-reducer";
-import ProfileReducer from "./profile-reducer";
-import SidebarReducer from "./sidebar-reducer";
+import ChatReducer from "./chat-reducer";
+import PostsReducer from "./posts-reducer";
+import LeftFriendsReducer from "./left-friends-reducer";
 
-export type StateType = EmptyObject & { ProfilePage: ProfilePageType; DialogsPage: DialogsPageType; navSidebar: NavSidebarType; }
-// {
-//     navSidebar: NavSidebarType
-//     dialogsPage: DialogsPageType
-//     profilePage: ProfilePageType
-//
-// }
-export type NavSidebarType = {
+export type StateType = EmptyObject & {
+    PostsPage: PostsPageType;
+    DialogsPage: DialogsPageType;
+    LeftFriends: LeftFriendsType;
+}
+export type LeftFriendsType = {
     friends: Array<FriendsType>
 }
 export type FriendsType = {
+    avatar: string
     name: string
-    id: number
+    id: string
+    city: string
 }
 export type DialogsPageType = {
     users: Array<UsersType>
@@ -28,24 +28,33 @@ export type UsersType = {
     ava: string
 }
 export type UsersDialogsType = {
+    id: string
     name: string
     text: string
     time: number
+    ava: string
 }
-export type PostsType = {
-    id: number
-    message: string
-    likes: number
-}
-export type ProfilePageType = {
+export type PostsPageType = {
     posts: Array<PostsType>
     newPostText: string
 }
+export type PostsType = {
+    id: string
+    message: string
+    likes: number
+    ava:string
+    dots:string
+    photo1: string
+    photo2: string
+    photo3: string
+    photo4: string
+}
+
 
 let reducers = combineReducers({
-    ProfilePage: ProfileReducer,
-    DialogsPage: DialogsReducer,
-    navSidebar: SidebarReducer
+    PostsPage: PostsReducer,
+    DialogsPage: ChatReducer,
+    LeftFriends: LeftFriendsReducer
 })
 let store = createStore(reducers)
 

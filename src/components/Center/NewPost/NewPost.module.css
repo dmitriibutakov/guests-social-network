@@ -7,16 +7,20 @@
 }
 .header {
     justify-content: space-between;
-    align-items: start;
+    align-items: flex-start;
     margin-bottom: 10px;
 }
 .title {
-    margin: 6px 0;
     font-size: 24px;
     font-weight: 500;
 }
-.img {
+.dots {
     height: 5px;
+    width: 20px;
+}
+.dots img {
+    height: 100%;
+    width: 100%;
 }
 .main {
     align-items: center;
@@ -35,7 +39,8 @@
 }
 .input {
     border-width: 0;
-    width: 300px;
+    width: 550px;
+    height: 50px;
 }
 .footer {
     padding: 18px 0 0 0;
@@ -57,7 +62,7 @@
     border-width: 0px;
     color: #0062FF;
     font-size: 14px;
-    font-weight: 100;
+    font-weight: 400;
     padding: 5px 10px;
     background-color: #fff;
     border-radius: 30px;

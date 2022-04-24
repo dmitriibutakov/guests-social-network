@@ -1,16 +1,17 @@
-import {ActionType, NavSidebarType} from "./redux-store";
-import ava1 from "../cons/left/ava1.png";
+import {ActionType, LeftFriendsType} from "./redux-store";
 import {v1} from "uuid";
-import ava2 from "../cons/left/ava2.png";
-import ava3 from "../cons/left/ava3.png";
+import friend1 from "../cons/friends/friend1.png"
+import friend2 from "../cons/friends/friend2.png"
+import friend3 from "../cons/friends/friend3.png"
+
 
 let initialState = {
-    users: [
-        {avatar: ava1, name: 'Noora Hayes', id: v1(), city: "New York"},
-        {avatar: ava2, name: 'Edward sarte', id: v1(),  city: "Paris"},
-        {avatar: ava3, name: 'Emily Endresen', id: v1(),  city: "Los Angeles"},
+    friends: [
+        {avatar: friend1, name: 'Noora Hayes', id: v1(), city: "New York"},
+        {avatar: friend2, name: 'Edward sarte', id: v1(),  city: "Paris"},
+        {avatar: friend3, name: 'Emily Endresen', id: v1(),  city: "Los Angeles"},
     ]
 }
-const SidebarReducer = (state: NavSidebarType = initialState, action:ActionType) => state
+const LeftFriendsReducer = (state: LeftFriendsType = initialState, action:ActionType) => state
 
-export default SidebarReducer;
+export default LeftFriendsReducer;

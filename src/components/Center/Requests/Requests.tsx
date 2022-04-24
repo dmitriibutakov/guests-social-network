@@ -1,7 +1,7 @@
 import React from 'react';
 import s from "./Requests.module.css"
-import story1 from "../../../cons/center/story1.png";
-import UniversalBtn from "../../../UniversalBtn";
+import addStory from "../../../cons/icons/addStory.png";
+import UniversalBtn from "../../UniversalComponents/UniversalBtn/UniversalBtn";
 
 const Requests = () => {
     return (
@@ -9,17 +9,17 @@ const Requests = () => {
             <div className={s.title}>Requests</div>
             <div className={s.main}>
                 <div className={s.main__user}>
-                    <a href={"/"} className={s.user__img_link}>
-                        <img className={s.user__img} src={story1} alt="story"/>
-                    </a>
+                    <div className={s.user__link}>
+                        <img src={addStory} alt="story"/>
+                    </div>
                     <div className={s.user__info}>
                         <div className={s.name}>Anna julia</div>
                         <div className={s.profession}>web designer</div>
                     </div>
                 </div>
                 <div className={s.main__btns}>
-                    <UniversalBtn className={s.decline} name={"Decline"} onClick={()=>{}}/>
-                    <UniversalBtn name={"Accept"} onClick={()=>{}}/>
+                    <UniversalBtn className={s.decline} name={"Decline"} callback={()=>{}}/>
+                    <UniversalBtn name={"Accept"} callback={()=>{}}/>
                 </div>
             </div>
         </div>

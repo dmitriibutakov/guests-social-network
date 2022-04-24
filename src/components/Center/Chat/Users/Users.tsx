@@ -1,5 +1,5 @@
 import React from "react";
-import classes from "./Users.module.css";
+import s from "./Users.module.css";
 import {NavLink} from "react-router-dom";
 import {UsersType} from "../../../../Redux/redux-store";
 
@@ -7,10 +7,12 @@ import {UsersType} from "../../../../Redux/redux-store";
 const Users: React.FC<UsersType> = ({id,ava,name}) => {
     let path = "/dialogs/" + id
     return (
-        <NavLink to={path} className={classes.user}>
-            <img className={classes.avatar}  src={ava}
+        <NavLink to={path} className={s.user}>
+            <span className={s.user__avatar}>
+            <img className={s.avatar}  src={ava}
                  alt="avatar"/>
-            <span className={classes.name}>{name}</span>
+                </span>
+            <span className={s.name}>{name}</span>
         </NavLink>
     )
 }

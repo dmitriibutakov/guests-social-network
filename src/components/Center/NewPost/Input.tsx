@@ -1,13 +1,21 @@
-import React from 'react';
+import React, {ChangeEvent} from 'react';
 import s from "./NewPost.module.css"
  type InputType = {
-    className?: string
      placeholder: string
+     value?: string
+     onChangeCallBack: (event: ChangeEvent<HTMLInputElement>) => void
+     className: string
  }
-const Input:React.FC<InputType> = ({className, placeholder}) => {
-    const setClass = ` ${className} ${s.input}`
+const Input:React.FC<InputType> = ({ className,placeholder, value, onChangeCallBack}) => {
+    // const onChangeHandler = (event: ChangeEvent<HTMLInputElement>) => {
+    //     changeCallback(event)
+    // }
     return (
-        <input placeholder={placeholder} className={setClass} type="text"/>
+        <input onChange={onChangeCallBack}
+               value={value}
+               placeholder={placeholder}
+               className={className}
+               type="text"/>
     );
 };
 

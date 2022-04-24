@@ -1,10 +1,10 @@
 import React from 'react';
 import s from './Stories.module.css'
-import  story1 from "../../../cons/center/story1.png"
-import  story2 from "../../../cons/center/story2.png"
-import  story3 from "../../../cons/center/story3.png"
-import  story4 from "../../../cons/center/story4.png"
-import  addStory from "../../../cons/center/addStory.png"
+import  story1 from "../../../cons/friends/friend6.png"
+import  story2 from "../../../cons/friends/friend7.png"
+import  story3 from "../../../cons/friends/friend8.png"
+import  story4 from "../../../cons/friends/friend9.png"
+import  addStory from "../../../cons/icons/addStory.png"
 
 const Stories = () => {
     return (
@@ -12,23 +12,23 @@ const Stories = () => {
             <div className={s.title}>Stories</div>
             <div className={s.stories}>
                 <div className={s.stories__friends}>
-                    <a href={"/"} className={s.story}>
+                    <div className={s.story}>
                         <img className={s.story__img} src={story1} alt="story"/>
-                    </a>
-                    <a href={"/"} className={s.story}>
+                    </div>
+                    <div className={s.story}>
                         <img className={s.story__img} src={story2} alt="story"/>
-                    </a>
-                    <a href={"/"} className={s.story}>
+                    </div>
+                    <div className={s.story}>
                         <img className={s.story__img} src={story3} alt="story"/>
-                    </a>
-                    <a href={"/"} className={s.story}>
+                    </div>
+                    <div className={s.story}>
                         <img className={s.story__img} src={story4} alt="story"/>
-                    </a>
+                    </div>
                 </div>
                 <div className={s.stories__add}>
-                <a href={"/"} className={s.story}>
+                <div className={s.story}>
                     <img className={s.story__img} src={addStory} alt="story"/>
-                </a>
+                </div>
                 </div>
             </div>
         </div>

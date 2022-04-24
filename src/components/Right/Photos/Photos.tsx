@@ -1,6 +1,6 @@
 import React from 'react';
 import s from "./Photos.module.css"
-import dots from "../../../cons/right/icon1.png"
+import dots from "../../../cons/icons/dots.png"
 import photo1 from "../../../cons/right/photo1.png"
 import photo2 from "../../../cons/right/photo2.png"
 import photo3 from "../../../cons/right/photo3.png"
@@ -16,9 +16,9 @@ const Photos = () => {
                     <h4 className={s.name}>Photos</h4>
                     <div className={s.desc}>5 Pictures upladed</div>
                 </div>
-                <a href={"/"} className={s.block__dots}>
+                <div className={s.block__dots}>
                     <img src={dots} alt=""/>
-                </a>
+                </div>
             </div>
             <div className={s.photos}>
                 <div className={s.photo}>
@@ -37,7 +37,7 @@ const Photos = () => {
                 <img src={photo5} alt="photo5"/>
                             </div>
                                 <div className={s.photo}>
-                <a href={"/"}><img src={photoAdd} alt="add"/></a>
+                <div><img src={photoAdd} alt="add"/></div>
                                 </div>
             </div>
         </div>

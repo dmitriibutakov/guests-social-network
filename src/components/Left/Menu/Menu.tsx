@@ -1,12 +1,14 @@
 import React from 'react';
 import s from "./Menu.module.css"
-import icon1 from "../../../cons/left/icon1.png"
-import icon2 from "../../../cons/left/icon2.png"
-import icon3 from "../../../cons/left/icon3.png"
-import icon4 from "../../../cons/left/icon4.png"
-import icon5 from "../../../cons/left/icon5.png"
-import icon6 from "../../../cons/left/icon6.png"
-import logo from "../../../cons/left/logo.png"
+import star from "../../../cons/icons/star.png"
+import logo from "../../../cons/icons/logo.png"
+import bookmark from "../../../cons/icons/bookmark.png"
+import user from "../../../cons/icons/user.png"
+import edit from "../../../cons/icons/edit.png"
+import chat from "../../../cons/icons/message.png"
+import settings from "../../../cons/icons/settings.png"
+
+import {NavLink} from "react-router-dom";
 
 const Menu = () => {
     return (
@@ -17,35 +19,35 @@ const Menu = () => {
             </div>
             <ul className={s.list}>
                 <li className={s.item}>
-                    <img src={icon1} alt="icon" className={s.icon}/>
-                    <a href={"/chat"}
-                       className={s.link}>Chat</a>
+                    <img src={chat} alt="Chat" className={s.icon}/>
+                    <NavLink to="/chat"
+                       className={({isActive}) => isActive ? `${s.link__active}` : `${s.link}`}>Chat</NavLink>
                 </li>
                 <li className={s.item}>
-                    <img src={icon2} alt="icon1" className={s.icon}/>
-                    <a href={"/events"}
-                       className={s.link}>Events</a>
+                    <img src={star} alt="Events" className={s.icon}/>
+                    <div
+                       className={s.link}>Events</div>
                 </li>
                 <li className={s.item}>
-                    <img src={icon3} alt="icon2" className={s.icon}/>
-                    <a href={"/bookmarks"}
-                       className={s.link}>Bookmarks</a>
+                    <img src={bookmark} alt="Bookmarks" className={s.icon}/>
+                    <div
+                       className={s.link}>Bookmarks</div>
                 </li>
                 <li className={s.item}>
-                    <img src={icon4} alt="icon3" className={s.icon}/>
-                    <a href={"/friends"}
-                       className={s.link}>Friends</a>
+                    <img src={user} alt="Friends" className={s.icon}/>
+                    <div
+                       className={s.link}>Friends</div>
                 </li>
                 <li className={s.item}>
-                    <img src={icon5} alt="icon4" className={s.icon}/>
-                    <a href={"/posts"}
-                       className={s.link__active}>Posts</a>
+                    <img src={edit} alt="Posts" className={s.icon}/>
+                    <NavLink to="/posts"
+                             className={({isActive}) => isActive ? `${s.link__active}` : `${s.link}`}>Posts</NavLink>
                     <span className={s.contactsPush}>25</span>
                 </li>
                 <li className={s.item}>
-                    <img src={icon6} alt="icon5" className={s.icon}/>
-                    <a href={"/settings"}
-                       className={s.link}>Settings</a>
+                    <img src={settings} alt="Settings" className={s.icon}/>
+                    <div
+                       className={s.link}>Settings</div>
                 </li>
             </ul>
         </div>

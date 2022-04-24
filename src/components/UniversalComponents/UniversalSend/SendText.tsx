@@ -1,36 +1,45 @@
-import React from 'react'
+import React, {ChangeEvent} from 'react'
 import s from "./SendText.module.css"
-import add from "../../../cons/center/add.png"
-import send from "../../../cons/center/send.png"
-import Input from "../../Center/NewPost/Input"
-import like2 from "../../../cons/center/like2.png"
-import sms from "../../../cons/center/sms.png"
-import smile from "../../../cons/center/smile.png"
-import img from "../../../cons/center/img.png"
-
-const SendText = () => {
+import add from "../../../cons/icons/Send/add.png"
+import send from "../../../cons/icons/Send/send.png"
+import like from "../../../cons/icons/Send/like.png"
+import sms from "../../../cons/icons/Send/sms.png"
+import smile from "../../../cons/icons/Send/smile.png"
+import img from "../../../cons/icons/Send/img.png"
+import {DialogsPageType} from "../../../Redux/redux-store";
+type SendTextType = {
+    state: DialogsPageType
+    onChangeCallBack: (e:ChangeEvent<HTMLInputElement>) => void
+    onClickCallBack: () => void
+}
+const SendText:React.FC<SendTextType> = ({state,
+                                             onChangeCallBack,
+                                             onClickCallBack}) => {
     return (
         <div className={s.footer}>
-            <div className={s.footer__left}></div>
             <div className={s.footer__likes}>
-                <a href={"./"} className={s.footer__link}>
-                    <img src={like2} alt="like2"/>
-                </a>
+                <div className={s.footer__link}>
+                    <img src={like} alt="like2"/>
+                </div>
                 <div className={s.footer__likes_count}>3.5k</div>
             </div>
             <div className={s.footer__sms}>
-                <a href={"./"} className={s.footer__link}>
+                <div className={s.footer__link}>
                     <img src={sms} alt="sms"/>
-                </a>
+                </div>
             </div>
             <div className={s.footer__input}>
-                <Input placeholder={"Write a comment..."} className={s.input}/>
+                <input type={"text"}
+                       className={s.input}
+                       placeholder={"Write a comment..."}
+                       value={state.newMessageText}
+                       onChange={onChangeCallBack}/>
             </div>
             <div className={s.footer__links}>
-                <a href={"./"} ><img className={s.img} src={img} alt="images"/></a>
-                <a href={"./"} ><img className={s.img} src={smile} alt="smiles"/></a>
-                <a href={"./"} ><img className={s.img} src={add} alt="plus"/></a>
-                <button className={s.button__send}><img src={send} alt="send"/></button>
+                <div><img className={s.img} src={img} alt="images"/></div>
+                <div><img className={s.img} src={smile} alt="smiles"/></div>
+                <div><img className={s.img} src={add} alt="plus"/></div>
+                <button onClick={onClickCallBack} className={s.button__send}><img src={send} alt="send"/></button>
             </div>
         </div>
     );

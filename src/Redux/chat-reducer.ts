@@ -2,35 +2,43 @@
 import {ChangeEvent} from "react";
 import {ActionType, DialogsPageType} from "./redux-store";
 import {v1} from "uuid";
-import mike from "../cons/center/story2.png";
-import lisa from "../cons/center/story3.png";
-import emily from "../cons/center/story1.png";
-import me from "../cons/center/story4.png";
+import friend4 from "../cons/friends/friend4.png"
+import friend5 from "../cons/friends/friend5.png"
+import friend6 from "../cons/friends/friend6.png"
+import friend1 from "../cons/friends/friend1.png"
+import friend7 from "../cons/friends/friend7.png"
+
+import me from "../cons/ava.png";
 
 const ADD_MESSAGE = "ADD-MESSAGE"
 const UPDATE_NEW_MESSAGE = "UPDATE-NEW-MESSAGE"
 
 let initialState = {
     users: [
-        {name: 'Mike', id: v1(), ava: mike},
-        {name: 'Lisa', id: v1(), ava: lisa},
-        {name: 'Emily Martin', id: v1(), ava: emily},
+        {name: 'Mike', id: v1(), ava: friend4},
+        {name: 'Lisa', id: v1(), ava: friend5},
+        {name: 'Emily Martin', id: v1(), ava: friend6},
+        {name: 'Lucky', id: v1(), ava: friend1},
+        {name: 'Jacky Swarbe', id: v1(), ava: friend7},
     ],
     usersDialogs: [
-        {name: 'Lisa', text: 'Hello', time: 22.14, ava: lisa},
-        {name: 'Me', text: 'How are you?', time: 22.24, ava: me},
-        {name: 'Lisa', text: 'I love you', time: 22.34, ava: lisa},
-        {name: 'Me', text: 'Love you 2', time: 22.44, ava: me}
+        {id: v1(), name: 'Lisa', text: 'Hello', time: 22.14, ava: friend5},
+        {id: v1(), name: 'Me', text: 'How are you?', time: 22.24, ava: me},
+        {id: v1(), name: 'Lisa', text: 'I love you', time: 22.34, ava: friend5},
+        {id: v1(), name: 'Me', text: 'Love you 2', time: 22.44, ava: me}
     ],
     newMessageText: " ",
 }
-const DialogsReducer = (state: DialogsPageType = initialState, action: ActionType) => {
+
+const ChatReducer = (state: DialogsPageType = initialState, action: ActionType) => {
     switch (action.type) {
         case "ADD-MESSAGE":
             const newMessage = {
+                id: v1(),
                 name: "me",
                 text: state.newMessageText,
-                time: 22.45
+                time: 22.45,
+                ava: me
             }
             state.usersDialogs.push(newMessage)
             state.newMessageText = " "
@@ -45,9 +53,8 @@ const DialogsReducer = (state: DialogsPageType = initialState, action: ActionTyp
 
 export const addMessageActionCreator = () => ({type: ADD_MESSAGE, newText: " "})
 export const updateNewMessageActionCreator = (event: ChangeEvent<HTMLInputElement>) => {
-    // debugger
     return (
         {type: UPDATE_NEW_MESSAGE, newText: event.currentTarget.value}
     )
 }
-export default DialogsReducer;
+export default ChatReducer;

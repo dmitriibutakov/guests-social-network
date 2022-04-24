@@ -1,11 +1,11 @@
 import React from 'react';
 import s from "./Contact.module.css";
-import vector from "../../../cons/left/icon1.png"
-import {UserType} from "./Contacts";
+import message from "../../../cons/icons/message.png"
+import {FriendsType} from "../../../Redux/redux-store";
 
-const Contact: React.FC<UserType> = (props) => {
+const Contact: React.FC<FriendsType> = (props) => {
     return (
-        <a href={"/"} className={s.friend}>
+        <div className={s.friend}>
             <img
                 src={props.avatar}
                 alt="avatar" className={s.avatar}/>
@@ -13,8 +13,8 @@ const Contact: React.FC<UserType> = (props) => {
                 <div className={s.name}>{props.name}</div>
                 <div className={s.city}>{props.city}</div>
             </div>
-            <img src={vector} alt="message" className={s.message}/>
-        </a>
+            <img src={message} alt="message" className={s.message}/>
+        </div>
     )
 }
 

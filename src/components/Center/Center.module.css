@@ -20,6 +20,7 @@
 }
 .center__block_stories,
 .center__block_requests,
+.center__block_posted,
 .center__block {
     padding: 15px;
     background-color: #fff;
@@ -33,4 +34,7 @@
 }
 .center__block_requests {
     flex: 0 1 60%;
+}
+.center__block_posted {
+    margin-bottom: 20px;
 }
