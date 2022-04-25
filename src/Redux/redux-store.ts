@@ -1,9 +1,9 @@
-import {combineReducers, createStore, EmptyObject} from "redux";
+import {combineReducers, createStore} from "redux";
 import ChatReducer from "./chat-reducer";
 import PostsReducer from "./posts-reducer";
 import LeftFriendsReducer from "./left-friends-reducer";
 
-export type StateType = EmptyObject & {
+export type StateType = {
     PostsPage: PostsPageType;
     DialogsPage: DialogsPageType;
     LeftFriends: LeftFriendsType;
@@ -51,12 +51,18 @@ export type PostsType = {
 }
 
 
-let reducers = combineReducers({
+const reducers = combineReducers({
     PostsPage: PostsReducer,
     DialogsPage: ChatReducer,
     LeftFriends: LeftFriendsReducer
 })
-let store = createStore(reducers)
+const store = createStore(reducers)
+//
+// type ReducersType = {
+//     PostPage: PostsPageType
+//     DialogsPage: DialogsPageType
+//     LeftFriends: LeftFriendsType
+// }
 
 export type DispatchType = (action: ActionType) => void
 export type ActionType = {
