@@ -3,29 +3,26 @@ import s from "./Chat.module.css"
 import UsersChat from "./UsersChat/UsersChat";
 import Users from "./Users/Users";
 import SendText from "../../UniversalComponents/UniversalSend/SendText";
-import {DialogsPageType, DispatchType} from "../../../Redux/redux-store";
-import {addMessageActionCreator, updateNewMessageActionCreator} from "../../../Redux/chat-reducer";
+import {DialogsPageType} from "../../../Redux/redux-store";
 
 type ChatType = {
-    dispatch: DispatchType
     dialogsPage: DialogsPageType
+    updateNewMessage: (event: ChangeEvent<HTMLInputElement>) => void
+    addMessage: () => void
 }
-const Chat:React.FC<ChatType> = ({dispatch, dialogsPage}) => {
+const Chat: React.FC<ChatType> = ({dialogsPage, updateNewMessage, addMessage}) => {
 
-    const userChat = dialogsPage.usersDialogs.map(el => <UsersChat ava={el.ava} name={el.name} text={el.text} time={el.time}/>);
+    const userChat = dialogsPage.usersDialogs.map(el => <UsersChat ava={el.ava} name={el.name} text={el.text}
+                                                                   time={el.time}/>);
     let user = dialogsPage.users.map(el => <Users name={el.name} id={el.id} ava={el.ava}/>);
 
     const onClickCallBack = () => {
-        let action = addMessageActionCreator()
-        dispatch(action)
+        addMessage()
     }
     const onChangeCallBack = (event: ChangeEvent<HTMLInputElement>) => {
-        let action = updateNewMessageActionCreator(event)
-        dispatch(action)
+        updateNewMessage(event)
     }
-
     return (
-
         <div className={s.body}>
             <div className={s.body__users}>
                 <div className={s.users}>

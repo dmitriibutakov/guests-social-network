@@ -1,12 +1,13 @@
 import React from 'react';
 import s from "./Center.module.css"
-import NewPost from "./NewPost/NewPost";
 import Posted from "./Posted/Posted";
 import Stories from "./Stories/Stories";
 import Requests from "./Requests/Requests";
 import {Route, Routes} from "react-router-dom";
 import Chat from "./Chat/Chat";
 import {DispatchType, StateType} from "../../Redux/redux-store";
+import NewPostContainer from "./NewPost/NewPostContainer";
+import ChatContainer from "./Chat/ChatContainer";
 
 type CenterType = {
     state: StateType
@@ -35,7 +36,7 @@ const Center: React.FC<CenterType> = ({state, dispatch}) => {
                 <Route path="/posts"
                        element={<>
                            <div className={s.center__block}>
-                               <NewPost dispatch={dispatch} inputText={state.PostsPage.newPostText}/>
+                               <NewPostContainer dispatch={dispatch} inputText={state.PostsPage.newPostText}/>
                            </div>
                            <div className={s.center__block}>
                                {posts}
@@ -43,7 +44,7 @@ const Center: React.FC<CenterType> = ({state, dispatch}) => {
                        </>}/>
                 <Route path="/chat"
                        element={<div className={s.center__block}>
-                           <Chat dialogsPage={state.DialogsPage} dispatch={dispatch}/>
+                           <ChatContainer dialogsPage={state.DialogsPage} dispatch={dispatch}/>
                        </div>}/>
             </Routes>
             <div className={s.center__footer}>
