@@ -12,9 +12,9 @@ type ChatType = {
 }
 const Chat: React.FC<ChatType> = ({dialogsPage, updateNewMessage, addMessage}) => {
 
-    const userChat = dialogsPage.usersDialogs.map(el => <UsersChat ava={el.ava} name={el.name} text={el.text}
+    const userChat = dialogsPage.usersDialogs.map(el => <UsersChat key={el.id} ava={el.ava} name={el.name} text={el.text}
                                                                    time={el.time}/>);
-    let user = dialogsPage.users.map(el => <Users name={el.name} id={el.id} ava={el.ava}/>);
+    let user = dialogsPage.users.map(el => <Users key={el.id} name={el.name} id={el.id} ava={el.ava}/>);
 
     const onClickCallBack = () => {
         addMessage()
