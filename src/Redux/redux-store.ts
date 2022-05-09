@@ -63,7 +63,7 @@ const reducers = combineReducers({
     DialogsPage: ChatReducer,
     LeftFriends: LeftFriendsReducer
 })
-const store:StoreType = createStore(reducers)
+const store = createStore(reducers)
 //
 // type ReducersType = {
 //     PostPage: PostsPageType

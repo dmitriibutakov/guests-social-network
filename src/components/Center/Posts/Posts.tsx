@@ -11,7 +11,6 @@ const Posts:React.FC<PostsElType> = ({postsPage}) => {
     return (
         <div className={s.center__block_posted}>
         {postsPage.posts.map((el) => {
-
                     return (
                         <div key={el.id} className={s.center__block_posted}>
                             <Post ava={el.ava}

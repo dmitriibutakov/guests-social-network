@@ -40,12 +40,9 @@ const ChatReducer = (state: DialogsPageType = initialState, action: ActionType) 
                 time: 22.45,
                 ava: me
             }
-            state.usersDialogs = [ ...state.usersDialogs, newMessage]
-            state.newMessageText = " "
-            return state
+            return {...state, usersDialogs: [ ...state.usersDialogs, newMessage] , newMessageText: ""}
         case "UPDATE-NEW-MESSAGE":
-            state.newMessageText = action.newText
-            return state
+            return {...state, newMessageText: action.newText}
         default:
             return state
     }

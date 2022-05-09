@@ -16,7 +16,6 @@ const mapDispatchToProps = (dispatch: DispatchType) => {
             dispatch(action)
         },
         updateNewPostText: (event: ChangeEvent<HTMLInputElement>) => {
-            debugger
             let action = updateNewPostTextActionCreator(event)
             dispatch(action)
         }

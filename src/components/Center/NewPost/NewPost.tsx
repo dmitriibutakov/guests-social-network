@@ -27,7 +27,6 @@ const NewPost: React.FC<NewPostType> = ({updateNewPostText, addPost, newPostText
                 <div className={s.dots}><img src={dots} alt="dots"/></div>
             </div>
             <div className={s.main}>
-                {/*<Input changeCallback={()=>{}} className={s.input} placeholder={"Write a Something...."}/>*/}
                 <input type="text"
                        className={s.input}
                        onChange={onChangeHandler}

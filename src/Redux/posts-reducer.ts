@@ -27,18 +27,15 @@ const PostsReducer = (state: PostsPageType = initialState, action: ActionType) =
                 likes: 5,
                 ava, dots,photo1,photo2,photo3,photo4
             }
-            state.posts = [newPost, ...state.posts]
-            state.newPostText = ""
-            return state
+            return {...state, posts: [newPost, ...state.posts], newPostText: "" }
         case "UPDATE-NEW-TEXT":
-            state.newPostText = action.newText
-            return state
+            return {...state, newPostText: action.newText}
         default:
             return state
     }
 };
 
-export const addPostActionCreator = () => ({type: ADD_POST, newText: " "})
+export const addPostActionCreator = () => ({type: ADD_POST, newText: ""})
 export const updateNewPostTextActionCreator = (event: ChangeEvent<HTMLInputElement>) => {
     // debugger
     return (
