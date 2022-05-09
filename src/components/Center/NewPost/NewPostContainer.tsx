@@ -1,30 +1,27 @@
 import React, {ChangeEvent} from 'react';
 import {addPostActionCreator, updateNewPostTextActionCreator} from "../../../Redux/posts-reducer";
 import NewPost from "./NewPost";
-import StoreContext from '../../../StoreContext';
+import {connect} from "react-redux";
+import {DispatchType, StateType} from "../../../Redux/redux-store";
 
-const NewPostContainer = () => {
-
-    return (
-        <StoreContext.Consumer>
-            {(store) => {
-                const addPost = () => {
-                    let action = addPostActionCreator()
-                    store.dispatch(action)
-                }
-                const updateNewPostText = (event: ChangeEvent<HTMLInputElement>) => {
-                    let action = updateNewPostTextActionCreator(event)
-                    store.dispatch(action)
-                }
-                return (
-
-                    <NewPost updateNewPostText={updateNewPostText}
-                             addPost={addPost}
-                             inputText={store.getState().PostsPage.newPostText}/>)
-            }}
-        </StoreContext.Consumer>
-    )
+const mapStateToProps = (state: StateType) => {
+    return {
+        newPostText: state.PostsPage.newPostText
+    }
 }
+const mapDispatchToProps = (dispatch: DispatchType) => {
+    return {
+        addPost: () => {
+            let action = addPostActionCreator()
+            dispatch(action)
+        },
+        updateNewPostText: (event: ChangeEvent<HTMLInputElement>) => {
+            debugger
+            let action = updateNewPostTextActionCreator(event)
+            dispatch(action)
+        }
+    }
+}
+const NewPostContainer = connect(mapStateToProps, mapDispatchToProps)(NewPost)
 
-
-            export default NewPostContainer;
+export default NewPostContainer;

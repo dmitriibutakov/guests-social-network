@@ -11,9 +11,9 @@ import UniversalBtn from "../../UniversalComponents/UniversalBtn/UniversalBtn";
 type NewPostType = {
     updateNewPostText: (event: ChangeEvent<HTMLInputElement>) => void
     addPost: () => void
-    inputText: string
+    newPostText: string
 }
-const NewPost: React.FC<NewPostType> = ({updateNewPostText, addPost, inputText}) => {
+const NewPost: React.FC<NewPostType> = ({updateNewPostText, addPost, newPostText}) => {
     const onClickHandler = () => {
         addPost()
     }
@@ -31,7 +31,7 @@ const NewPost: React.FC<NewPostType> = ({updateNewPostText, addPost, inputText})
                 <input type="text"
                        className={s.input}
                        onChange={onChangeHandler}
-                       value={inputText}
+                       value={newPostText}
                        placeholder={"Write a Something...."}/>
             </div>
             <div className={s.footer}>

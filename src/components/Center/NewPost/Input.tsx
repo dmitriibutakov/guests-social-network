@@ -1,5 +1,4 @@
 import React, {ChangeEvent} from 'react';
-import s from "./NewPost.module.css"
  type InputType = {
      placeholder: string
      value?: string

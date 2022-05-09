@@ -1,16 +1,20 @@
 import React from 'react';
-import StoreContext from '../../../StoreContext';
-import s from "../Center.module.css";
-import Posted from "./Posted";
+import s from "../Center.module.css"
+import {PostsPageType} from "../../../Redux/redux-store";
+import {Post} from "./Post";
 
-const PostedContainer = () => {
+type PostsElType = {
+    postsPage: PostsPageType
+}
+
+const Posts:React.FC<PostsElType> = ({postsPage}) => {
     return (
-        <StoreContext.Consumer>
-            {(store) => (
-                store.getState().PostsPage.posts.map((el) => {
+        <div className={s.center__block_posted}>
+        {postsPage.posts.map((el) => {
+
                     return (
                         <div key={el.id} className={s.center__block_posted}>
-                            <Posted ava={el.ava}
+                            <Post ava={el.ava}
                                     dots={el.dots}
                                     photo1={el.photo1}
                                     photo2={el.photo2}
@@ -21,10 +25,9 @@ const PostedContainer = () => {
                                     message={el.message}/>
                         </div>
                     )
-                })
-            )
-            }</StoreContext.Consumer>
+                })}
+        </div>
     );
 };
 
-export default PostedContainer;
+export default Posts;

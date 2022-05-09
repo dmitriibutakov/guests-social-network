@@ -5,28 +5,20 @@ import Requests from "./Requests/Requests";
 import {Route, Routes} from "react-router-dom";
 import NewPostContainer from "./NewPost/NewPostContainer";
 import ChatContainer from "./Chat/ChatContainer";
-import PostedContainer from "./Posted/PostedContainer";
+import PostsContainer from "./Posts/PostsContainer";
 
 const Center = () => {
     return (
         <div className={s.center}>
             <Routes>
-                <Route path='/' element={<>
+                <Route path="/posts" element={<>
                     <div className={s.center__block}>
                         <NewPostContainer/>
                     </div>
                     <div className={s.center__block}>
-                        <PostedContainer/>
+                        <PostsContainer/>
                     </div>
                 </>}/>
-                <Route path="/posts" element={<>
-                           <div className={s.center__block}>
-                               <NewPostContainer/>
-                           </div>
-                           <div className={s.center__block}>
-                               <PostedContainer/>
-                           </div>
-                       </>}/>
                 <Route path="/chat"
                        element={<div className={s.center__block}>
                            <ChatContainer/>

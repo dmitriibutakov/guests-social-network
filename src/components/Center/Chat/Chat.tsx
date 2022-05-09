@@ -23,6 +23,7 @@ const Chat: React.FC<ChatType> = ({dialogsPage, updateNewMessage, addMessage}) =
         updateNewMessage(event)
     }
     return (
+        <div className={s.center__block}>
         <div className={s.body}>
             <div className={s.body__users}>
                 <div className={s.users}>
@@ -35,6 +36,7 @@ const Chat: React.FC<ChatType> = ({dialogsPage, updateNewMessage, addMessage}) =
             <SendText onClickCallBack={onClickCallBack}
                       onChangeCallBack={onChangeCallBack}
                       state={dialogsPage}/>
+        </div>
         </div>
     );
 };

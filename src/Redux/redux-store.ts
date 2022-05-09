@@ -49,6 +49,13 @@ export type PostsType = {
     photo3: string
     photo4: string
 }
+export type StoreType= {
+   state: StateType
+    _callSubscriber: (_state: StateType) => void
+    getState: () => StateType
+    dispatch: (action: ActionType) => any
+    subscribe: (observer: (state: StateType) => void) => void
+}
 
 
 const reducers = combineReducers({
@@ -56,7 +63,7 @@ const reducers = combineReducers({
     DialogsPage: ChatReducer,
     LeftFriends: LeftFriendsReducer
 })
-const store = createStore(reducers)
+const store:StoreType = createStore(reducers)
 //
 // type ReducersType = {
 //     PostPage: PostsPageType

@@ -1,17 +1,12 @@
 import React from 'react';
-import StoreContext from '../../../StoreContext';
 import Contact from "./Contact";
+import {StateType} from "../../../Redux/redux-store";
+import {connect} from "react-redux";
 
-const ContactContainer = () => {
-    return (
-        <StoreContext.Consumer>
-            {(store) => (
-
-                store.getState().LeftFriends.friends.map((el) => <Contact key={el.id} avatar={el.avatar} city={el.city} name={el.name}
-                                                               id={el.id}/>)
-            )}
-        </StoreContext.Consumer>
-    );
-};
-
+const mapStateToProps = (state: StateType) => {
+    return {
+        friendsBlock: state.LeftFriends
+    }
+}
+const ContactContainer = connect(mapStateToProps)(Contact)
 export default ContactContainer;

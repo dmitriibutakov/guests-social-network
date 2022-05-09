@@ -17,13 +17,13 @@ import friend6 from "../cons/friends/friend6.png";
 import friend7 from "../cons/friends/friend7.png";
 import me from "../cons/ava.png";
 
-let _Store:StoreType = {
+let _Store: StoreType = {
     _state: {
         navSidebar: {
             friends: [
                 {avatar: friend1, name: 'Noora Hayes', id: v1(), city: "New York"},
-                {avatar: friend2, name: 'Edward sarte', id: v1(),  city: "Paris"},
-                {avatar: friend3, name: 'Emily Endresen', id: v1(),  city: "Los Angeles"},
+                {avatar: friend2, name: 'Edward sarte', id: v1(), city: "Paris"},
+                {avatar: friend3, name: 'Emily Endresen', id: v1(), city: "Los Angeles"},
             ]
         },
         dialogsPage: {
@@ -44,8 +44,8 @@ let _Store:StoreType = {
         },
         profilePage: {
             posts: [
-                {id: v1(), ava,dots,photo1,photo2,photo3,photo4, message: 'I find a new Collection', likes: 22},
-                {id: v1(), ava,dots,photo1,photo2,photo3,photo4, message: 'Hi! It\'s my first post!', likes: 13}
+                {id: v1(), ava, dots, photo1, photo2, photo3, photo4, message: 'I find a new Collection', likes: 22},
+                {id: v1(), ava, dots, photo1, photo2, photo3, photo4, message: 'Hi! It\'s my first post!', likes: 13}
             ],
             newPostText: " ",
         }
@@ -63,118 +63,85 @@ let _Store:StoreType = {
         this._state.dialogsPage = chatReducer(this._state.dialogsPage, action)
         this._state.navSidebar = leftFriendsReducer(this._state.navSidebar, action)
         this._callSubscriber(this._state)
-         if (action.type === "ADD-POST") {
-             const newPost = {
-                 id: v1(),
-                 message: this._state.dialogsPage.newMessageText,
-                 likes: 5,
-                 ava, dots,photo1,photo2,photo3,photo4
-             }
-             this._state.profilePage.posts = [newPost, ...this._state.profilePage.posts]
-             this._state.profilePage.newPostText = ""
-             this._callSubscriber(this._state)
-         } else if (action.type === "UPDATE-NEW-TEXT") {
-             this._state.profilePage.newPostText = action.newText
-             this._callSubscriber(this._state)
-         } else if (action.type === "ADD-MESSAGE") {
-             const newMessage = {
-                 id: v1(),
-                 name: "me",
-                 text: this._state.dialogsPage.newMessageText,
-                 time: 22.45,
-                 ava: me
-             }
-             this._state.dialogsPage.usersDialogs.push(newMessage)
-             this._state.dialogsPage.newMessageText = " "
-             this._callSubscriber(this._state)
-         } else if (action.type === "UPDATE-NEW-MESSAGE") {
-             this._state.dialogsPage.newMessageText = action.newText
-             this._callSubscriber(this._state)
-         }
+        if (action.type === "ADD-POST") {
+            const newPost = {
+                id: v1(),
+                message: this._state.dialogsPage.newMessageText,
+                likes: 5,
+                ava, dots, photo1, photo2, photo3, photo4
+            }
+            this._state.profilePage.posts = [newPost, ...this._state.profilePage.posts]
+            this._state.profilePage.newPostText = ""
+            this._callSubscriber(this._state)
+        } else if (action.type === "UPDATE-NEW-TEXT") {
+            this._state.profilePage.newPostText = action.newText
+            this._callSubscriber(this._state)
+        } else if (action.type === "ADD-MESSAGE") {
+            const newMessage = {
+                id: v1(),
+                name: "me",
+                text: this._state.dialogsPage.newMessageText,
+                time: 22.45,
+                ava: me
+            }
+            this._state.dialogsPage.usersDialogs.push(newMessage)
+            this._state.dialogsPage.newMessageText = " "
+            this._callSubscriber(this._state)
+        } else if (action.type === "UPDATE-NEW-MESSAGE") {
+            this._state.dialogsPage.newMessageText = action.newText
+            this._callSubscriber(this._state)
+        }
     },
-       addMessage() {
-           const newMessage = {
-               id: v1(),
-               name: "me",
-               text: this._state.dialogsPage.newMessageText,
-               time: 22.45,
-               ava: me
-           }
-           this._state.dialogsPage.usersDialogs = [ newMessage, ...this._state.dialogsPage.usersDialogs]
-           this._state.dialogsPage.newMessageText = " "
-           this._callSubscriber(this._state)
-       },
-       addPost() {
-           const newPost = {
-               id: v1(),
-               message: this._state.profilePage.newPostText,
-               likes: 5,
-               ava, dots,photo1,photo2,photo3,photo4
-           }
-           this._state.profilePage.posts.push(newPost)
-           this._state.profilePage.newPostText = " "
-           this._callSubscriber(this._state)
-       },
-     updateNewPost(newText: string) {
-         this._state.profilePage.newPostText = newText
-         this._callSubscriber(this._state)
-     },
-     updateNewMessage(newText: string) {
-         this._state.dialogsPage.newMessageText = newText
-         this._callSubscriber(this._state)
-     },
 }
 
-export type ActionType = {
+type ActionType = {
     type: string,
     newText: string
 }
-export type UpdateNewPostType = (e: string) => void
-export type StoreType= {
-    _state: { navSidebar: NavSidebarType
+type UpdateNewPostType = (e: string) => void
+type StoreType = {
+    _state: {
+        navSidebar: NavSidebarType
         dialogsPage: DialogsPageType
-        profilePage: ProfilePageType }
+        profilePage: ProfilePageType
+    }
     _callSubscriber: (_state: StateType) => void
     getState: () => void
     dispatch: (action: ActionType) => void
     subscribe: (observer: (_state: StateType) => void) => void
-    addMessage: () => void
-    addPost: () => void
-    updateNewPost: (newText: string) => void
-    updateNewMessage: (newText: string) => void
 }
-export type StateType = {
+type StateType = {
     navSidebar: NavSidebarType
     dialogsPage: DialogsPageType
     profilePage: ProfilePageType
 }
-export type NavSidebarType = {
+type NavSidebarType = {
     friends: Array<FriendsType>
 }
-export type FriendsType = {
+type FriendsType = {
     name: string
     id: string
     avatar: string
     city: string
 }
-export type DialogsPageType = {
+type DialogsPageType = {
     users: Array<UsersType>
     usersDialogs: Array<UsersDialogsType>
     newMessageText: string
 }
-export type UsersType = {
+type UsersType = {
     name: string
     id: string
     ava: string
 }
-export type UsersDialogsType = {
+type UsersDialogsType = {
     name: string
     text: string
     time: number
     id: string
     ava: string
 }
-export type PostsType = {
+type PostsType = {
     id: string
     message: string
     likes: number
@@ -185,7 +152,7 @@ export type PostsType = {
     photo3: string
     photo4: string
 }
-export type ProfilePageType = {
+type ProfilePageType = {
     posts: Array<PostsType>
     newPostText: string
 }
