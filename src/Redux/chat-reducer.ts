@@ -48,7 +48,7 @@ const ChatReducer = (state: DialogsPageType = initialState, action: ActionType) 
     }
 };
 
-export const addMessageActionCreator = () => ({type: ADD_MESSAGE, newText: " "})
+export const addMessageActionCreator = () => ({type: ADD_MESSAGE, newText: ""})
 export const updateNewMessageActionCreator = (event: ChangeEvent<HTMLInputElement>) => {
     return (
         {type: UPDATE_NEW_MESSAGE, newText: event.currentTarget.value}

@@ -1,5 +1,5 @@
 import React from 'react';
-import s from "./UsersChat.module.css"
+import s from "./FriendsChat.module.css"
 
 type UsersDialogsType = {
     name: string
@@ -8,7 +8,7 @@ type UsersDialogsType = {
     ava: string
 }
 
-const UsersChat: React.FC<UsersDialogsType> = (props) => {
+const FriendsChat: React.FC<UsersDialogsType> = (props) => {
     return (
         <div className={s.message}>
             <div className={s.ava__block}>
@@ -24,4 +24,4 @@ const UsersChat: React.FC<UsersDialogsType> = (props) => {
     )
 }
 
-export default UsersChat;
+export default FriendsChat;

@@ -35,8 +35,8 @@ const Menu = () => {
                 </li>
                 <li className={s.item}>
                     <img src={user} alt="Friends" className={s.icon}/>
-                    <div
-                       className={s.link}>Friends</div>
+                    <NavLink to="/friends"
+                             className={({isActive}) => isActive ? `${s.link__active}` : `${s.link}`}>Friends</NavLink>
                 </li>
                 <li className={s.item}>
                     <img src={edit} alt="Posts" className={s.icon}/>

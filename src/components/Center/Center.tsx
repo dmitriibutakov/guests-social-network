@@ -6,12 +6,13 @@ import {Route, Routes} from "react-router-dom";
 import NewPostContainer from "./NewPost/NewPostContainer";
 import ChatContainer from "./Chat/ChatContainer";
 import PostsContainer from "./Posts/PostsContainer";
+import FriendsContainer from "./Friends/FriendsContainer";
 
 const Center = () => {
     return (
         <div className={s.center}>
             <Routes>
-                <Route path="/posts" element={<>
+                <Route path={"/posts" && "/*"} element={<>
                     <div className={s.center__block}>
                         <NewPostContainer/>
                     </div>
@@ -19,10 +20,11 @@ const Center = () => {
                         <PostsContainer/>
                     </div>
                 </>}/>
-                <Route path="/chat"
-                       element={<div className={s.center__block}>
+                <Route path={"/chat"}
+                element={<div className={s.center__block}>
                            <ChatContainer/>
                        </div>}/>
+                <Route path={"/friends"} element={<div className={s.center__block}><FriendsContainer/></div>}/>
             </Routes>
             <div className={s.center__footer}>
                 <div className={s.center__block_stories}>

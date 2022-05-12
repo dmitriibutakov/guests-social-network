@@ -1,10 +1,10 @@
 import React from "react";
-import s from "./Users.module.css";
+import s from "./Friends.module.css";
 import {NavLink} from "react-router-dom";
 import {UsersType} from "../../../../Redux/redux-store";
 
 
-const Users: React.FC<UsersType> = ({id,ava,name}) => {
+const Friends: React.FC<UsersType> = ({id,ava,name}) => {
     let path = "/dialogs/" + id
     return (
         <NavLink to={path} className={s.user}>
@@ -17,4 +17,4 @@ const Users: React.FC<UsersType> = ({id,ava,name}) => {
     )
 }
 
-export default Users;
+export default Friends;

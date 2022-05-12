@@ -2,14 +2,16 @@ import {combineReducers, createStore} from "redux";
 import ChatReducer from "./chat-reducer";
 import PostsReducer from "./posts-reducer";
 import LeftFriendsReducer from "./left-friends-reducer";
+import FriendsReducer, {followAC, setFriendsAC, unfollowAC} from "./friends-reducer";
 
 export type StateType = {
     PostsPage: PostsPageType;
     DialogsPage: DialogsPageType;
     LeftFriends: LeftFriendsType;
+    FriendsPage: FriendsPageType
 }
 export type LeftFriendsType = {
-    friends: Array<FriendsType>
+    friends: FriendsType[]
 }
 export type FriendsType = {
     avatar: string
@@ -49,29 +51,28 @@ export type PostsType = {
     photo3: string
     photo4: string
 }
-export type StoreType= {
-   state: StateType
-    _callSubscriber: (_state: StateType) => void
-    getState: () => StateType
-    dispatch: (action: ActionType) => any
-    subscribe: (observer: (state: StateType) => void) => void
-}
 
+export type FriendsPageType = {
+    friends: FriendType[]
+}
+export type FriendType = {
+    name: string, followed: boolean, id: string, ava: string, status: string, location: { city: string, country: string }
+}
 
 const reducers = combineReducers({
     PostsPage: PostsReducer,
     DialogsPage: ChatReducer,
-    LeftFriends: LeftFriendsReducer
+    LeftFriends: LeftFriendsReducer,
+    FriendsPage: FriendsReducer
 })
 const store = createStore(reducers)
-//
-// type ReducersType = {
-//     PostPage: PostsPageType
-//     DialogsPage: DialogsPageType
-//     LeftFriends: LeftFriendsType
-// }
 
-export type DispatchType = (action: ActionType) => void
+type followACType = ReturnType<typeof followAC>
+type unfollowACType = ReturnType<typeof unfollowAC>
+type setFriendsACType = ReturnType<typeof setFriendsAC>
+export type FriendsReducerActionType = followACType | unfollowACType | setFriendsACType
+
+export type DispatchType = (action: ActionType | FriendsReducerActionType) => void
 export type ActionType = {
     type: string,
     newText: string

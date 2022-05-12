@@ -1,9 +1,9 @@
 import React, {ChangeEvent} from "react";
 import s from "./Chat.module.css"
-import UsersChat from "./UsersChat/UsersChat";
-import Users from "./Users/Users";
 import SendText from "../../UniversalComponents/UniversalSend/SendText";
 import {DialogsPageType} from "../../../Redux/redux-store";
+import FriendsChat from "./FriendsChat/FriendsChat";
+import Friends from "./Friends/Friends";
 
 type ChatType = {
     dialogsPage: DialogsPageType
@@ -12,9 +12,9 @@ type ChatType = {
 }
 const Chat: React.FC<ChatType> = ({dialogsPage, updateNewMessage, addMessage}) => {
 
-    const userChat = dialogsPage.usersDialogs.map(el => <UsersChat key={el.id} ava={el.ava} name={el.name} text={el.text}
-                                                                   time={el.time}/>);
-    let user = dialogsPage.users.map(el => <Users key={el.id} name={el.name} id={el.id} ava={el.ava}/>);
+    const userChat = dialogsPage.usersDialogs.map(el => <FriendsChat key={el.id} ava={el.ava} name={el.name} text={el.text}
+                                                                     time={el.time}/>);
+    let user = dialogsPage.users.map(el => <Friends key={el.id} name={el.name} id={el.id} ava={el.ava}/>);
 
     const onClickCallBack = () => {
         addMessage()
