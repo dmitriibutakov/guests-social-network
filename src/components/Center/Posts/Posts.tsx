@@ -1,13 +1,9 @@
 import React from 'react';
 import s from "../Center.module.css"
-import {PostsPageType} from "../../../Redux/redux-store";
 import {Post} from "./Post";
+import {PostsPropsType} from "./PostsContainer";
 
-type PostsElType = {
-    postsPage: PostsPageType
-}
-
-const Posts:React.FC<PostsElType> = ({postsPage}) => {
+const Posts:React.FC<PostsPropsType> = ({postsPage}) => {
     return (
         <div className={s.center__block_posted}>
         {postsPage.posts.map((el) => {

@@ -1,6 +1,5 @@
 import React from 'react';
 import s from "./Friends.module.css"
-import {FriendsPageType, FriendType} from "../../../Redux/redux-store";
 import UniversalBtn from "../../UniversalComponents/UniversalBtn/UniversalBtn";
 import {v1} from "uuid";
 import friend4 from "../../../cons/friends/friend4.png";
@@ -12,14 +11,9 @@ import friend8 from "../../../cons/friends/friend8.png";
 import friend10 from "../../../cons/friends/friend10.png";
 import friend9 from "../../../cons/friends/friend9.png";
 import friend2 from "../../../cons/friends/friend1.png";
+import {FriendsPropsType} from "./FriendsContainer";
 
-type UsersPropsType = {
-    friendsBlock: FriendsPageType
-    follow: (userID: string) => void
-    unfollow: (userID: string) => void
-    setFriends: (refreshUsers: FriendType[]) => void
-}
-const Friends: React.FC<UsersPropsType> = (props) => {
+const Friends: React.FC<FriendsPropsType> = (props) => {
     if (props.friendsBlock.friends.length < 1) {
         props.setFriends([
             {

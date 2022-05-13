@@ -1,12 +1,17 @@
 import React from 'react';
 import Contact from "./Contact";
-import {StateType} from "../../../Redux/redux-store";
 import {connect} from "react-redux";
+import {AppStateType} from "../../../Redux/redux-store";
+import {MenuUsersType} from "../../../Redux/menu-users-reducer";
 
-const mapStateToProps = (state: StateType) => {
+type mapStateToPropsType = {
+    usersBlock: MenuUsersType
+}
+const mapStateToProps = (state: AppStateType):mapStateToPropsType => {
     return {
-        friendsBlock: state.LeftFriends
+        usersBlock: state.MenuUsers
     }
 }
+export type ContactPropsType = mapStateToPropsType
 const ContactContainer = connect(mapStateToProps)(Contact)
 export default ContactContainer;

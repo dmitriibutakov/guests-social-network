@@ -1,19 +1,31 @@
-
 import {ChangeEvent} from "react";
-import {ActionType, DialogsPageType} from "./redux-store";
 import {v1} from "uuid";
 import friend4 from "../cons/friends/friend4.png"
 import friend5 from "../cons/friends/friend5.png"
 import friend6 from "../cons/friends/friend6.png"
 import friend1 from "../cons/friends/friend1.png"
 import friend7 from "../cons/friends/friend7.png"
-
 import me from "../cons/ava.png";
 
-const ADD_MESSAGE = "ADD-MESSAGE"
-const UPDATE_NEW_MESSAGE = "UPDATE-NEW-MESSAGE"
+export type UserType = {
+    name: string
+    id: string
+    ava: string
+}
+export type UserDialogType = {
+    id: string
+    name: string
+    text: string
+    time: number
+    ava: string
+}
+export type DialogsPageType = {
+    users: Array<UserType>
+    usersDialogs: Array<UserDialogType>
+    newMessageText: string
+}
 
-let initialState = {
+let initialState: DialogsPageType = {
     users: [
         {name: 'Mike', id: v1(), ava: friend4},
         {name: 'Lisa', id: v1(), ava: friend5},
@@ -30,7 +42,7 @@ let initialState = {
     newMessageText: " ",
 }
 
-const ChatReducer = (state: DialogsPageType = initialState, action: ActionType) => {
+const ChatReducer = (state: DialogsPageType = initialState, action: ChatReducerACType): DialogsPageType => {
     switch (action.type) {
         case "ADD-MESSAGE":
             const newMessage = {
@@ -40,7 +52,7 @@ const ChatReducer = (state: DialogsPageType = initialState, action: ActionType) 
                 time: 22.45,
                 ava: me
             }
-            return {...state, usersDialogs: [ ...state.usersDialogs, newMessage] , newMessageText: ""}
+            return {...state, usersDialogs: [...state.usersDialogs, newMessage], newMessageText: ""}
         case "UPDATE-NEW-MESSAGE":
             return {...state, newMessageText: action.newText}
         default:
@@ -48,10 +60,15 @@ const ChatReducer = (state: DialogsPageType = initialState, action: ActionType) 
     }
 };
 
-export const addMessageActionCreator = () => ({type: ADD_MESSAGE, newText: ""})
+export type ChatReducerACType = addMessageACType | updateNewMessageACType
+type addMessageACType = ReturnType<typeof addMessageActionCreator>
+type updateNewMessageACType = ReturnType<typeof updateNewMessageActionCreator>
+
+export const addMessageActionCreator = () => ({type: "ADD-MESSAGE", newText: ""} as const)
 export const updateNewMessageActionCreator = (event: ChangeEvent<HTMLInputElement>) => {
     return (
-        {type: UPDATE_NEW_MESSAGE, newText: event.currentTarget.value}
+        {type: "UPDATE-NEW-MESSAGE", newText: event.currentTarget.value} as const
     )
 }
+
 export default ChatReducer;

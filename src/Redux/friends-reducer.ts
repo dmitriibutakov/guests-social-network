@@ -1,19 +1,20 @@
-import {v1} from "uuid";
-import friend4 from "../cons/friends/friend4.png";
-import friend5 from "../cons/friends/friend5.png";
-import friend6 from "../cons/friends/friend6.png";
-import friend1 from "../cons/friends/friend1.png";
-import friend7 from "../cons/friends/friend7.png";
-import friend8 from "../cons/friends/friend8.png";
-import friend9 from "../cons/friends/friend9.png";
-import friend10 from "../cons/friends/friend10.png";
-import friend2 from "../cons/friends/friend1.png";
-import {FriendsPageType, FriendsReducerActionType, FriendType} from "./redux-store";
 
-let initialState = {
+export type FriendsPageType = {
+    friends: FriendType[]
+}
+export type FriendType = {
+    name: string,
+    followed: boolean,
+    id: string,
+    ava: string,
+    status: string,
+    location: { city: string, country: string }
+}
+
+let initialState: FriendsPageType = {
     friends: []
 }
-const FriendsReducer = (state: FriendsPageType = initialState, action: FriendsReducerActionType) => {
+const FriendsReducer = (state: FriendsPageType = initialState, action: FriendsReducerActionType): FriendsPageType => {
     switch (action.type) {
         case "FOLLOW":
             return {
@@ -31,6 +32,11 @@ const FriendsReducer = (state: FriendsPageType = initialState, action: FriendsRe
             return state
     }
 };
+export type FriendsReducerActionType = followACType | unfollowACType | setFriendsACType
+
+type followACType = ReturnType<typeof followAC>
+type unfollowACType = ReturnType<typeof unfollowAC>
+type setFriendsACType = ReturnType<typeof setFriendsAC>
 
 export const followAC = (friendID: string) => {
     return {
@@ -38,14 +44,12 @@ export const followAC = (friendID: string) => {
         payload: {friendID}
     } as const
 }
-
 export const unfollowAC = (friendID: string) => {
     return {
         type: "UNFOLLOW",
         payload: {friendID}
     } as const
 }
-
 export const setFriendsAC = (refreshFriends: FriendType[]) => {
     return {
         type: "SET-USERS",
@@ -54,4 +58,5 @@ export const setFriendsAC = (refreshFriends: FriendType[]) => {
         }
     } as const
 }
+
 export default FriendsReducer;

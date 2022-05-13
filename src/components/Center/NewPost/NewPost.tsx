@@ -7,13 +7,9 @@ import smile from "../../../cons/icons/Send/smile.png"
 import like from "../../../cons/icons/Send/like.png"
 import add from "../../../cons/icons/Send/add.png"
 import UniversalBtn from "../../UniversalComponents/UniversalBtn/UniversalBtn";
+import {NewPostProps} from "./NewPostContainer";
 
-type NewPostType = {
-    updateNewPostText: (event: ChangeEvent<HTMLInputElement>) => void
-    addPost: () => void
-    newPostText: string
-}
-const NewPost: React.FC<NewPostType> = ({updateNewPostText, addPost, newPostText}) => {
+const NewPost: React.FC<NewPostProps> = ({updateNewPostText, addPost, newPostText}) => {
     const onClickHandler = () => {
         addPost()
     }

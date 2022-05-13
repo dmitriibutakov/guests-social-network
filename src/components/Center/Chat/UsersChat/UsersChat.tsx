@@ -1,14 +1,10 @@
 import React from 'react';
-import s from "./FriendsChat.module.css"
+import s from "./UsersChat.module.css"
+import {UserDialogType} from "../../../../Redux/chat-reducer";
 
-type UsersDialogsType = {
-    name: string
-    text: string
-    time: number
-    ava: string
-}
+type UsersChatType = UserDialogType
 
-const FriendsChat: React.FC<UsersDialogsType> = (props) => {
+const UsersChat: React.FC<UsersChatType> = (props) => {
     return (
         <div className={s.message}>
             <div className={s.ava__block}>
@@ -24,4 +20,4 @@ const FriendsChat: React.FC<UsersDialogsType> = (props) => {
     )
 }
 
-export default FriendsChat;
+export default UsersChat;

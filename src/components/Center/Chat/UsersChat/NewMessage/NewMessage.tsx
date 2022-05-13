@@ -1,7 +1,11 @@
 import React, {ChangeEvent} from 'react';
 import classes from "./NewMessage.module.css";
-import {addMessageActionCreator, updateNewMessageActionCreator} from "../../../../../Redux/chat-reducer";
-import {DialogsPageType, DispatchType} from "../../../../../Redux/redux-store";
+import {
+    addMessageActionCreator,
+    DialogsPageType,
+    updateNewMessageActionCreator
+} from "../../../../../Redux/chat-reducer";
+import {DispatchType} from "../../../../../Redux/redux-store";
 
 type NewMessageType = {
     dialogsPage: DialogsPageType

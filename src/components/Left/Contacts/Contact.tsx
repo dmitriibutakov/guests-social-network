@@ -1,16 +1,14 @@
 import React from 'react';
 import s from "./Contact.module.css";
 import message from "../../../cons/icons/message.png"
-import {LeftFriendsType} from "../../../Redux/redux-store";
+import {ContactPropsType} from "./ContactContainer";
 
-type ContactType = {
-    friendsBlock: LeftFriendsType
-}
-const Contact: React.FC<ContactType> = ({friendsBlock}) => {
+
+const Contact: React.FC<ContactPropsType> = ({usersBlock}) => {
 
     return (
         <>
-        {friendsBlock.friends.map((el) => {
+        {usersBlock.users.map((el) => {
             return (
                 <div key={el.id} className={s.friend}>
                     <img

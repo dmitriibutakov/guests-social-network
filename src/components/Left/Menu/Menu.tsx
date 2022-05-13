@@ -34,7 +34,7 @@ const Menu = () => {
                        className={s.link}>Bookmarks</div>
                 </li>
                 <li className={s.item}>
-                    <img src={user} alt="Friends" className={s.icon}/>
+                    <img src={user} alt="friends" className={s.icon}/>
                     <NavLink to="/friends"
                              className={({isActive}) => isActive ? `${s.link__active}` : `${s.link}`}>Friends</NavLink>
                 </li>

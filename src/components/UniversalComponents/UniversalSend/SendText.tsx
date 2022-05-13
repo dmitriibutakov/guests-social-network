@@ -6,7 +6,7 @@ import like from "../../../cons/icons/Send/like.png"
 import sms from "../../../cons/icons/Send/sms.png"
 import smile from "../../../cons/icons/Send/smile.png"
 import img from "../../../cons/icons/Send/img.png"
-import {DialogsPageType} from "../../../Redux/redux-store";
+import {DialogsPageType} from "../../../Redux/chat-reducer";
 type SendTextType = {
     state: DialogsPageType
     onChangeCallBack: (e:ChangeEvent<HTMLInputElement>) => void

@@ -1,10 +1,10 @@
 import React from 'react';
 import s from "./Posts.module.css";
-import {PostsType} from "../../../Redux/redux-store";
+import {PostType} from "../../../Redux/posts-reducer";
 
-type PostType = PostsType
+type PostElType = PostType
 
-export const Post: React.FC<PostType> = ({
+export const Post: React.FC<PostElType> = ({
                                       ava,
                                       message,
                                       dots,
