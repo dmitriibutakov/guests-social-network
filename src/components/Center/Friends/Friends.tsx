@@ -16,10 +16,12 @@ import {FriendsPropsType} from "./FriendsContainer";
 import axios from "axios";
 
 const Friends: React.FC<FriendsPropsType> = (props) => {
-    if (props.friendsBlock.friends.length < 1) {
-        axios.get("https://social-network.samuraijs.com/api/1.0/users").then(response => {
-            props.setFriends(response.data.items)
-        })
+    const getUsers = () => {
+        if (props.friendsBlock.friends.length < 1) {
+            axios.get("https://social-network.samuraijs.com/api/1.0/users").then(response => {
+                props.setFriends(response.data.items)
+            })
+    }
 
     }
     return (
@@ -51,8 +53,7 @@ const Friends: React.FC<FriendsPropsType> = (props) => {
                 })}
 
             </div>
-            <UniversalBtn className={s.btn__more} name={"Add More"} callback={() => {
-            }}/>
+            <UniversalBtn className={s.btn__more} name={"Add More"} callback={getUsers}/>
         </div>
     );
 };
