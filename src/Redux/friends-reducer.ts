@@ -1,3 +1,13 @@
+import {v1} from "uuid";
+import friend4 from "../cons/friends/friend4.png";
+import friend5 from "../cons/friends/friend5.png";
+import friend6 from "../cons/friends/friend6.png";
+import friend1 from "../cons/friends/friend1.png";
+import friend7 from "../cons/friends/friend7.png";
+import friend8 from "../cons/friends/friend8.png";
+import friend10 from "../cons/friends/friend10.png";
+import friend9 from "../cons/friends/friend9.png";
+import friend2 from "../cons/friends/friend1.png";
 
 export type FriendsPageType = {
     friends: FriendType[]
@@ -10,7 +20,79 @@ export type FriendType = {
     status: string,
     location: { city: string, country: string }
 }
-
+const friendsState = [
+    {
+        name: 'Mike',
+        followed: false,
+        id: v1(),
+        ava: friend4,
+        status: "No is possible",
+        location: {city: "Roma", country: "Italy"}
+    },
+    {
+        name: 'Lisa',
+        followed: true,
+        id: v1(),
+        ava: friend5,
+        status: "No is possible",
+        location: {city: "Roma", country: "Italy"}
+    },
+    {
+        name: 'Emily Martin',
+        followed: true,
+        id: v1(),
+        ava: friend6,
+        status: "No is possible",
+        location: {city: "Roma", country: "Italy"}
+    },
+    {
+        name: 'Lucky',
+        followed: false,
+        id: v1(),
+        ava: friend1,
+        status: "No is possible",
+        location: {city: "Roma", country: "Italy"}
+    },
+    {
+        name: 'Jacky Swarbe',
+        followed: true,
+        id: v1(),
+        ava: friend7,
+        status: "No is possible",
+        location: {city: "Roma", country: "Italy"}
+    },
+    {
+        name: 'Swally Murren',
+        followed: false,
+        id: v1(),
+        ava: friend8,
+        status: "No is possible",
+        location: {city: "Roma", country: "Italy"}
+    },
+    {
+        name: 'Muller Dwab',
+        followed: true,
+        id: v1(),
+        ava: friend10,
+        status: "No is possible",
+        location: {city: "Roma", country: "Italy"}
+    },
+    {
+        name: 'Martin Haris',
+        followed: false,
+        id: v1(),
+        ava: friend9,
+        status: "No is possible",
+        location: {city: "Roma", country: "Italy"}
+    },
+    {
+        name: 'Slouy Byter',
+        followed: true,
+        id: v1(),
+        ava: friend2,
+        status: "No is possible",
+        location: {city: "Roma", country: "Italy"}
+    }]
 let initialState: FriendsPageType = {
     friends: []
 }
