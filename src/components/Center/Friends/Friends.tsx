@@ -10,16 +10,37 @@ class Friends extends React.Component<FriendsPropsType> {
     //     super(props);
     // }
     componentDidMount() {
-        axios.get("https://social-network.samuraijs.com/api/1.0/users").then(response => {
+        axios.get(`https://social-network.samuraijs.com/api/1.0/users?page=${this.props.currentPage}&count=${this.props.pageSize}`).then(response => {
             this.props.setFriends(response.data.items)
+            this.props.setUsersCount(response.data.totalCount)
         })
     }
 
+    onPageChanged = (pageNumber: number) => {
+        this.props.setCurrentPage(pageNumber)
+        axios.get(`https://social-network.samuraijs.com/api/1.0/users?page=${pageNumber}&count=${this.props.pageSize}`).then(response => {
+            this.props.setFriends(response.data.items)
+        })
+    }
     render() {
+        let pagesCount = Math.ceil(this.props.usersCount / this.props.pageSize)
+        let pages = []
+        for (let i = 1; i<=pagesCount; i++) {
+            pages.push(i)
+        }
         return (
             <div className={s.friends__block}>
+                <div>
+                    {pages.map((e) => {
+                        if (e < 15) {
+                            // @ts-ignore
+                            return <span onClick={()=>this.onPageChanged(e) } className={this.props.currentPage === e && s.selectedPage}>{e}</span>
+                        }
+
+                    })}
+                </div>
                 <div className={s.friends}>
-                    {this.props.friendsBlock.friends.map(el => {
+                    {this.props.friends.map(el => {
                         const unfollowHandler = () => {
                             this.props.unfollow(el.id)
                         }
