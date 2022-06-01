@@ -49,27 +49,27 @@ const FriendsReducer = (state: FriendsPageType = initialState, action: FriendsRe
 
 export type FriendsReducerActionType = FollowACType | UnfollowACType | SetFriendsACType | SetCurrentPageACType | SetUsersCountACType | IsFetchingACType
 
-type FollowACType = ReturnType<typeof followAC>
-type UnfollowACType = ReturnType<typeof unfollowAC>
-type SetFriendsACType = ReturnType<typeof setFriendsAC>
-type SetCurrentPageACType = ReturnType<typeof setCurrentPageAC>
-type SetUsersCountACType = ReturnType<typeof setUsersCountAC>
-type IsFetchingACType = ReturnType<typeof setIsFetchingAC>
+type FollowACType = ReturnType<typeof setFollow>
+type UnfollowACType = ReturnType<typeof setUnfollow>
+type SetFriendsACType = ReturnType<typeof setFriends>
+type SetCurrentPageACType = ReturnType<typeof setCurrentPage>
+type SetUsersCountACType = ReturnType<typeof setUsersCount>
+type IsFetchingACType = ReturnType<typeof setIsFetching>
 
 
-export const followAC = (friendID: string) => {
+export const setFollow = (friendID: string) => {
     return {
         type: "FOLLOW",
         payload: {friendID}
     } as const
 }
-export const unfollowAC = (friendID: string) => {
+export const setUnfollow = (friendID: string) => {
     return {
         type: "UNFOLLOW",
         payload: {friendID}
     } as const
 }
-export const setFriendsAC = (refreshFriends: FriendType[]) => {
+export const setFriends = (refreshFriends: FriendType[]) => {
     return {
         type: "SET-USERS",
         payload: {
@@ -77,7 +77,7 @@ export const setFriendsAC = (refreshFriends: FriendType[]) => {
         }
     } as const
 }
-export const setCurrentPageAC = (currentPage: number) => {
+export const setCurrentPage = (currentPage: number) => {
     return {
         type: "SET-CURRENT-PAGE",
         payload: {
@@ -85,7 +85,7 @@ export const setCurrentPageAC = (currentPage: number) => {
         }
     } as const
 }
-export const setUsersCountAC = (totalUsersCount: number) => {
+export const setUsersCount = (totalUsersCount: number) => {
     return {
         type: "SET-USERS-COUNT",
         payload: {
@@ -93,5 +93,5 @@ export const setUsersCountAC = (totalUsersCount: number) => {
         }
     } as const
 }
-export const setIsFetchingAC = (isFetching: boolean) => {return {type: "SET-IS-FETCHING", payload:{isFetching}} as const}
+export const setIsFetching = (isFetching: boolean) => {return {type: "SET-IS-FETCHING", payload:{isFetching}} as const}
 export default FriendsReducer;
