@@ -1,8 +1,6 @@
 import React from 'react';
 import s from "./Menu.module.css"
-import star from "../../../cons/icons/star.png"
 import logo from "../../../cons/icons/logo.png"
-import bookmark from "../../../cons/icons/bookmark.png"
 import user from "../../../cons/icons/user.png"
 import edit from "../../../cons/icons/edit.png"
 import chat from "../../../cons/icons/message.png"
@@ -19,19 +17,9 @@ const Menu = () => {
             </div>
             <ul className={s.list}>
                 <li className={s.item}>
-                    <img src={chat} alt="Chat" className={s.icon}/>
-                    <NavLink to="/chat"
-                       className={({isActive}) => isActive ? `${s.link__active}` : `${s.link}`}>Chat</NavLink>
-                </li>
-                <li className={s.item}>
-                    <img src={star} alt="Events" className={s.icon}/>
-                    <div
-                       className={s.link}>Events</div>
-                </li>
-                <li className={s.item}>
-                    <img src={bookmark} alt="Bookmarks" className={s.icon}/>
-                    <div
-                       className={s.link}>Bookmarks</div>
+                    <img src={chat} alt="Dialogs" className={s.icon}/>
+                    <NavLink to="/dialogs"
+                             className={({isActive}) => isActive ? `${s.link__active}` : `${s.link}`}>Dialogs</NavLink>
                 </li>
                 <li className={s.item}>
                     <img src={user} alt="friends" className={s.icon}/>
@@ -46,8 +34,9 @@ const Menu = () => {
                 </li>
                 <li className={s.item}>
                     <img src={settings} alt="Settings" className={s.icon}/>
-                    <div
-                       className={s.link}>Settings</div>
+
+                    <NavLink to="/settings"
+                             className={({isActive}) => isActive ? `${s.link__active}` : `${s.link}`}>Settings</NavLink>
                 </li>
             </ul>
         </div>

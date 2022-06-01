@@ -6,15 +6,18 @@ import like from "../../../cons/icons/Send/like.png"
 import sms from "../../../cons/icons/Send/sms.png"
 import smile from "../../../cons/icons/Send/smile.png"
 import img from "../../../cons/icons/Send/img.png"
-import {DialogsPageType} from "../../../Redux/chat-reducer";
+import {DialogsPageType} from "../../../Redux/dialogs-reducer";
+
 type SendTextType = {
     state: DialogsPageType
-    onChangeCallBack: (e:ChangeEvent<HTMLInputElement>) => void
+    onChangeCallBack: (e: ChangeEvent<HTMLInputElement>) => void
     onClickCallBack: () => void
 }
-const SendText:React.FC<SendTextType> = ({state,
-                                             onChangeCallBack,
-                                             onClickCallBack}) => {
+const SendText: React.FC<SendTextType> = ({
+                                              state,
+                                              onChangeCallBack,
+                                              onClickCallBack
+                                          }) => {
     return (
         <div className={s.footer}>
             <div className={s.footer__likes}>

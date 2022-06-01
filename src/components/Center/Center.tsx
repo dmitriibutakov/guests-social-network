@@ -3,10 +3,11 @@ import s from "./Center.module.css"
 import Stories from "./Stories/Stories";
 import Requests from "./Requests/Requests";
 import {Route, Routes} from "react-router-dom";
-import NewPostContainer from "./NewPost/NewPostContainer";
-import ChatContainer from "./Chat/ChatContainer";
+import NewPostContainer from "./Posts/NewPost/NewPostContainer";
 import FriendsContainer from "./Friends/FriendsContainer";
 import PostsContainer from "./Posts/PostsContainer";
+import Settings from "./Settings/Settings";
+import DialogsContainer from './Dialogs/DialogsContainer';
 
 const Center = () => {
     return (
@@ -20,13 +21,13 @@ const Center = () => {
                         <PostsContainer/>
                     </div>
                 </>}/>
-                <Route path={"/chat"}
-                       element={<div className={s.center__block}>
-                           <ChatContainer/>
+                <Route path={"/dialogs"} element={<div className={s.center__block}>
+                           <DialogsContainer/>
                        </div>}/>
                 <Route path={"/friends"} element={<div className={s.center__block}>
                     <FriendsContainer/>
                 </div>}/>
+                <Route path={"/settings"} element={<div className={s.center__block}> <Settings/> </div>}/>
             </Routes>
             <div className={s.center__footer}>
                 <div className={s.center__block_stories}>

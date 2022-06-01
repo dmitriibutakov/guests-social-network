@@ -1,12 +1,11 @@
 import React, {ChangeEvent} from 'react';
 import s from "./NewPost.module.css"
-import dots from "../../../cons/icons/dots.png"
-import visible from "../../../cons/icons/Send/visible.png"
-import img from "../../../cons/icons/Send/img.png"
-import smile from "../../../cons/icons/Send/smile.png"
-import like from "../../../cons/icons/Send/like.png"
-import add from "../../../cons/icons/Send/add.png"
-import UniversalBtn from "../../UniversalComponents/UniversalBtn/UniversalBtn";
+import visible from "../../../../cons/icons/Send/visible.png"
+import img from "../../../../cons/icons/Send/img.png"
+import smile from "../../../../cons/icons/Send/smile.png"
+import like from "../../../../cons/icons/Send/like.png"
+import add from "../../../../cons/icons/Send/add.png"
+import UniversalBtn from "../../../UniversalComponents/UniversalBtn/UniversalBtn";
 import {NewPostProps} from "./NewPostContainer";
 
 const NewPost: React.FC<NewPostProps> = ({updateNewPostText, addPost, newPostText}) => {
@@ -20,7 +19,6 @@ const NewPost: React.FC<NewPostProps> = ({updateNewPostText, addPost, newPostTex
         <div>
             <div className={s.header}>
                 <h2 className={s.title}>New Post</h2>
-                <div className={s.dots}><img src={dots} alt="dots"/></div>
             </div>
             <div className={s.main}>
                 <input type="text"

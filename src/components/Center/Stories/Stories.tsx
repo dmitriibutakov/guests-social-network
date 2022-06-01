@@ -1,10 +1,10 @@
-import React from 'react';
-import s from './Stories.module.css'
-import  story1 from "../../../cons/friends/friend6.png"
-import  story2 from "../../../cons/friends/friend7.png"
-import  story3 from "../../../cons/friends/friend8.png"
-import  story4 from "../../../cons/friends/friend9.png"
-import  addStory from "../../../cons/icons/addStory.png"
+import React from "react";
+import s from "./Stories.module.css"
+import story1 from "../../../cons/friends/friend6.png"
+import story2 from "../../../cons/friends/friend7.png"
+import story3 from "../../../cons/friends/friend8.png"
+import story4 from "../../../cons/friends/friend9.png"
+import addStory from "../../../cons/icons/addStory.png"
 
 const Stories = () => {
     return (
@@ -26,9 +26,9 @@ const Stories = () => {
                     </div>
                 </div>
                 <div className={s.stories__add}>
-                <div className={s.story}>
-                    <img className={s.story__img} src={addStory} alt="story"/>
-                </div>
+                    <div className={s.story}>
+                        <img className={s.story__img} src={addStory} alt="story"/>
+                    </div>
                 </div>
             </div>
         </div>

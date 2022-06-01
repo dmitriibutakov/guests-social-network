@@ -2,7 +2,7 @@ import React from 'react';
 import Menu from "./Menu/Menu";
 import s from "./Left.module.css"
 import SwitchMode from "./SwitchMode/SwitchMode";
-import Contacts from "./Contacts/Contacts";
+import Friends from "./Friends/Friends";
 
 const Left = () => {
     return (
@@ -11,7 +11,7 @@ const Left = () => {
                 <Menu/>
             </div>
             <div className={s.left__block}>
-                <Contacts/>
+                <Friends/>
             </div>
             <div className={s.left__block}>
                 <SwitchMode/>

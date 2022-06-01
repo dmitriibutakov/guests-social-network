@@ -1,6 +1,5 @@
 import React from 'react';
 import s from "./Messages.module.css"
-import dots from "../../../cons/icons/dots.png";
 import message1 from "../../../cons/friends/friend10.png"
 import message2 from "../../../cons/friends/friend9.png"
 import message3 from "../../../cons/friends/friend8.png"
@@ -11,9 +10,6 @@ const Messages = () => {
             <div className={s.header}>
                 <div>
                     <h4 className={s.title}>Messages</h4>
-                </div>
-                <div className={s.block__dots}>
-                    <img src={dots} alt="dots"/>
                 </div>
             </div>
             <div className={s.main}>

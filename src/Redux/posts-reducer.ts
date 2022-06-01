@@ -1,7 +1,6 @@
 import {ChangeEvent} from "react";
 import {v1} from "uuid";
 import ava from "../cons/ava.png"
-import dots from "../cons/icons/dots.png"
 import photo1 from "../cons/posts/posts-photo-1.jpeg"
 import photo2 from "../cons/posts/posts-photo-2.jpeg"
 import photo3 from "../cons/posts/posts-photo-3.jpeg"
@@ -16,7 +15,6 @@ export type PostType = {
     message: string
     likes: number
     ava: string
-    dots: string
     photo1: string
     photo2: string
     photo3: string
@@ -25,8 +23,8 @@ export type PostType = {
 
 let initialState: PostsPageType = {
     posts: [
-        {id: v1(), ava, dots, photo1, photo2, photo3, photo4, message: 'I find a new Collection', likes: 22},
-        {id: v1(), ava, dots, photo1, photo2, photo3, photo4, message: 'Hi! It\'s my first post!', likes: 13}
+        {id: v1(), ava, photo1, photo2, photo3, photo4, message: 'I find a new Collection', likes: 22},
+        {id: v1(), ava, photo1, photo2, photo3, photo4, message: 'Hi! It\'s my first post!', likes: 13}
     ],
     newPostText: " ",
 }
@@ -37,7 +35,7 @@ const PostsReducer = (state: PostsPageType = initialState, action: PostsReducerT
                 id: v1(),
                 message: state.newPostText,
                 likes: 5,
-                ava, dots, photo1, photo2, photo3, photo4
+                ava, photo1, photo2, photo3, photo4
             }
             return {...state, posts: [newPost, ...state.posts], newPostText: ""}
         case "UPDATE-NEW-POST":

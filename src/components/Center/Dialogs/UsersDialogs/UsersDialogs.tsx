@@ -1,14 +1,12 @@
-import React from 'react';
-import s from "./UsersChat.module.css"
-import {UserDialogType} from "../../../../Redux/chat-reducer";
+import React from "react";
+import s from "./UsersDialogs.module.css"
+import {UserDialogType} from "../../../../Redux/dialogs-reducer";
 
-type UsersChatType = UserDialogType
-
-const UsersChat: React.FC<UsersChatType> = (props) => {
+const UsersDialogs: React.FC<UserDialogType> = (props) => {
     return (
         <div className={s.message}>
             <div className={s.ava__block}>
-            <img src={props.ava} alt="avatar"/>
+                <img src={props.ava} alt="avatar"/>
             </div>
             <div className={s.angle}/>
             <div className={s.user}>
@@ -20,4 +18,4 @@ const UsersChat: React.FC<UsersChatType> = (props) => {
     )
 }
 
-export default UsersChat;
+export default UsersDialogs;

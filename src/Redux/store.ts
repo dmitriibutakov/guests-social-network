@@ -1,16 +1,16 @@
 import {combineReducers, createStore} from "redux";
-import ChatReducer, {ChatReducerACType} from "./chat-reducer";
 import PostsReducer, {PostsReducerType} from "./posts-reducer";
 import FriendsReducer, {FriendsReducerActionType} from "./friends-reducer";
 import MenuUsersReducer, {MenuUsersReducerACType} from "./menu-users-reducer";
+import DialogsReducer, {DialogsReducerACType} from "./dialogs-reducer";
 
 const rootReducer = combineReducers({
     PostsPage: PostsReducer,
-    DialogsPage: ChatReducer,
+    DialogsPage: DialogsReducer,
     MenuUsers: MenuUsersReducer,
     FriendsPage: FriendsReducer
 })
 const store = createStore(rootReducer)
 export type AppStateType = ReturnType<typeof rootReducer>
-export type DispatchType = (action: ChatReducerACType | FriendsReducerActionType | MenuUsersReducerACType | PostsReducerType) => void
+export type DispatchType = (action: DialogsReducerACType | FriendsReducerActionType | MenuUsersReducerACType | PostsReducerType) => void
 export default store;

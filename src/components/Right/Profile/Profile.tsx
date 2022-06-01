@@ -28,18 +28,18 @@ const Profile = () => {
                 <p className={s.friends__count}>10 mutual friend</p>
                 <div className={s.friends__list}>
                     <div className={s.friends__links}>
-                    <div className={s.friend}>
-                        <img className={s.friend__img} src={story1} alt="story"/>
-                    </div>
-                    <div className={s.friend}>
-                        <img className={s.friend__img} src={story2} alt="story"/>
-                    </div>
-                    <div className={s.friend}>
-                        <img className={s.friend__img} src={story3} alt="story"/>
-                    </div>
-                    <div className={s.friend}>
-                        <img className={s.friend__img} src={story4} alt="story"/>
-                    </div>
+                        <div className={s.friend}>
+                            <img className={s.friend__img} src={story1} alt="story"/>
+                        </div>
+                        <div className={s.friend}>
+                            <img className={s.friend__img} src={story2} alt="story"/>
+                        </div>
+                        <div className={s.friend}>
+                            <img className={s.friend__img} src={story3} alt="story"/>
+                        </div>
+                        <div className={s.friend}>
+                            <img className={s.friend__img} src={story4} alt="story"/>
+                        </div>
                         <span className={s.friends__count_add}>+6</span>
                     </div>
 

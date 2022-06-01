@@ -2,18 +2,15 @@ import React from 'react';
 import s from "./Posts.module.css";
 import {PostType} from "../../../Redux/posts-reducer";
 
-type PostElType = PostType
-
-export const Post: React.FC<PostElType> = ({
-                                      ava,
-                                      message,
-                                      dots,
-                                      id,
-                                      photo1,
-                                      photo2,
-                                      photo3,
-                                      photo4
-                                  }) => {
+export const Post: React.FC<PostType> = ({
+                                             ava,
+                                             message,
+                                             id,
+                                             photo1,
+                                             photo2,
+                                             photo3,
+                                             photo4
+                                         }) => {
     return (
         <div className={s.body} key={id}>
             <div className={s.header}>
@@ -24,7 +21,6 @@ export const Post: React.FC<PostElType> = ({
                         <div className={s.time}>September 20, 2020</div>
                     </div>
                 </div>
-                <div className={s.dots}><img src={dots} alt="images"/></div>
             </div>
             <div className={s.main}>
                 <div className={s.main__post}>

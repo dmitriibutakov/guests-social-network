@@ -42,7 +42,7 @@ let initialState: DialogsPageType = {
     newMessageText: " ",
 }
 
-const ChatReducer = (state: DialogsPageType = initialState, action: ChatReducerACType): DialogsPageType => {
+const DialogsReducer = (state: DialogsPageType = initialState, action: DialogsReducerACType): DialogsPageType => {
     switch (action.type) {
         case "ADD-MESSAGE":
             const newMessage = {
@@ -60,7 +60,7 @@ const ChatReducer = (state: DialogsPageType = initialState, action: ChatReducerA
     }
 };
 
-export type ChatReducerACType = addMessageACType | updateNewMessageACType
+export type DialogsReducerACType = addMessageACType | updateNewMessageACType
 type addMessageACType = ReturnType<typeof addMessageActionCreator>
 type updateNewMessageACType = ReturnType<typeof updateNewMessageActionCreator>
 
@@ -71,4 +71,4 @@ export const updateNewMessageActionCreator = (event: ChangeEvent<HTMLInputElemen
     )
 }
 
-export default ChatReducer;
+export default DialogsReducer;

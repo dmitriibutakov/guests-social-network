@@ -2,6 +2,7 @@
 .body__users {
     display: flex;
 }
+
 .body {
     flex-direction: column;
     margin-bottom: 10px;

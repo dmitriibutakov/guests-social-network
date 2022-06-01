@@ -3,6 +3,7 @@ export type FriendsPageType = {
     pageSize: number
     totalUsersCount: number
     currentPage: number
+    isFetching: boolean
 }
 export type FriendType = {
     name: string,
@@ -18,6 +19,7 @@ let initialState: FriendsPageType = {
     pageSize: 6,
     totalUsersCount: 21,
     currentPage: 3,
+    isFetching: false,
 }
 
 const FriendsReducer = (state: FriendsPageType = initialState, action: FriendsReducerActionType): FriendsPageType => {
@@ -38,17 +40,22 @@ const FriendsReducer = (state: FriendsPageType = initialState, action: FriendsRe
             return {...state, currentPage: action.payload.currentPage}
         case "SET-USERS-COUNT":
             return {...state, totalUsersCount: action.payload.totalUsersCount}
+        case "SET-IS-FETCHING":
+            return {...state, isFetching: action.payload.isFetching}
         default:
             return state
     }
 };
-export type FriendsReducerActionType = followACType | unfollowACType | setFriendsACType | setCurrentPageACType | setUsersCountACType
 
-type followACType = ReturnType<typeof followAC>
-type unfollowACType = ReturnType<typeof unfollowAC>
-type setFriendsACType = ReturnType<typeof setFriendsAC>
-type setCurrentPageACType = ReturnType<typeof setCurrentPageAC>
-type setUsersCountACType = ReturnType<typeof setUsersCountAC>
+export type FriendsReducerActionType = FollowACType | UnfollowACType | SetFriendsACType | SetCurrentPageACType | SetUsersCountACType | IsFetchingACType
+
+type FollowACType = ReturnType<typeof followAC>
+type UnfollowACType = ReturnType<typeof unfollowAC>
+type SetFriendsACType = ReturnType<typeof setFriendsAC>
+type SetCurrentPageACType = ReturnType<typeof setCurrentPageAC>
+type SetUsersCountACType = ReturnType<typeof setUsersCountAC>
+type IsFetchingACType = ReturnType<typeof setIsFetchingAC>
+
 
 export const followAC = (friendID: string) => {
     return {
@@ -86,4 +93,5 @@ export const setUsersCountAC = (totalUsersCount: number) => {
         }
     } as const
 }
+export const setIsFetchingAC = (isFetching: boolean) => {return {type: "SET-IS-FETCHING", payload:{isFetching}} as const}
 export default FriendsReducer;

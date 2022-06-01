@@ -1,6 +1,7 @@
-.right>*:not(:last-child) {
+.right > *:not(:last-child) {
     margin-bottom: 20px;
 }
+
 .right__block {
     padding: 20px;
     background-color: #fff;

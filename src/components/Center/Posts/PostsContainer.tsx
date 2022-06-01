@@ -1,13 +1,12 @@
-import React from 'react';
 import Posts from "./Posts";
 import {connect} from "react-redux";
-import {AppStateType} from "../../../Redux/redux-store";
 import {PostsPageType} from "../../../Redux/posts-reducer";
+import {AppStateType} from "../../../Redux/store";
 
-type mapStateToPropsType = {
+type MapStateToPropsType = {
     postsPage: PostsPageType
 }
-const mapStateToProps = (state: AppStateType):mapStateToPropsType => {
+const mapStateToProps = (state: AppStateType): MapStateToPropsType => {
     return {
         postsPage: state.PostsPage
     }
@@ -16,7 +15,7 @@ const mapDipatchToProps = () => {
     return {}
 }
 
-export type PostsPropsType = mapStateToPropsType
+export type PostsPropsType = MapStateToPropsType
 
 const PostsContainer = connect(mapStateToProps, mapDipatchToProps)(Posts)
 export default PostsContainer;

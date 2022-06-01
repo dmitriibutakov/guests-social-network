@@ -8,74 +8,90 @@
 .counts__block {
     display: flex;
 }
+
 .body {
     flex-direction: column;
 }
+
 .covers {
     justify-content: center;
 }
+
 .cover:not(:last-child) {
     margin-right: 5px;
 }
+
 .cover {
     width: 102px;
     height: 99px;
 }
-.cover img{
+
+.cover img {
     border-radius: 10px;
     width: 100%;
     height: 100%;
 
 }
+
 .cover:first-of-type img {
     border-radius: 20px 10px 10px 10px;
 }
+
 .cover:last-of-type img {
-    border-radius:  10px 20px 10px 10px;
+    border-radius: 10px 20px 10px 10px;
 }
+
 .user {
     flex-direction: column;
     justify-content: center;
     align-items: center;
     margin-bottom: 30px;
 }
+
 .block__image {
     width: 58px;
     height: 58px;
     margin-top: -20px;
 }
+
 .block__image img {
     border: 4px solid white;
     width: 100%;
     height: 100%;
     border-radius: 50%;
 }
+
 .user__name {
     margin: 8px 0;
     font-size: 20px;
     font-weight: 700;
 }
+
 .user__city {
     font-size: 12px;
     color: #A8B1C5;
 }
+
 .friends {
     flex-direction: column;
     justify-content: center;
     align-items: center;
     margin-bottom: 20px;
 }
+
 .friends__count {
     justify-content: center;
     font-size: 14px;
     margin-bottom: 13px;
     font-weight: 500;
 }
+
 .friends__links {
     margin-left: 20px;
     justify-content: center;
 }
- .friend {
+
+.friend {
     width: 30px;
     height: 30px;
     margin-left: -20px;
@@ -85,6 +101,7 @@
     width: 100%;
     height: 100%;
 }
+
 .friends__count_add {
     display: inline-flex;
     align-items: center;
@@ -95,20 +112,24 @@
     color: #0062FF;
     font-weight: 500;
 }
+
 .counts {
     margin: 0 20px;
     justify-content: space-between;
 }
+
 .counts__block {
     flex-direction: column;
     justify-content: center;
     text-align: center;
 }
+
 .counts__number {
     font-size: 20px;
     color: #0062FF;
     margin-bottom: 4px;
 }
+
 .counts__title {
     font-size: 12px;
     font-weight: 500;

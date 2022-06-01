@@ -3,9 +3,11 @@
     flex-direction: column;
     color: #151922;
 }
-.left>*:not(:last-child) {
+
+.left > *:not(:last-child) {
     margin-bottom: 20px;
 }
+
 .left__block {
     padding: 20px;
     background-color: #fff;
