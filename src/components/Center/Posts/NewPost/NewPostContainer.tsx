@@ -1,4 +1,4 @@
-import React, {ChangeEvent} from 'react';
+import {ChangeEvent} from 'react';
 import {addPostActionCreator, updateNewPostTextActionCreator} from "../../../../Redux/posts-reducer";
 import NewPost from "./NewPost";
 import {connect} from "react-redux";
