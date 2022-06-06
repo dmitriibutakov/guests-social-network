@@ -3,6 +3,7 @@ import s from "./Friends.module.css";
 import memo from "../../../cons/Memoji/Memoji-03.png";
 import UniversalBtn from "../../UniversalComponents/UniversalBtn/UniversalBtn";
 import {FriendType} from "../../../Redux/friends-reducer";
+import {NavLink} from "react-router-dom";
 
 type FriendsType = {
     usersCount: number
@@ -35,10 +36,9 @@ const Friends: React.FC<FriendsType> = (props) => {
     return (
         <div className={s.friends__block}>
             <div>
-                {/* eslint-disable-next-line array-callback-return */}
                 {pages.map((e) => {
                     if (e < 15) {
-                        return <span onClick={() => onPageChanged(e)}
+                        return <span  key={Math.random()} onClick={() => onPageChanged(e)}
                                      className={currentPage === e ? s.selectedPage : ""}>{e}</span>
                     }
 
@@ -51,7 +51,9 @@ const Friends: React.FC<FriendsType> = (props) => {
                     return (
                         <div className={s.friend__block} key={el.id}>
                             <div className={s.avatar}>
+                                <NavLink to={"/profile/" + el.id}>
                                 <img src={el.ava != null ? el.ava : memo} alt="avatar"/>
+                                </NavLink>
                             </div>
 
                             <h3 className={s.name}>{el.name}</h3>

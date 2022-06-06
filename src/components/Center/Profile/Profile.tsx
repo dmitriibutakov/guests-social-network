@@ -3,14 +3,19 @@ import s from "./Profile.module.css"
 import cover1 from "../../../cons/right/cover1.png"
 import cover2 from "../../../cons/right/cover2.png"
 import cover3 from "../../../cons/right/cover3.png"
-import ava from "../../../cons/ava.png"
 import story1 from "../../../cons/friends/friend3.png";
 import story2 from "../../../cons/friends/friend6.png";
 import story3 from "../../../cons/friends/friend8.png";
 import story4 from "../../../cons/friends/friend2.png";
-
-const Profile = () => {
-    return (
+import {ProfileURLType} from "../../../Redux/profile-reducer";
+import Preloader from "../../UniversalComponents/Preloader/Preloader";
+type ProfileComponentType = {
+    profile: ProfileURLType
+}
+const Profile:React.FC<ProfileComponentType> = ({profile}) => {
+  if (profile.userId === 0) {
+      return <Preloader/>
+  } else return (
         <div className={s.body}>
             <div className={s.covers}>
                 <div className={s.cover}><img src={cover1} alt="cover"/></div>
@@ -19,10 +24,10 @@ const Profile = () => {
             </div>
             <div className={s.user}>
                 <div className={s.block__image}>
-                    <img src={ava} alt="avatar"/>
+                    <img src={profile.photos.small} alt="avatar"/>
                 </div>
-                <h1 className={s.user__name}>Ginny Churchills</h1>
-                <p className={s.user__city}>Las Vegas, US</p>
+                <h1 className={s.user__name}>{profile.fullName}</h1>
+                <p className={s.user__city}>{profile.aboutMe || "about me"}</p>
             </div>
             <div className={s.friends}>
                 <p className={s.friends__count}>10 mutual friend</p>

@@ -18,19 +18,17 @@
 }
 
 .cover:not(:last-child) {
-    margin-right: 5px;
+    margin-right: 20px;
 }
 
 .cover {
-    width: 102px;
-    height: 99px;
+    width: 122px;
+    height: 119px;
 }
 
 .cover img {
-    border-radius: 10px;
     width: 100%;
     height: 100%;
-
 }
 
 .cover:first-of-type img {

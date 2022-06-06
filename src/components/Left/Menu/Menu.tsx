@@ -28,8 +28,8 @@ const Menu = () => {
                 </li>
                 <li className={s.item}>
                     <img src={edit} alt="Posts" className={s.icon}/>
-                    <NavLink to="/posts"
-                             className={({isActive}) => isActive ? `${s.link__active}` : `${s.link}`}>Posts</NavLink>
+                    <NavLink to="/profile"
+                             className={({isActive}) => isActive ? `${s.link__active}` : `${s.link}`}>Profile</NavLink>
                     <span className={s.contactsPush}>25</span>
                 </li>
                 <li className={s.item}>

@@ -22,7 +22,7 @@ let initialState: FriendsPageType = {
     isFetching: false,
 }
 
-const FriendsReducer = (state: FriendsPageType = initialState, action: FriendsReducerActionType): FriendsPageType => {
+const FriendsReducer = (state: FriendsPageType = initialState, action: FriendsReducerType): FriendsPageType => {
     switch (action.type) {
         case "FOLLOW":
             return {
@@ -47,14 +47,14 @@ const FriendsReducer = (state: FriendsPageType = initialState, action: FriendsRe
     }
 };
 
-export type FriendsReducerActionType = FollowACType | UnfollowACType | SetFriendsACType | SetCurrentPageACType | SetUsersCountACType | IsFetchingACType
+export type FriendsReducerType = FollowType | UnfollowType | SetFriendsType | SetCurrentPageType | SetUsersCountType | IsFetchingType
 
-type FollowACType = ReturnType<typeof setFollow>
-type UnfollowACType = ReturnType<typeof setUnfollow>
-type SetFriendsACType = ReturnType<typeof setFriends>
-type SetCurrentPageACType = ReturnType<typeof setCurrentPage>
-type SetUsersCountACType = ReturnType<typeof setUsersCount>
-type IsFetchingACType = ReturnType<typeof setIsFetching>
+type FollowType = ReturnType<typeof setFollow>
+type UnfollowType = ReturnType<typeof setUnfollow>
+type SetFriendsType = ReturnType<typeof setFriends>
+type SetCurrentPageType = ReturnType<typeof setCurrentPage>
+type SetUsersCountType = ReturnType<typeof setUsersCount>
+type IsFetchingType = ReturnType<typeof setIsFetching>
 
 
 export const setFollow = (friendID: string) => {

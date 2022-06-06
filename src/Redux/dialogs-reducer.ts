@@ -42,7 +42,7 @@ let initialState: DialogsPageType = {
     newMessageText: " ",
 }
 
-const DialogsReducer = (state: DialogsPageType = initialState, action: DialogsReducerACType): DialogsPageType => {
+const DialogsReducer = (state: DialogsPageType = initialState, action: DialogsReducerType): DialogsPageType => {
     switch (action.type) {
         case "ADD-MESSAGE":
             const newMessage = {
@@ -60,12 +60,12 @@ const DialogsReducer = (state: DialogsPageType = initialState, action: DialogsRe
     }
 };
 
-export type DialogsReducerACType = addMessageACType | updateNewMessageACType
-type addMessageACType = ReturnType<typeof addMessageActionCreator>
-type updateNewMessageACType = ReturnType<typeof updateNewMessageActionCreator>
+export type DialogsReducerType = AddMessageType | UpdateNewMessageType
+type AddMessageType = ReturnType<typeof addMessage>
+type UpdateNewMessageType = ReturnType<typeof updateNewMessage>
 
-export const addMessageActionCreator = () => ({type: "ADD-MESSAGE", newText: ""} as const)
-export const updateNewMessageActionCreator = (event: ChangeEvent<HTMLInputElement>) => {
+export const addMessage = () => ({type: "ADD-MESSAGE", newText: ""} as const)
+export const updateNewMessage = (event: ChangeEvent<HTMLInputElement>) => {
     return (
         {type: "UPDATE-NEW-MESSAGE", newText: event.currentTarget.value} as const
     )

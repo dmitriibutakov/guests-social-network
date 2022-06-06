@@ -1,6 +1,6 @@
 import React from 'react';
 import s from "./Posts.module.css";
-import {PostType} from "../../../Redux/posts-reducer";
+import {PostType} from "../../../../Redux/profile-reducer";
 
 export const Post: React.FC<PostType> = ({
                                              ava,
