@@ -3,14 +3,17 @@ import MenuUsersReducer, {MenuUsersReducerACType} from "./menu-users-reducer";
 import DialogsReducer, {DialogsReducerType} from "./dialogs-reducer";
 import ProfileReducer, {ProfileReducerType} from "./profile-reducer";
 import FriendsReducer, {FriendsReducerType} from "./friends-reducer";
+import AuthReducer from "./auth-reducer";
 
 const rootReducer = combineReducers({
     ProfilePage: ProfileReducer,
     DialogsPage: DialogsReducer,
     MenuUsers: MenuUsersReducer,
-    FriendsPage: FriendsReducer
+    FriendsPage: FriendsReducer,
+    Auth: AuthReducer,
 })
 const store = createStore(rootReducer)
 export type AppStateType = ReturnType<typeof rootReducer>
 export type DispatchType = (action: DialogsReducerType | FriendsReducerType | MenuUsersReducerACType | ProfileReducerType) => void
 export default store;
+

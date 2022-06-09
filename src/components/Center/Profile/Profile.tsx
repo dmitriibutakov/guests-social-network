@@ -13,7 +13,7 @@ type ProfileComponentType = {
     profile: ProfileURLType
 }
 const Profile:React.FC<ProfileComponentType> = ({profile}) => {
-  if (profile.userId === 0) {
+  if (!profile.userId) {
       return <Preloader/>
   } else return (
         <div className={s.body}>

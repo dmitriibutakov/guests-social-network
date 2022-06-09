@@ -19,6 +19,9 @@ const Center = () => {
                 <Route path={"/dialogs"} element={<div className={s.center__block}>
                     <DialogsContainer/>
                 </div>}/>
+                <Route path={"/login"} element={<div className={s.center__block}>
+                    LOGIN
+                </div>}/>
                 <Route path={"/friends"} element={<div className={s.center__block}>
                     <FriendsContainer/>
                 </div>}/>

@@ -1,3 +1,5 @@
+import {IsFetchingType} from "./actions/actions";
+
 export type FriendsPageType = {
     friends: FriendType[]
     pageSize: number
@@ -17,8 +19,8 @@ export type FriendType = {
 let initialState: FriendsPageType = {
     friends: [],
     pageSize: 6,
-    totalUsersCount: 21,
-    currentPage: 3,
+    totalUsersCount: 0,
+    currentPage: 1,
     isFetching: false,
 }
 
@@ -54,7 +56,7 @@ type UnfollowType = ReturnType<typeof setUnfollow>
 type SetFriendsType = ReturnType<typeof setFriends>
 type SetCurrentPageType = ReturnType<typeof setCurrentPage>
 type SetUsersCountType = ReturnType<typeof setUsersCount>
-type IsFetchingType = ReturnType<typeof setIsFetching>
+
 
 
 export const setFollow = (friendID: string) => {
@@ -93,5 +95,5 @@ export const setUsersCount = (totalUsersCount: number) => {
         }
     } as const
 }
-export const setIsFetching = (isFetching: boolean) => {return {type: "SET-IS-FETCHING", payload:{isFetching}} as const}
+
 export default FriendsReducer;

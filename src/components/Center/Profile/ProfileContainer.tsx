@@ -6,31 +6,43 @@ import PostsContainer from "./Posts/PostsContainer";
 import axios from "axios";
 import Profile from "./Profile";
 import NewPostContainer from "./Posts/NewPost/NewPostContainer";
-import {addPost, PostType, ProfileURLType, setUserProfile, updateNewPostText} from "../../../Redux/profile-reducer";
+import {
+    addPost,
+    PostType,
+    ProfileURLType,
+    setUserProfile,
+    updateNewPostText
+} from "../../../Redux/profile-reducer";
 import {useParams} from "react-router-dom";
+import Preloader from "../../UniversalComponents/Preloader/Preloader";
+import {setIsFetching} from "../../../Redux/actions/actions";
+import {withRouter} from "../../../Redux/withRouter";
 
 
 const ProfileAPIContainer = (props: ProfilePropsType) => {
-
     const {
         profile,
         updateNewPostText,
         newPostText,
         addPost,
         posts,
+        isFetching,
     } = props
     const {userId} = useParams<'userId'>()
 
     useEffect(() => {
-        // let userId = router.params.userId;
+        props.setIsFetching(true)
         function setUserId() {
            return !userId ? '23985' : userId
         }
         axios.get(`https://social-network.samuraijs.com/api/1.0/profile/` + setUserId()).then(response => {
+            props.setIsFetching(false)
             props.setUserProfile(response.data)
         })
     }, [])
     return (
+        <>
+        {isFetching ? <Preloader/> : null}
         <>
             <div className={s.center__block}>
                 <Profile profile={profile}/>
@@ -43,6 +55,7 @@ const ProfileAPIContainer = (props: ProfilePropsType) => {
                 <PostsContainer posts={posts}/>
             </div>
         </>
+        </>
     )
 }
 
@@ -50,11 +63,13 @@ type MapStateToPropsType = {
     newPostText: string
     posts: Array<PostType>
     profile: ProfileURLType
+    isFetching: boolean
 }
 type MapDispatchToPropsType = {
     addPost: () => void
     updateNewPostText: (event: ChangeEvent<HTMLInputElement>) => void
     setUserProfile: (id: string) => void
+    setIsFetching: (IsFetching: boolean) => void
 }
 
 
@@ -64,19 +79,9 @@ const mapStateToProps = (state: AppStateType): MapStateToPropsType => {
     return {
         profile: state.ProfilePage.profile,
         posts: state.ProfilePage.posts,
-        newPostText: state.ProfilePage.newPostText
+        newPostText: state.ProfilePage.newPostText,
+        isFetching: state.ProfilePage.isFetching,
     }
 }
 
-function withRouter(Component: any) {
-    function ComponentWithRouterProp(props: ProfilePropsType) {
-        return (
-            <Component
-                {...props}
-            />
-        );
-    }
-    return ComponentWithRouterProp;
-}
-
-export default connect(mapStateToProps, {setUserProfile, addPost, updateNewPostText})(withRouter(ProfileAPIContainer))
+export default connect(mapStateToProps, {setUserProfile, addPost, updateNewPostText, setIsFetching})(withRouter(ProfileAPIContainer))

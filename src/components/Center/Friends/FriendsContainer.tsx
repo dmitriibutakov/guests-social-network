@@ -5,7 +5,6 @@ import {
     FriendType,
     setCurrentPage,
     setFriends,
-    setIsFetching,
     setUsersCount,
     setUnfollow
 } from "../../../Redux/friends-reducer";
@@ -13,6 +12,7 @@ import axios from "axios";
 import Friends from "./Friends";
 import {AppStateType} from "../../../Redux/store";
 import Preloader from "../../UniversalComponents/Preloader/Preloader";
+import {setIsFetching} from "../../../Redux/actions/actions";
 
 class FriendsAPIContainer extends React.Component<FriendsPropsType> {
 
@@ -81,5 +81,5 @@ export default connect(mapStateToProps, {
     setFriends,
     setCurrentPage,
     setUsersCount,
-    setIsFetching,
+    setIsFetching
 })(FriendsAPIContainer)
