@@ -3,7 +3,7 @@ import s from "./Profile.module.css"
 
 import {ProfileURLType} from "../../../Redux/profile-reducer";
 import Preloader from "../../UniversalComponents/Preloader/Preloader";
-import {githubImg, incognito, instagramImg, noImg, twitterImg, wallpaperImg, yesImg} from "../../../cons/icons";
+import {githubImg, incognito, instagramImg, noImg, twitterImg, wallpaperImg, yesImg} from "../../../images/dir/icons";
 type ProfileComponentType = {
     profile: ProfileURLType
 }

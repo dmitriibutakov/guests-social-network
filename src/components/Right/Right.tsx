@@ -4,11 +4,9 @@ import AuthContainer from "./Auth/AuthContainer";
 
 const Right = () => {
     return (
-        <div className={s.right}>
             <div className={s.right__block}>
                 <AuthContainer/>
             </div>
-        </div>
     );
 };
 

@@ -3,7 +3,7 @@ import s from "./NewPost.module.css"
 
 import UniversalBtn from "../../../../UniversalComponents/UniversalBtn/UniversalBtn";
 import {NewPostProps} from "./NewPostContainer";
-import {imageImg, smileImg} from "../../../../../cons/icons";
+import {imageImg, smileImg} from "../../../../../images/dir/icons";
 
 const NewPost: React.FC<NewPostProps> = ({updateNewPostText, addPost, newPostText}) => {
     const onClickHandler = () => {

@@ -2,7 +2,7 @@ import React from "react";
 import s from "./UsersInDialogs.module.css";
 import {NavLink} from "react-router-dom";
 import {UserInDialType} from "../../../../Redux/dialogs-reducer";
-import {incognito} from "../../../../cons/icons";
+import {incognito} from "../../../../images/dir/icons";
 
 
 const UsersInDialogs: React.FC<UserInDialType> = ({id,name}) => {

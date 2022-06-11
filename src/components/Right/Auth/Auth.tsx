@@ -1,7 +1,7 @@
 import React from 'react';
 import s from "./Auth.module.css"
 import {NavLink} from "react-router-dom"
-import {exitImg, loginImg} from "../../../cons/icons";
+import {exitImg, loginImg} from "../../../images/dir/icons";
 
 
 type AuthCompType = {

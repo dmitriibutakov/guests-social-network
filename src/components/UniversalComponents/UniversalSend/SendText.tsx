@@ -1,10 +1,7 @@
 import React, {ChangeEvent} from 'react'
 import s from "./SendText.module.css"
-import send from "../../../cons/icons/send.png"
-import like from "../../../cons/icons/like.png"
-import smile from "../../../cons/icons/smile.png"
-import picture from "../../../cons/icons/picture.png"
 import {DialogsPageType} from "../../../Redux/dialogs-reducer";
+import {likeImg, pictureImg, sendImg, smileImg} from "../../../images/dir/icons";
 
 type SendTextType = {
     state: DialogsPageType
@@ -20,12 +17,12 @@ const SendText: React.FC<SendTextType> = ({
         <div className={s.sendText}>
             <div>
                 <div className={s.sendText__link}>
-                    <img className={s.img} src={smile} alt="images"/>
+                    <img className={s.img} src={smileImg} alt="images"/>
                 </div>
             </div>
             <div>
                 <div className={s.sendText__link}>
-                    <img src={like} alt="like"/>
+                    <img src={likeImg} alt="like"/>
                 </div>
             </div>
 
@@ -38,11 +35,11 @@ const SendText: React.FC<SendTextType> = ({
             </div>
             <div>
                 <div className={s.sendText__link}>
-                    <img className={s.img} src={picture} alt="images"/>
+                    <img className={s.img} src={pictureImg} alt="images"/>
                 </div>
             </div>
 
-            <button onClick={onClickCallBack} className={s.button__send}><img src={send} alt="send"/></button>
+            <button onClick={onClickCallBack} className={s.button__send}><img src={sendImg} alt="send"/></button>
         </div>
     );
 };

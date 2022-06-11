@@ -4,17 +4,17 @@ import s from "./UniversalBtn.module.css"
 type BtnType = {
     name: string
     callback: () => void
-    error?: boolean
+    disable?: boolean
     className?: string
 }
 const UniversalBtn: React.FC<BtnType> = ({
                                              className,
                                              name,
-                                             error,
+                                             disable,
                                              callback,
                                          }) => {
     return (
-        <button disabled={error} className={s.default} onClick={callback}>
+        <button disabled={disable} className={disable ? s.disabled : s.default} onClick={callback}>
             {name}</button>
     );
 };

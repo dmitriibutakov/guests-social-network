@@ -1,8 +1,10 @@
-.right > *:not(:last-child) {
-    margin-bottom: 20px;
-}
 
 .right__block {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    height: 100px;
+    width: 100px;
     padding: 20px;
     background-color: #fff;
     box-shadow: 0px 20px 90px rgba(205, 217, 224, 0.5);

@@ -1,11 +1,11 @@
 import {ChangeEvent} from "react";
 import {v1} from "uuid";
-import friend4 from "../cons/friends/friend4.png"
-import friend5 from "../cons/friends/friend5.png"
-import friend6 from "../cons/friends/friend6.png"
-import friend1 from "../cons/friends/friend1.png"
-import friend7 from "../cons/friends/friend7.png"
-import me from "../cons/ava.png";
+import friend4 from "../images/friends/friend4.png"
+import friend5 from "../images/friends/friend5.png"
+import friend6 from "../images/friends/friend6.png"
+import friend1 from "../images/friends/friend1.png"
+import friend7 from "../images/friends/friend7.png"
+import me from "../images/ava.png";
 
 export type UserInDialType = {
     name: string

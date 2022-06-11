@@ -1,6 +1,6 @@
 import React from "react";
 import s from "./Users.module.css";
-import incognito from "../../../cons/incognito.png";
+import incognito from "../../../images/incognito.png";
 import UniversalBtn from "../../UniversalComponents/UniversalBtn/UniversalBtn";
 import {NavLink} from "react-router-dom";
 import {UsersAPI} from "../../../Api/api";
@@ -14,6 +14,8 @@ type UsersType = {
     unfollow: (id: number) => void
     follow: (id: number) => void
     onPageChanged: (n: number) => void
+    setIsFollowing: (isFollowing: boolean, userId: number) => void
+    followingInProgress: Array<number>
 }
 
 const Users: React.FC<UsersType> = (props) => {
@@ -26,6 +28,8 @@ const Users: React.FC<UsersType> = (props) => {
         unfollow,
         follow,
         onPageChanged,
+        setIsFollowing,
+        followingInProgress,
     } = props
 
     let pagesCount = Math.ceil(usersCount / pageSize)
@@ -35,21 +39,26 @@ const Users: React.FC<UsersType> = (props) => {
     }
 
     const unfollowHandler = (id: number) => {
+        setIsFollowing(true, id)
         UsersAPI.unfollowUser(id).then(response => {
             if (response.data.resultCode === 0) {
-                return unfollow(id)
+                unfollow(id)
             }
+            setIsFollowing(false, id)
         })
     }
-
+console.log()
     const followHandler = (id: number) => {
+        setIsFollowing(true, id)
         UsersAPI.followUser(id).then(response => {
             if (response.data.resultCode === 0) {
-                return follow(id)
+                follow(id)
             }
+            setIsFollowing(false, id)
         })
-
     }
+
+    const arrSome = (userId: number) => followingInProgress.some(id => id === userId)
     return (
         <div className={s.users__block}>
             {pagesCount ? <div className={s.pages}>
@@ -76,15 +85,13 @@ const Users: React.FC<UsersType> = (props) => {
                                 <span>{"el.location.country"}</span>, <span>{"el.location.city"}</span>
                             </p>
                             {el.followed
-                                ? <UniversalBtn callback={()=>unfollowHandler(el.id)} name={"Unfollow"}/>
-                                : <UniversalBtn callback={()=>followHandler(el.id)} name={"Follow"}/>}
+                                ? <UniversalBtn disable={arrSome(el.id)} callback={()=>unfollowHandler(el.id)} name={"Unfollow"}/>
+                                : <UniversalBtn disable={arrSome(el.id)} callback={()=>followHandler(el.id)} name={"Follow"}/>}
                         </div>
                     )
                 })}
 
             </div>
-            <UniversalBtn className={s.btn__more} name={"Add More"} callback={() => {
-            }}/>
         </div>
     );
 };
