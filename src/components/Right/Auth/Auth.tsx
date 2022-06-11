@@ -1,15 +1,23 @@
 import React from 'react';
 import s from "./Auth.module.css"
-import {NavLink} from "react-router-dom";
+import {NavLink} from "react-router-dom"
+import {exitImg, loginImg} from "../../../cons/icons";
+
 
 type AuthCompType = {
-    login: string
     isAuth: boolean
 }
-const Auth:React.FC<AuthCompType> = ({login, isAuth}) => {
+const Auth: React.FC<AuthCompType> = ({isAuth}) => {
     return (
         <>
-        {isAuth ? <span>{login}</span> : <NavLink className={s.login} to={'/login'}>Login</NavLink>}
+            {
+                isAuth ? <div className={s.logo}><img src={exitImg} alt="exit"/></div>
+                    : <NavLink to={'/login'}>
+                        <div className={s.logo}>
+                        <img src={loginImg} alt="login"/>
+                        </div>
+                    </NavLink>
+            }
         </>
     );
 };

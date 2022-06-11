@@ -13,9 +13,8 @@ const UniversalBtn: React.FC<BtnType> = ({
                                              error,
                                              callback,
                                          }) => {
-    const classNameHandler = `${s.default} ${className}`
     return (
-        <button disabled={error} className={classNameHandler} onClick={callback}>
+        <button disabled={error} className={s.default} onClick={callback}>
             {name}</button>
     );
 };

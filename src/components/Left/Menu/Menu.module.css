@@ -1,6 +1,5 @@
 .menu, .header, .title, .item {
     display: flex;
-    color: #151922;
 }
 
 .menu {
@@ -9,18 +8,14 @@
 
 .header {
     margin-bottom: 20px;
-}
-
-.logo {
-    margin-right: 15px;
-    height: 34px;
-    width: 34px;
-    border-radius: 50%;
+    margin-left: 5px;
 }
 
 .title {
     font-size: 18px;
     align-items: center;
+    font-weight: 600;
+    color: #5b5b5b;
 }
 
 .list {
@@ -42,18 +37,14 @@
     scale: 1.1;
 }
 
-.item__active {
-    color: #0062FF;
-}
-
 .icon {
-    height: 15px;
-    width: 15px;
+    height: 25px;
+    width: 25px;
     margin-right: 30px;
 }
 
 .link__active {
-    color: #0062FF;
+    color: #135B91;
     font-weight: 700;
     text-decoration: none;
 }
@@ -71,8 +62,8 @@
     position: absolute;
     right: 0;
     padding: 4px 14px;
-    background-color: #E7EFFB;
+    background-color: rgba(19, 91, 145, 0.14);
     font-size: 12px;
-    color: #0062FF;
+    color:#135B91;
     border-radius: 10px;
 }

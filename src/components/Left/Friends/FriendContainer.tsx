@@ -1,14 +1,14 @@
 import {connect} from "react-redux";
-import {MenuUsersType} from "../../../Redux/menu-users-reducer";
 import Friend from "./Friend";
 import {AppStateType} from "../../../Redux/store";
+import {MenuFriendsType} from "../../../Redux/menu-friends-reducer";
 
 type mapStateToPropsType = {
-    usersBlock: MenuUsersType
+    friends: MenuFriendsType
 }
 const mapStateToProps = (state: AppStateType): mapStateToPropsType => {
     return {
-        usersBlock: state.MenuUsers
+        friends: state.MenuFriends
     }
 }
 export type FriendPropsType = mapStateToPropsType

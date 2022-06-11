@@ -4,7 +4,7 @@ import FriendContainer from './FriendContainer';
 const Friends = () => {
     return (
         <>
-            <div className={s.contactsTitle}>Friends <span className={s.contactsPush}>25</span></div>
+            <div className={s.title}>Friends <span className={s.contactsPush}>25</span></div>
             <div>
                 <FriendContainer/>
             </div>

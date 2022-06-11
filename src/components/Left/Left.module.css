@@ -1,7 +1,5 @@
 .left {
-    display: flex;
-    flex-direction: column;
-    color: #151922;
+    flex: 0 1 30%;
 }
 
 .left > *:not(:last-child) {

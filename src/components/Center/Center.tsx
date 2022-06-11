@@ -1,12 +1,10 @@
 import React from 'react';
 import s from "./Center.module.css"
-import Stories from "./Stories/Stories";
-import Requests from "./Requests/Requests";
 import {Route, Routes} from "react-router-dom";
-import FriendsContainer from "./Friends/FriendsContainer";
 import Settings from "./Settings/Settings";
 import DialogsContainer from './Dialogs/DialogsContainer';
 import ProfileAPIContainer from "./Profile/ProfileContainer";
+import UsersContainer from "./Users/UsersContainer";
 
 const Center = () => {
     return (
@@ -22,19 +20,12 @@ const Center = () => {
                 <Route path={"/login"} element={<div className={s.center__block}>
                     LOGIN
                 </div>}/>
-                <Route path={"/friends"} element={<div className={s.center__block}>
-                    <FriendsContainer/>
+                <Route path={"/users"} element={<div className={s.center__block}>
+                    <UsersContainer/>
                 </div>}/>
                 <Route path={"/settings"} element={<div className={s.center__block}><Settings/></div>}/>
             </Routes>
-            <div className={s.center__footer}>
-                <div className={s.center__block_stories}>
-                    <Stories/>
-                </div>
-                <div className={s.center__block_requests}>
-                    <Requests/>
-                </div>
-            </div>
+
         </div>
     );
 };

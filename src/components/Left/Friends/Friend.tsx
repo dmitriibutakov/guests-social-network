@@ -2,17 +2,17 @@ import React from 'react';
 import s from "./Friend.module.css";
 import message from "../../../cons/icons/message.png"
 import {FriendPropsType} from "./FriendContainer";
+import {incognito} from "../../../cons/icons";
 
 
-const Friend: React.FC<FriendPropsType> = ({usersBlock}) => {
+const Friend: React.FC<FriendPropsType> = ({friends}) => {
 
     return (
         <>
-            {usersBlock.users.map((el) => {
+            {friends.friends.map((el) => {
                 return (
                     <div key={el.id} className={s.friend}>
-                        <img
-                            src={el.avatar}
+                        <img src={incognito}
                             alt="avatar" className={s.avatar}/>
                         <div className={s.user}>
                             <div className={s.name}>{el.name}</div>

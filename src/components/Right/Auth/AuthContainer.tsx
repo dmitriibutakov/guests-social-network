@@ -5,25 +5,23 @@ import { DataType, setAuthUserData} from "../../../Redux/auth-reducer";
 import {connect} from "react-redux";
 import {AppStateType} from "../../../Redux/store";
 import {withRouter} from "../../../Redux/withRouter";
+import {authCheckData} from "../../../Api/api";
 
 const AuthContainer = (props: AuthPropsType) => {
     const {
         setAuthUserData,
-        login, isAuth
+        isAuth
     } = props
     useEffect(() => {
-        axios.get(`https://social-network.samuraijs.com/api/1.0/auth/me`, {
-            withCredentials: true
-        })
-            .then(response => {
-                if (response.data.resultCode === 0) {
-                    console.log(response.data)
-                    setAuthUserData(response.data.data)
+        authCheckData()
+            .then(data => {
+                if (data.resultCode === 0) {
+                    setAuthUserData(data)
                 }
             })
     })
     return (
-        <Auth login={login} isAuth={isAuth}/>
+        <Auth isAuth={isAuth}/>
     );
 };
 

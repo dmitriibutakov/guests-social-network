@@ -11,11 +11,7 @@ const Posts = (props: PostsComponentType) => {
             {props.posts.map((el) => {
                 return (
                     <div key={el.id} className={s.center__block_posted}>
-                        <Post ava={el.ava}
-                              photo1={el.photo1}
-                              photo2={el.photo2}
-                              photo3={el.photo3}
-                              photo4={el.photo4}
+                        <Post
                               id={el.id}
                               likes={el.likes}
                               message={el.message}/>

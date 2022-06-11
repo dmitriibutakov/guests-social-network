@@ -1,10 +1,4 @@
 import {ChangeEvent} from "react";
-import {v1} from "uuid";
-import ava from "../cons/ava.png"
-import photo1 from "../cons/posts/posts-photo-1.jpeg"
-import photo2 from "../cons/posts/posts-photo-2.jpeg"
-import photo3 from "../cons/posts/posts-photo-3.jpeg"
-import photo4 from "../cons/posts/posts-photo-4.jpeg"
 import {IsFetchingType} from "./actions/actions";
 
 export type ProfilePageType = {
@@ -33,14 +27,9 @@ export type ContactsType = {
     mainLink: string,
 }
 export type PostType = {
-    id: string
+    id: number
     message: string
     likes: number
-    ava: string
-    photo1: string
-    photo2: string
-    photo3: string
-    photo4: string
 }
 
 let stringInitial = null as unknown as string
@@ -64,8 +53,8 @@ let initialState: ProfilePageType = {
         photos: {small: stringInitial, large: stringInitial}
     },
     posts: [
-        {id: v1(), ava, photo1, photo2, photo3, photo4, message: 'I find a new Collection', likes: 22},
-        {id: v1(), ava, photo1, photo2, photo3, photo4, message: 'Hi! It\'s my first post!', likes: 13}
+        {id: Math.random(), message: 'I find a new Collection', likes: 22},
+        {id: Math.random(), message: 'Hi! It\'s my first post!', likes: 13}
     ],
     newPostText: "",
     isFetching: false,
@@ -75,10 +64,9 @@ const ProfileReducer = (state: ProfilePageType = initialState, action: ProfileRe
     switch (action.type) {
         case "ADD-POST":
             const newPost = {
-                id: v1(),
+                id: Math.random(),
                 message: state.newPostText,
                 likes: 5,
-                ava, photo1, photo2, photo3, photo4
             }
             return {...state, posts: [newPost, ...state.posts], newPostText: ""}
         case "UPDATE-NEW-POST":

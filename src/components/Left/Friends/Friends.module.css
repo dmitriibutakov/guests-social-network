@@ -1,12 +1,13 @@
-.contactsTitle {
+.title {
     font-size: 18px;
     margin-bottom: 30px;
+    color: #151922;
 }
 .contactsPush {
     margin-left: 20px;
     padding: 4px 14px;
-    background-color: #E7EFFB;
+    background-color: rgba(19, 91, 145, 0.14);
     font-size: 12px;
-    color: #0062FF;
+    color: #135B91;
     border-radius: 10px;
 }

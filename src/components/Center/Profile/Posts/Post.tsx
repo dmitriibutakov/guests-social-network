@@ -1,49 +1,29 @@
 import React from 'react';
-import s from "./Posts.module.css";
+import s from "./Post.module.css";
 import {PostType} from "../../../../Redux/profile-reducer";
 
 export const Post: React.FC<PostType> = ({
-                                             ava,
                                              message,
                                              id,
-                                             photo1,
-                                             photo2,
-                                             photo3,
-                                             photo4
                                          }) => {
+
+    const day = new Date().getDay()
+    const hours = new Date().getHours()
+    const minutes = new Date().getMinutes()
+    const month = new Date().getMonth()
+    const year = new Date().getFullYear()
     return (
         <div className={s.body} key={id}>
-            <div className={s.header}>
-                <div className={s.header__user}>
-                    <div className={s.ava}><img src={ava} alt="avatar"/></div>
-                    <div>
-                        <h4 className={s.name}>Ginny Churchills</h4>
-                        <div className={s.time}>September 20, 2020</div>
-                    </div>
-                </div>
+            <div className={s.user__ava}><img src="" alt="avatar"/></div>
+            <div>
+                <h4 className={s.user__name}>Ginny Churchills</h4>
+                <div className={s.user__text}>{message}</div>
             </div>
-            <div className={s.main}>
-                <div className={s.main__post}>
-                    <div className={s.main__post_text}>{message}</div>
-                    <div className={s.main__post_tags}>
-                        <div className={s.tag}>#photos</div>
-                        <div className={s.tag}>#wallpaper</div>
-                        <div className={s.tag}>#new</div>
-                        <div className={s.tag}>#models</div>
-                    </div>
-                </div>
-                <div className={s.main__photos}>
-                    <div className={s.photos__column}>
-                        <div className={s.row1}><img src={photo1} alt="photo2"/></div>
-                        <div className={s.row2}><img src={photo4} alt="photo3"/></div>
-                    </div>
-                    <div className={s.photos__column}>
-                        <div className={s.row3}><img src={photo2} alt="photo2"/></div>
-                        <div className={s.row4}><img src={photo3} alt="photo3"/></div>
-                    </div>
-                </div>
+            <div className={s.date}>
+                {hours}:{minutes} {day}.{month}.{year}
             </div>
         </div>
+
     );
 };
 

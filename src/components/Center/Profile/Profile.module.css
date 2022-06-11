@@ -1,62 +1,33 @@
 .body,
-.covers, .user,
-.friends__links,
-.friends__list,
-.friends,
-.friends__count,
-.counts,
-.counts__block {
+.socials, .user, .cover{
     display: flex;
 }
 
 .body {
     flex-direction: column;
 }
-
-.covers {
-    justify-content: center;
-}
-
-.cover:not(:last-child) {
-    margin-right: 20px;
-}
-
 .cover {
-    width: 122px;
-    height: 119px;
+    justify-content: center;
+    height: 100px;
 }
-
-.cover img {
-    width: 100%;
-    height: 100%;
-}
-
-.cover:first-of-type img {
-    border-radius: 20px 10px 10px 10px;
-}
-
-.cover:last-of-type img {
-    border-radius: 10px 20px 10px 10px;
-}
-
 .user {
     flex-direction: column;
     justify-content: center;
     align-items: center;
-    margin-bottom: 30px;
+    margin-bottom: 20px;
 }
 
-.block__image {
+.user__image {
     width: 58px;
     height: 58px;
     margin-top: -20px;
 }
 
-.block__image img {
-    border: 4px solid white;
+.user__image img {
     width: 100%;
     height: 100%;
     border-radius: 50%;
+    box-shadow: 0 -3px 5px 3px rgba(125, 128, 138, 0.25);
 }
 
 .user__name {
@@ -65,70 +36,39 @@
     font-weight: 700;
 }
 
-.user__city {
+.user__aboutMe {
     font-size: 12px;
     color: #A8B1C5;
+    margin-bottom: 10px;
 }
 
-.friends {
-    flex-direction: column;
-    justify-content: center;
-    align-items: center;
-    margin-bottom: 20px;
+.user__lookingJob {
+    height: 30px;
+    width: 30px;
+    margin-bottom: 10px;
 }
 
-.friends__count {
-    justify-content: center;
+.user__lookingJob_text {
     font-size: 14px;
-    margin-bottom: 13px;
     font-weight: 500;
+    color: #5D668A;
 }
 
-.friends__links {
-    margin-left: 20px;
+.socials {
     justify-content: center;
+    margin-bottom: 10px;
 }
 
-.friend {
+.social:not(:last-child) {
+    margin-right: 10px;
+}
+
+.social {
     width: 30px;
     height: 30px;
-    margin-left: -20px;
 }
 
-.friend img {
+.social img {
     width: 100%;
     height: 100%;
-}
-
-.friends__count_add {
-    display: inline-flex;
-    align-items: center;
-    justify-content: center;
-    margin-left: 9px;
-    font-size: 14px;
-    line-height: 152%;
-    color: #0062FF;
-    font-weight: 500;
-}
-
-.counts {
-    margin: 0 20px;
-    justify-content: space-between;
-}
-
-.counts__block {
-    flex-direction: column;
-    justify-content: center;
-    text-align: center;
-}
-
-.counts__number {
-    font-size: 20px;
-    color: #0062FF;
-    margin-bottom: 4px;
-}
-
-.counts__title {
-    font-size: 12px;
-    font-weight: 500;
 }

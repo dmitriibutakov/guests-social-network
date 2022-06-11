@@ -21,7 +21,6 @@ let initialState:AuthType = {
 const AuthReducer = (state: AuthType = initialState, action: AuthReducerType): AuthType => {
 switch (action.type) {
     case "SET-USER-DATA":
-        debugger
         return {...state, ...action.payload.data, isAuth: true}
     default:
         return state

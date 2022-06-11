@@ -7,37 +7,35 @@ import friend1 from "../cons/friends/friend1.png"
 import friend7 from "../cons/friends/friend7.png"
 import me from "../cons/ava.png";
 
-export type UserType = {
+export type UserInDialType = {
     name: string
     id: string
-    ava: string
 }
 export type UserDialogType = {
     id: string
     name: string
     text: string
     time: number
-    ava: string
 }
 export type DialogsPageType = {
-    users: Array<UserType>
+    users: Array<UserInDialType>
     usersDialogs: Array<UserDialogType>
     newMessageText: string
 }
 
 let initialState: DialogsPageType = {
     users: [
-        {name: 'Mike', id: v1(), ava: friend4},
-        {name: 'Lisa', id: v1(), ava: friend5},
-        {name: 'Emily Martin', id: v1(), ava: friend6},
-        {name: 'Lucky', id: v1(), ava: friend1},
-        {name: 'Jacky Swarbe', id: v1(), ava: friend7},
+        {name: 'Mike', id: v1()},
+        {name: 'Lisa', id: v1()},
+        {name: 'Emily Martin', id: v1()},
+        {name: 'Lucky', id: v1()},
+        {name: 'Jacky Swarbe', id: v1()},
     ],
     usersDialogs: [
-        {id: v1(), name: 'Lisa', text: 'Hello', time: 22.14, ava: friend5},
-        {id: v1(), name: 'Me', text: 'How are you?', time: 22.24, ava: me},
-        {id: v1(), name: 'Lisa', text: 'I love you', time: 22.34, ava: friend5},
-        {id: v1(), name: 'Me', text: 'Love you 2', time: 22.44, ava: me}
+        {id: v1(), name: 'Lisa', text: 'Hello', time: 22.14},
+        {id: v1(), name: 'Me', text: 'How are you?', time: 22.24},
+        {id: v1(), name: 'Lisa', text: 'I love you', time: 22.34},
+        {id: v1(), name: 'Me', text: 'Love you 2', time: 22.44}
     ],
     newMessageText: " ",
 }
@@ -50,7 +48,6 @@ const DialogsReducer = (state: DialogsPageType = initialState, action: DialogsRe
                 name: "me",
                 text: state.newMessageText,
                 time: 22.45,
-                ava: me
             }
             return {...state, usersDialogs: [...state.usersDialogs, newMessage], newMessageText: ""}
         case "UPDATE-NEW-MESSAGE":
