@@ -1,25 +1,13 @@
 import React, {useEffect} from 'react';
 import Auth from "./Auth";
-import axios from "axios";
-import { DataType, setAuthUserData} from "../../../Redux/auth-reducer";
 import {connect} from "react-redux";
 import {AppStateType} from "../../../Redux/store";
 import {withRouter} from "../../../Redux/withRouter";
-import {authCheckData} from "../../../Api/api";
+import {setAuthUserData} from "../../../Redux/auth-reducer";
 
 const AuthContainer = (props: AuthPropsType) => {
-    const {
-        setAuthUserData,
-        isAuth
-    } = props
-    useEffect(() => {
-        authCheckData()
-            .then(data => {
-                if (data.resultCode === 0) {
-                    setAuthUserData(data)
-                }
-            })
-    })
+    const {setAuthUserData, isAuth} = props
+    useEffect(() => setAuthUserData(), [])
     return (
         <Auth isAuth={isAuth}/>
     );
@@ -30,7 +18,7 @@ type MapStateToPropsType = {
     isAuth: boolean
 }
 type MapDispatchToPropsType = {
-    setAuthUserData: (data: DataType) => void
+    setAuthUserData: () => void
 }
 type AuthPropsType = MapStateToPropsType & MapDispatchToPropsType
 const mapStateToProps = (state: AppStateType): MapStateToPropsType => {
@@ -39,4 +27,4 @@ const mapStateToProps = (state: AppStateType): MapStateToPropsType => {
         isAuth: state.Auth.isAuth,
     }
 }
-export default connect(mapStateToProps, {setAuthUserData})(withRouter(AuthContainer) );
+export default connect(mapStateToProps, {setAuthUserData})(withRouter(AuthContainer));

@@ -1,9 +1,9 @@
 .center {
-    margin: 0 20px;
+    padding: 0 20px;
     display: flex;
     flex-direction: column;
     color: #151922;
-    flex: 0 0 50%;
+    flex: 0 1 700px;
 }
 .center>*:not(:last-child), .center__block_posted:not(:last-of-type)  {
     margin-bottom: 20px;

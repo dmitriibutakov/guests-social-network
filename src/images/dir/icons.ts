@@ -14,7 +14,7 @@ import profile from "../profile.png"
 import users from "../friends.png"
 import chat from "../message.png"
 import settings from "../settings.png"
-import send from "..//send.png"
+import send from "../send.png"
 import like from "../like.png"
 import picture from "../picture.png"
 

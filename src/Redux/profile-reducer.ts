@@ -1,5 +1,6 @@
 import {ChangeEvent} from "react";
-import {IsFetchingType} from "./actions/actions";
+import {IsFetchingType, setIsFetching} from "./actions/actions";
+import {usersAPI} from "../Api/api";
 
 export type ProfilePageType = {
     posts: Array<PostType>
@@ -86,10 +87,15 @@ type updateNewPostTextType = ReturnType<typeof updateNewPostText>
 type SetUserProfileType = ReturnType<typeof setUserProfile>
 
 export const addPost = () => ({type: "ADD-POST", newText: ""} as const)
-export const updateNewPostText = (event: ChangeEvent<HTMLInputElement>) => ({
-    type: "UPDATE-NEW-POST",
-    newText: event.currentTarget.value
-} as const)
-export const setUserProfile = (profile: ProfileURLType) => ({type: "SET-USER-PROFILE", profile} as const)
+export const updateNewPostText = (event: ChangeEvent<HTMLInputElement>) => ({type: "UPDATE-NEW-POST", newText: event.currentTarget.value} as const)
+const setUserProfile = (profile: ProfileURLType) => ({type: "SET-USER-PROFILE", profile} as const)
+
+export const getProfile = (userId: string) => (dispatch: (action:ProfileReducerType) => void) => {
+    dispatch(setIsFetching(true))
+    usersAPI.getProfile(userId).then(response => {
+        dispatch(setIsFetching(false))
+        dispatch(setUserProfile(response.data))
+    })
+}
 
 export default ProfileReducer;

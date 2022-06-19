@@ -3,19 +3,11 @@ import {AppStateType} from "../../../Redux/store";
 import {connect} from "react-redux";
 import s from "../Center.module.css";
 import PostsContainer from "./Posts/PostsContainer";
-import axios from "axios";
 import Profile from "./Profile";
 import NewPostContainer from "./Posts/NewPost/NewPostContainer";
-import {
-    addPost,
-    PostType,
-    ProfileURLType,
-    setUserProfile,
-    updateNewPostText
-} from "../../../Redux/profile-reducer";
+import {addPost, getProfile, PostType, ProfileURLType, updateNewPostText} from "../../../Redux/profile-reducer";
 import {useParams} from "react-router-dom";
 import Preloader from "../../UniversalComponents/Preloader/Preloader";
-import {setIsFetching} from "../../../Redux/actions/actions";
 import {withRouter} from "../../../Redux/withRouter";
 
 
@@ -28,17 +20,11 @@ const ProfileAPIContainer = (props: ProfilePropsType) => {
         posts,
         isFetching,
     } = props
-    const {userId} = useParams<'userId'>()
+    let {userId} = useParams<'userId'>()
 
     useEffect(() => {
-        props.setIsFetching(true)
-        function setUserId() {
-           return !userId ? '23985' : userId
-        }
-        axios.get(`https://social-network.samuraijs.com/api/1.0/profile/` + setUserId()).then(response => {
-            props.setIsFetching(false)
-            props.setUserProfile(response.data)
-        })
+        !userId && (userId = '23985')
+        props.getProfile(userId)
     }, [])
     return (
         <>
@@ -68,8 +54,7 @@ type MapStateToPropsType = {
 type MapDispatchToPropsType = {
     addPost: () => void
     updateNewPostText: (event: ChangeEvent<HTMLInputElement>) => void
-    setUserProfile: (id: string) => void
-    setIsFetching: (IsFetching: boolean) => void
+    getProfile: (userId: string) => void
 }
 
 
@@ -84,4 +69,4 @@ const mapStateToProps = (state: AppStateType): MapStateToPropsType => {
     }
 }
 
-export default connect(mapStateToProps, {setUserProfile, addPost, updateNewPostText, setIsFetching})(withRouter(ProfileAPIContainer))
+export default connect(mapStateToProps, {addPost, updateNewPostText, getProfile})(withRouter(ProfileAPIContainer))
