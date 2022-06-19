@@ -10,9 +10,7 @@ const Dialogs: React.FC<DialogsPropsType> = ({dialogsPage, updateNewMessage, add
     const userChat = dialogsPage.usersDialogs.map(el => <UsersDialogs id={el.id} key={el.id} name={el.name}
                                                                       text={el.text}
                                                                       time={el.time}/>);
-    // eslint-disable-next-line react/jsx-no-undef
     let user = dialogsPage.users.map(el => <UsersInDialogs key={el.id} name={el.name} id={el.id}/>);
-
     const onClickCallBack = () => {
         addMessage()
     }

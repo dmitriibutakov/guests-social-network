@@ -4,6 +4,8 @@ import {UserType, UsersPageType, getUsers, unfollow, follow, setCurrentPage} fro
 import {AppStateType} from "../../../Redux/store";
 import Preloader from "../../UniversalComponents/Preloader/Preloader";
 import Users from "./Users";
+import {compose} from "redux";
+import {withAuthRedirect} from "../../../hoc/AuthRedirect";
 
 class UsersAPIContainer extends React.Component<UsersAPIPropsType> {
 
@@ -60,4 +62,4 @@ const mapStateToProps = (state: AppStateType): MapStateToPropsType => {
 
 export type UsersAPIPropsType = MapStateToPropsType & MapDispatchToPropsType
 
-export default connect(mapStateToProps, {getUsers, follow, unfollow, setCurrentPage})(UsersAPIContainer)
+export default compose(connect(mapStateToProps, {getUsers, follow, unfollow, setCurrentPage}), withAuthRedirect)(UsersAPIContainer)

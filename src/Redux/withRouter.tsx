@@ -1,12 +1,3 @@
 import React from "react";
 
-export function withRouter(Component: any) {
-    function ComponentWithRouterProp(props: any) {
-        return (
-            <Component
-                {...props}
-        />
-    );
-    }
-    return ComponentWithRouterProp;
-}
+export const withRouter = (Component: any) => (props: any) => <Component{...props}/>

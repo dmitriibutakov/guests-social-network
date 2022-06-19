@@ -9,41 +9,8 @@ import {addPost, getProfile, PostType, ProfileURLType, updateNewPostText} from "
 import {useParams} from "react-router-dom";
 import Preloader from "../../UniversalComponents/Preloader/Preloader";
 import {withRouter} from "../../../Redux/withRouter";
-
-
-const ProfileAPIContainer = (props: ProfilePropsType) => {
-    const {
-        profile,
-        updateNewPostText,
-        newPostText,
-        addPost,
-        posts,
-        isFetching,
-    } = props
-    let {userId} = useParams<'userId'>()
-
-    useEffect(() => {
-        !userId && (userId = '23985')
-        props.getProfile(userId)
-    }, [])
-    return (
-        <>
-        {isFetching ? <Preloader/> : null}
-        <>
-            <div className={s.center__block}>
-                <Profile profile={profile}/>
-            </div>
-            <div className={s.center__block}>
-                <NewPostContainer updateNewPostText={updateNewPostText} newPostText={newPostText}
-                addPost={addPost}/>
-            </div>
-            <div className={s.center__block}>
-                <PostsContainer posts={posts}/>
-            </div>
-        </>
-        </>
-    )
-}
+import { withAuthRedirect} from "../../../hoc/AuthRedirect";
+import {compose} from "redux";
 
 type MapStateToPropsType = {
     newPostText: string
@@ -56,9 +23,35 @@ type MapDispatchToPropsType = {
     updateNewPostText: (event: ChangeEvent<HTMLInputElement>) => void
     getProfile: (userId: string) => void
 }
-
-
 export type ProfilePropsType = MapStateToPropsType & MapDispatchToPropsType
+
+
+const ProfileContainer = (props: ProfilePropsType) => {
+    const {
+        profile, updateNewPostText, newPostText, addPost, posts, isFetching,
+    } = props
+    let {userId} = useParams<'userId'>()
+
+    useEffect(() => {
+        props.getProfile(userId || '23985')
+    }, [])
+
+    return (
+        <>
+        {isFetching && <Preloader/>}
+            <div className={s.center__block}>
+                <Profile profile={profile}/>
+            </div>
+            <div className={s.center__block}>
+                <NewPostContainer updateNewPostText={updateNewPostText} newPostText={newPostText}
+                addPost={addPost}/>
+            </div>
+            <div className={s.center__block}>
+                <PostsContainer posts={posts}/>
+            </div>
+        </>
+    )
+}
 
 const mapStateToProps = (state: AppStateType): MapStateToPropsType => {
     return {
@@ -68,5 +61,4 @@ const mapStateToProps = (state: AppStateType): MapStateToPropsType => {
         isFetching: state.ProfilePage.isFetching,
     }
 }
-
-export default connect(mapStateToProps, {addPost, updateNewPostText, getProfile})(withRouter(ProfileAPIContainer))
+export default compose(connect(mapStateToProps, {addPost, updateNewPostText, getProfile}), withAuthRedirect)(withRouter(ProfileContainer))
