@@ -4,13 +4,17 @@ import s from "./Profile.module.css"
 import {ProfileURLType} from "../../../Redux/profile-reducer";
 import Preloader from "../../UniversalComponents/Preloader/Preloader";
 import {githubImg, incognito, instagramImg, noImg, twitterImg, wallpaperImg, yesImg} from "../../../images/dir/icons";
+import Status from "./Status";
+
 type ProfileComponentType = {
     profile: ProfileURLType
+    updateStatus: (status: string) => void
+    status: string
 }
-const Profile:React.FC<ProfileComponentType> = ({profile}) => {
-  if (!profile.userId) {
-      return <Preloader/>
-  } else return (
+const Profile: React.FC<ProfileComponentType> = ({profile,  status,updateStatus}) => {
+    if (!profile.userId) {
+        return <Preloader/>
+    } else return (
         <div className={s.body}>
             <div className={s.cover}><img src={profile.photos.large || wallpaperImg} alt="cover"/></div>
             <div className={s.user}>
@@ -18,9 +22,11 @@ const Profile:React.FC<ProfileComponentType> = ({profile}) => {
                     <img src={profile.photos.small || incognito} alt="avatar"/>
                 </div>
                 <h1 className={s.user__name}>{profile.fullName || "incognito"}</h1>
+                <Status status={status} updateStatus={updateStatus}/>
                 <p className={s.user__aboutMe}>{profile.aboutMe || "about me"}</p>
                 <img className={s.user__lookingJob} src={profile.lookingForAJob ? yesImg : noImg} alt="lookingJob"/>
-                    <div className={s.user__lookingJob_text}>{profile.lookingForAJob ? "Yeah! I'm looking for a job" : "I'm not looking for a job"}</div>
+                <div
+                    className={s.user__lookingJob_text}>{profile.lookingForAJob ? "Yeah! I'm looking for a job" : "I'm not looking for a job"}</div>
 
             </div>
             <div className={s.socials}>

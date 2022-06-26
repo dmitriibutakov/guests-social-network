@@ -1,12 +1,13 @@
 import {ChangeEvent} from "react";
 import {IsFetchingType, setIsFetching} from "./actions/actions";
-import {usersAPI} from "../Api/api";
+import {profileAPI} from "../Api/api";
 
 export type ProfilePageType = {
     posts: Array<PostType>
     newPostText: string
     profile: ProfileURLType
-    isFetching: boolean
+    isFetching: boolean,
+    status: string,
 }
 export type ProfileURLType = {
     aboutMe: string
@@ -59,6 +60,7 @@ let initialState: ProfilePageType = {
     ],
     newPostText: "",
     isFetching: false,
+    status: "",
 }
 
 const ProfileReducer = (state: ProfilePageType = initialState, action: ProfileReducerType): ProfilePageType => {
@@ -76,25 +78,50 @@ const ProfileReducer = (state: ProfilePageType = initialState, action: ProfileRe
             return {...state, profile: action.profile}
         case "SET-IS-FETCHING":
             return {...state, isFetching: action.payload.isFetching}
+        case "SET-STATUS":
+            return {...state, status: action.status}
         default:
             return state
     }
 };
 
-export type ProfileReducerType = addPostType | updateNewPostTextType | SetUserProfileType | IsFetchingType
+export type ProfileReducerType =
+    addPostType
+    | updateNewPostTextType
+    | SetUserProfileType
+    | IsFetchingType
+    | SetStatusType
 type addPostType = ReturnType<typeof addPost>
 type updateNewPostTextType = ReturnType<typeof updateNewPostText>
 type SetUserProfileType = ReturnType<typeof setUserProfile>
+type SetStatusType = ReturnType<typeof setStatus>
 
 export const addPost = () => ({type: "ADD-POST", newText: ""} as const)
-export const updateNewPostText = (event: ChangeEvent<HTMLInputElement>) => ({type: "UPDATE-NEW-POST", newText: event.currentTarget.value} as const)
+export const updateNewPostText = (event: ChangeEvent<HTMLInputElement>) => ({
+    type: "UPDATE-NEW-POST",
+    newText: event.currentTarget.value
+} as const)
 const setUserProfile = (profile: ProfileURLType) => ({type: "SET-USER-PROFILE", profile} as const)
+const setStatus = (status: string) => ({type: "SET-STATUS", status} as const)
 
-export const getProfile = (userId: string) => (dispatch: (action:ProfileReducerType) => void) => {
+export const getProfile = (userId: string) => (dispatch: (action: ProfileReducerType) => void) => {
     dispatch(setIsFetching(true))
-    usersAPI.getProfile(userId).then(response => {
-        dispatch(setIsFetching(false))
-        dispatch(setUserProfile(response.data))
+    profileAPI.getProfile(userId)
+        .then(response => {
+            profileAPI.getStatus(userId)
+                .then(response2 => {
+                    dispatch(setIsFetching(false))
+                    dispatch(setUserProfile(response.data))
+                    dispatch(setStatus(response2.data))
+                })
+        })
+}
+
+export const updateStatus = (status: string) => (dispatch: (action: ProfileReducerType) => void) => {
+    profileAPI.updateStatus(status).then(response => {
+        if (response.data.resultCode === 0) {
+            dispatch(setStatus(status))
+        }
     })
 }
 

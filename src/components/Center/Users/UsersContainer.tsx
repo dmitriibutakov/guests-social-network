@@ -1,4 +1,4 @@
-import React from "react"
+import React, {ComponentType} from "react"
 import {connect} from "react-redux";
 import {UserType, UsersPageType, getUsers, unfollow, follow, setCurrentPage} from "../../../Redux/users-reducer";
 import {AppStateType} from "../../../Redux/store";
@@ -62,4 +62,5 @@ const mapStateToProps = (state: AppStateType): MapStateToPropsType => {
 
 export type UsersAPIPropsType = MapStateToPropsType & MapDispatchToPropsType
 
-export default compose(connect(mapStateToProps, {getUsers, follow, unfollow, setCurrentPage}), withAuthRedirect)(UsersAPIContainer)
+export default compose<ComponentType>(
+    connect(mapStateToProps, {getUsers, follow, unfollow, setCurrentPage}))(UsersAPIContainer)
