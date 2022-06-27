@@ -1,11 +1,26 @@
 import React from 'react';
+import LoginForm from "./LoginForm";
+import {reduxForm} from "redux-form";
+import s from "./Login.module.css"
 
-const Login = () => {
+export type FormDataType = {
+    login: string
+    password: string
+    rememberMe: boolean
+}
+
+export const Login = () => {
+    const onSubmit = (formData: FormDataType) => {
+        console.log(formData)
+    }
     return (
-        <div>
-            login
+        <div className={s.login}>
+            <h1 className={s.title}>Login</h1>
+            <LoginReduxForm onSubmit={onSubmit}/>
         </div>
     );
 };
 
-export default Login;
+const LoginReduxForm = reduxForm<FormDataType>({
+    form: 'login'
+})(LoginForm)

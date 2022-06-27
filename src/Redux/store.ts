@@ -5,6 +5,7 @@ import AuthReducer from "./auth-reducer";
 import UsersReducer, {UsersReducerType} from "./users-reducer";
 import MenuFriendsReducer, {MenuFriendsReducerACType} from "./menu-friends-reducer";
 import thunkMiddleware from "redux-thunk";
+import {reducer as formReducer} from 'redux-form';
 
 const rootReducer = combineReducers({
     ProfilePage: ProfileReducer,
@@ -12,6 +13,7 @@ const rootReducer = combineReducers({
     MenuFriends: MenuFriendsReducer,
     UsersPage: UsersReducer,
     Auth: AuthReducer,
+    form: formReducer
 })
 const store = legacy_createStore(rootReducer, applyMiddleware(thunkMiddleware))
 export type AppStateType = ReturnType<typeof rootReducer>

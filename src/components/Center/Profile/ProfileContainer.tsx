@@ -16,6 +16,7 @@ import {useParams} from "react-router-dom";
 import Preloader from "../../UniversalComponents/Preloader/Preloader";
 import {withRouter} from "../../../Redux/withRouter";
 import {compose} from "redux";
+import {withAuthRedirect} from "../../../hoc/AuthRedirect";
 
 type MapStateToPropsType = {
     newPostText: string
@@ -76,5 +77,5 @@ export default compose<ComponentType>(
         getProfile,
         updateStatus,
     }),
-    /*withAuthRedirect,*/
+    withAuthRedirect,
     withRouter)(ProfileContainer)

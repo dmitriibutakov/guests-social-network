@@ -7,7 +7,7 @@ type StatusType = {
 }
 const Status: React.FC<StatusType> = ({updateStatus, status}) => {
     const [editMode, setEditMode] = useState(false)
-    const [localStatus, setLocalStatus] = useState("status")
+    const [localStatus, setLocalStatus] = useState("")
     return (
         <>
             {editMode ? <input autoFocus={true}
@@ -20,7 +20,7 @@ const Status: React.FC<StatusType> = ({updateStatus, status}) => {
                                value={localStatus}/>
                 : <p onDoubleClick={() => setEditMode(true)}
                      className={s.user__status}>
-                    {status}
+                    {status || "fill status"}
                 </p>}
         </>
     );
