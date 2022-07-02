@@ -1,22 +1,16 @@
-import React, {ChangeEvent} from "react";
+import React from "react";
 import s from "./Dialogs.module.css"
-import SendText from "../../UniversalComponents/UniversalSend/SendText";
+import {SendTextReduxForm} from "../../UniversalComponents/UniversalSend/SendText";
 import {DialogsPropsType} from "./DialogsContainer";
 import UsersDialogs from "./UsersDialogs/UsersDialogs";
 import UsersInDialogs from "./UsersInDialogs/UsersInDialogs";
 
-const Dialogs: React.FC<DialogsPropsType> = ({dialogsPage, updateNewMessage, addMessage}) => {
+const Dialogs: React.FC<DialogsPropsType> = ({dialogsPage, addMessage}) => {
 
     const userChat = dialogsPage.usersDialogs.map(el => <UsersDialogs id={el.id} key={el.id} name={el.name}
-                                                                      text={el.text}
-                                                                      time={el.time}/>);
-    let user = dialogsPage.users.map(el => <UsersInDialogs key={el.id} name={el.name} id={el.id}/>);
-    const onClickCallBack = () => {
-        addMessage()
-    }
-    const onChangeCallBack = (event: ChangeEvent<HTMLInputElement>) => {
-        updateNewMessage(event)
-    }
+                                                                      text={el.text} time={el.time}/>);let user = dialogsPage.users.map(el => <UsersInDialogs key={el.id} name={el.name} id={el.id}/>);
+    const addNewMessage = (value: { newMessageBody: string }) => (addMessage(value.newMessageBody))
+
     return (
             <div className={s.body}>
                 <div className={s.body__users}>
@@ -27,9 +21,7 @@ const Dialogs: React.FC<DialogsPropsType> = ({dialogsPage, updateNewMessage, add
                         {userChat}
                     </div>
                 </div>
-                <SendText onClickCallBack={onClickCallBack}
-                          onChangeCallBack={onChangeCallBack}
-                          state={dialogsPage}/>
+                <SendTextReduxForm onSubmit={addNewMessage}/>
             </div>
     );
 };

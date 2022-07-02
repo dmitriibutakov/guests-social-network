@@ -1,20 +1,14 @@
-import React, {ChangeEvent} from 'react'
+import React from 'react'
 import s from "./SendText.module.css"
-import {DialogsPageType} from "../../../Redux/dialogs-reducer";
 import {likeImg, pictureImg, sendImg, smileImg} from "../../../images/dir/icons";
+import {Field, reduxForm} from "redux-form";
 
 type SendTextType = {
-    state: DialogsPageType
-    onChangeCallBack: (e: ChangeEvent<HTMLInputElement>) => void
-    onClickCallBack: () => void
+    handleSubmit: any
 }
-const SendText: React.FC<SendTextType> = ({
-                                              state,
-                                              onChangeCallBack,
-                                              onClickCallBack
-                                          }) => {
+const SendText: React.FC<SendTextType> = ({handleSubmit}) => {
     return (
-        <div className={s.sendText}>
+        <form onSubmit={handleSubmit} className={s.sendText}>
             <div>
                 <div className={s.sendText__link}>
                     <img className={s.img} src={smileImg} alt="images"/>
@@ -27,21 +21,20 @@ const SendText: React.FC<SendTextType> = ({
             </div>
 
             <div className={s.sendText__input}>
-                <input type={"text"}
+                <Field component={"input"}
+                       type={"text"}
+                       name={"newMessageBody"}
                        className={s.input}
-                       placeholder={"Write a comment..."}
-                       value={state.newMessageText}
-                       onChange={onChangeCallBack}/>
+                       placeholder={"Write a comment..."}/>
             </div>
             <div>
                 <div className={s.sendText__link}>
                     <img className={s.img} src={pictureImg} alt="images"/>
                 </div>
             </div>
-
-            <button onClick={onClickCallBack} className={s.button__send}><img src={sendImg} alt="send"/></button>
-        </div>
+            <button className={s.button__send}><img src={sendImg} alt="send"/></button>
+        </form>
     );
 };
 
-export default SendText;
+export const SendTextReduxForm = reduxForm<{}, { onSubmit: any }, string>({form: "dialogSendText"})(SendText)

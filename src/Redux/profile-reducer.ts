@@ -1,10 +1,8 @@
-import {ChangeEvent} from "react";
 import {IsFetchingType, setIsFetching} from "./actions/actions";
 import {profileAPI} from "../Api/api";
 
 export type ProfilePageType = {
     posts: Array<PostType>
-    newPostText: string
     profile: ProfileURLType
     isFetching: boolean,
     status: string,
@@ -58,7 +56,6 @@ let initialState: ProfilePageType = {
         {id: Math.random(), message: 'I find a new Collection', likes: 22},
         {id: Math.random(), message: 'Hi! It\'s my first post!', likes: 13}
     ],
-    newPostText: "",
     isFetching: false,
     status: "",
 }
@@ -68,12 +65,10 @@ const ProfileReducer = (state: ProfilePageType = initialState, action: ProfileRe
         case "ADD-POST":
             const newPost = {
                 id: Math.random(),
-                message: state.newPostText,
+                message: action.newText,
                 likes: 5,
             }
-            return {...state, posts: [newPost, ...state.posts], newPostText: ""}
-        case "UPDATE-NEW-POST":
-            return {...state, newPostText: action.newText}
+            return {...state, posts: [newPost, ...state.posts]}
         case "SET-USER-PROFILE":
             return {...state, profile: action.profile}
         case "SET-IS-FETCHING":
@@ -85,22 +80,12 @@ const ProfileReducer = (state: ProfilePageType = initialState, action: ProfileRe
     }
 };
 
-export type ProfileReducerType =
-    addPostType
-    | updateNewPostTextType
-    | SetUserProfileType
-    | IsFetchingType
-    | SetStatusType
+export type ProfileReducerType = addPostType | SetUserProfileType | IsFetchingType | SetStatusType
 type addPostType = ReturnType<typeof addPost>
-type updateNewPostTextType = ReturnType<typeof updateNewPostText>
 type SetUserProfileType = ReturnType<typeof setUserProfile>
 type SetStatusType = ReturnType<typeof setStatus>
 
-export const addPost = () => ({type: "ADD-POST", newText: ""} as const)
-export const updateNewPostText = (event: ChangeEvent<HTMLInputElement>) => ({
-    type: "UPDATE-NEW-POST",
-    newText: event.currentTarget.value
-} as const)
+export const addPost = (newText: string) => ({type: "ADD-POST", newText} as const)
 const setUserProfile = (profile: ProfileURLType) => ({type: "SET-USER-PROFILE", profile} as const)
 const setStatus = (status: string) => ({type: "SET-STATUS", status} as const)
 

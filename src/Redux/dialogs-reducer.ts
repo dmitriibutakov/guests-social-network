@@ -1,4 +1,3 @@
-import {ChangeEvent} from "react";
 import {v1} from "uuid";
 
 export type UserInDialType = {
@@ -14,7 +13,7 @@ export type UserDialogType = {
 export type DialogsPageType = {
     users: Array<UserInDialType>
     usersDialogs: Array<UserDialogType>
-    newMessageText: string
+    newMessageText?: string
 }
 
 let initialState: DialogsPageType = {
@@ -31,7 +30,6 @@ let initialState: DialogsPageType = {
         {id: v1(), name: 'Lisa', text: 'I love you', time: 22.34},
         {id: v1(), name: 'Me', text: 'Love you 2', time: 22.44}
     ],
-    newMessageText: " ",
 }
 
 const DialogsReducer = (state: DialogsPageType = initialState, action: DialogsReducerType): DialogsPageType => {
@@ -40,26 +38,18 @@ const DialogsReducer = (state: DialogsPageType = initialState, action: DialogsRe
             const newMessage = {
                 id: v1(),
                 name: "me",
-                text: state.newMessageText,
+                text: action.newMessage,
                 time: 22.45,
             }
-            return {...state, usersDialogs: [...state.usersDialogs, newMessage], newMessageText: ""}
-        case "UPDATE-NEW-MESSAGE":
-            return {...state, newMessageText: action.newText}
+            return {...state, usersDialogs: [...state.usersDialogs, newMessage]}
         default:
             return state
     }
 };
 
-export type DialogsReducerType = AddMessageType | UpdateNewMessageType
+export type DialogsReducerType = AddMessageType
 type AddMessageType = ReturnType<typeof addMessage>
-type UpdateNewMessageType = ReturnType<typeof updateNewMessage>
 
-export const addMessage = () => ({type: "ADD-MESSAGE", newText: ""} as const)
-export const updateNewMessage = (event: ChangeEvent<HTMLInputElement>) => {
-    return (
-        {type: "UPDATE-NEW-MESSAGE", newText: event.currentTarget.value} as const
-    )
-}
+export const addMessage = (newMessage: string) => ({type: "ADD-MESSAGE", newMessage} as const)
 
 export default DialogsReducer;

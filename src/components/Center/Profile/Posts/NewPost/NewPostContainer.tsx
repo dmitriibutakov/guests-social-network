@@ -1,24 +1,15 @@
-import NewPost from "./NewPost";
-import {AppStateType} from "../../../../../Redux/store";
-import {ChangeEvent} from "react";
+import {NewPostReduxForm} from "./NewPost";
 
-type MapStateToPropsType = {
-    newPostText: string
-}
 type MapDispatchToPropsType = {
-    addPost: () => void
-    updateNewPostText: (event: ChangeEvent<HTMLInputElement>) => void
-}
-const mapStateToProps = (state: AppStateType): MapStateToPropsType => {
-    return {
-        newPostText: state.ProfilePage.newPostText
-    }
+    addPost: (value: string) => void
 }
 
-export type NewPostProps = MapStateToPropsType & MapDispatchToPropsType
+
+export type NewPostProps = MapDispatchToPropsType
 const NewPostContainer = (props: NewPostProps) => {
+    const addNewPost = (value: {addPostText: string}) => props.addPost(value.addPostText)
     return (
-        <NewPost newPostText={props.newPostText} addPost={props.addPost} updateNewPostText={props.updateNewPostText}/>
+        <NewPostReduxForm onSubmit={addNewPost}/>
     )
 }
 
