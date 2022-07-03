@@ -1,0 +1,30 @@
+.input__block {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+.input, .error__input {
+    padding: 0 10px;
+    border-width: 0;
+    width: 550px;
+    height: 50px;
+    color: #3a4156;
+}
+
+.error__input {
+    border: 1px solid red;
+    border-radius: 20px;
+}
+
+.error__img {
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    width: 20px;
+    height: 20px;
+}
+
+.error__block {
+    display: inline-flex;
+    margin-left: 5px;
+}

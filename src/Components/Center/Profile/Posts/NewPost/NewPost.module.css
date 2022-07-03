@@ -1,0 +1,42 @@
+.send__block,
+.send__block_left,
+.visible {
+    display: flex;
+}
+
+.title {
+    font-size: 20px;
+    font-weight: 500;
+    margin-bottom: 5px;
+}
+
+.input__block {
+    border-bottom: 1px solid #DAE1EE;
+    padding-bottom: 10px;
+}
+
+.send__block, .send__block_left {
+    align-items: center;
+    justify-content: space-between;
+}
+
+.send__block {
+    padding-top: 10px;
+}
+
+.send__block_left {
+    display: flex;
+}
+.send__block_left >*:not(:last-of-type) {
+    margin-right: 8px;
+}
+
+.add {
+    width: 30px;
+    height: 30px;
+}
+
+.add img {
+    height: 100%;
+    width: 100%;
+}
