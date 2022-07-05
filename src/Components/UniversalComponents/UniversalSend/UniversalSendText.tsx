@@ -3,12 +3,11 @@ import s from "./UniversalSendText.module.css"
 import {likeImg, pictureImg, sendImg, smileImg} from "../../../Images/dir/icons";
 import {Field, reduxForm} from "redux-form";
 import UniversalInput from "../UniversalInput/UniversalInput";
-import {maxLengthCreator, required} from "../../../Utils/validators/validators";
+import {required} from "../../../Utils/validators/validators";
 
 type SendTextType = {
     handleSubmit: any
 }
-const maxLengthMessage = maxLengthCreator(10)
 
 const UniversalSendText: React.FC<SendTextType> = ({handleSubmit}) => {
     return (
@@ -26,7 +25,7 @@ const UniversalSendText: React.FC<SendTextType> = ({handleSubmit}) => {
 
             <div className={s.sendText__input}>
                 <Field component={UniversalInput}
-                       validate={[required,  maxLengthMessage]}
+                       validate={[required]}
                        name={"newMessageBody"}
                        placeholder={"Write a message..."}/>
             </div>

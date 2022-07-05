@@ -8,7 +8,8 @@ import UniversalSendText from "../../UniversalComponents/UniversalSend/Universal
 const Dialogs: React.FC<DialogsPropsType> = ({dialogsPage, addMessage}) => {
 
     const userChat = dialogsPage.usersDialogs.map(el => <UsersDialogs id={el.id} key={el.id} name={el.name}
-                                                                      text={el.text} time={el.time}/>);let user = dialogsPage.users.map(el => <UsersInDialogs key={el.id} name={el.name} id={el.id}/>);
+                                                                      text={el.text} time={el.time}/>);
+    let user = dialogsPage.users.map(el => <UsersInDialogs key={el.id} name={el.name} id={el.id}/>);
     const addNewMessage = (value: { newMessageBody: string }) => (addMessage(value.newMessageBody))
 
     return (
@@ -21,7 +22,8 @@ const Dialogs: React.FC<DialogsPropsType> = ({dialogsPage, addMessage}) => {
                         {userChat}
                     </div>
                 </div>
-                <UniversalSendText onSubmit={addNewMessage}/>
+                <div className={s.sendText}><UniversalSendText onSubmit={addNewMessage}/></div>
+
             </div>
     );
 };

@@ -10,7 +10,7 @@ const UsersInDialogs: React.FC<UserInDialType> = ({id, name}) => {
     return (
         <NavLink to={path} className={s.user}>
             <span className={s.user__avatar}>
-                    <img className={s.avatar} src={incognito} alt="avatar"/>
+                    <img src={incognito} alt="avatar"/>
             </span>
             <span className={s.name}>{name}</span>
         </NavLink>

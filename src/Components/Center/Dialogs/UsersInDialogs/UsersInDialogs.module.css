@@ -13,14 +13,12 @@
 }
 
 .user__avatar {
-    height: 40px;
-    width: 40px;
     margin-right: 15px;
 }
 
-.avatar {
-    width: 100%;
-    height: 100%;
+.user__avatar img {
+    height: 40px;
+    width: 40px;
     border-radius: 50%;
 }
 

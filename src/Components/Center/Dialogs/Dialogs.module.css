@@ -5,14 +5,15 @@
 
 .body {
     flex-direction: column;
-    margin-bottom: 10px;
+    max-width: 630px;
 }
-
 .users {
     border-right: 1px solid rgba(10, 84, 227, 0.37);
-    flex: 0 1 35%;
 }
 
 .messages {
     margin-left: 30px;
+}
+.sendText {
+    flex: 0 0 80%;
 }

@@ -11,9 +11,9 @@ type ProfileComponentType = {
     updateStatus: (status: string) => void
     status: string
 }
-const Profile: React.FC<ProfileComponentType> = ({profile,  status,updateStatus}) => {
+const Profile: React.FC<ProfileComponentType> = ({profile, status,updateStatus}) => {
     if (!profile.userId) {
-        return <Preloader/>
+        return (<div className={s.body}><Preloader/></div>)
     } else return (
         <div className={s.body}>
             <div className={s.cover}><img src={profile.photos.large || wallpaperImg} alt="cover"/></div>

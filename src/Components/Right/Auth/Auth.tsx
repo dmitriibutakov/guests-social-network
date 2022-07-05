@@ -6,16 +6,17 @@ import {exitImg, loginImg} from "../../../Images/dir/icons";
 
 type AuthCompType = {
     isAuth: boolean
+    logout: () => void
 }
-const Auth: React.FC<AuthCompType> = ({isAuth}) => {
+const Auth: React.FC<AuthCompType> = ({isAuth, logout}) => {
     return (
         <>
             {
-                isAuth ? <div className={s.logo}><img src={exitImg} alt="exit"/></div>
+                isAuth ? <button onClick={logout} className={s.logo}><img src={exitImg} alt="exit"/></button >
                     : <NavLink to={'/login'}>
-                        <div className={s.logo}>
+                        <button dir={'/login'} className={s.logo} onClick={logout}>
                         <img src={loginImg} alt="login"/>
-                        </div>
+                        </button>
                     </NavLink>
             }
         </>

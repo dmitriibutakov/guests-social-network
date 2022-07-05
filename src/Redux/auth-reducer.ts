@@ -7,11 +7,7 @@ export type AuthType = {
     isFetching: boolean
     isAuth: boolean
 }
-export type DataType = {
-    id: number
-    email: string
-    login: string
-}
+
 let initialState: AuthType = {
     id: null as unknown as number,
     email: null as unknown as string,
@@ -23,7 +19,7 @@ let initialState: AuthType = {
 const AuthReducer = (state: AuthType = initialState, action: AuthReducerType): AuthType => {
     switch (action.type) {
         case "SET-USER-DATA":
-            return {...state, ...action.payload.data, isAuth: true}
+            return {...state, ...action.payload}
         default:
             return state
     }
@@ -32,12 +28,33 @@ const AuthReducer = (state: AuthType = initialState, action: AuthReducerType): A
 export type AuthReducerType = SetAuthType
 
 type SetAuthType = ReturnType<typeof setAuth>
-const setAuth = (data: DataType) => ({type: "SET-USER-DATA", payload: {data}} as const)
+type GetAuthUserDataType = ReturnType<typeof getAuthUserDataThunkCreator>
 
-export const setAuthUserData = () => (dispatch: (action: AuthReducerType) => void) => {
-    authAPI.authMe().then(data => {
-        if (data.resultCode === 0) {
-            dispatch(setAuth(data))
+const setAuth = (id: number, email: string, login: string, isAuth: boolean) =>
+    ({type: "SET-USER-DATA", payload: {id, email, login, isAuth}} as const)
+
+export const getAuthUserDataThunkCreator = () => (dispatch: (action: AuthReducerType) => void) => {
+    authAPI.authMe().then(response => {
+        if (response.data.resultCode === 0) {
+            const {id, email, login} = response.data.data
+            dispatch(setAuth(id, email, login, true))
+        }
+    })
+}
+
+export const logInThunkCreator = (email: string, password: string, rememberMe: boolean) => (dispatch: (action: AuthReducerType | GetAuthUserDataType) => void) => {
+    authAPI.login(email, password, rememberMe).then(response => {
+        if (response.data.resultCode === 0) {
+            dispatch(getAuthUserDataThunkCreator())
+        }
+    })
+}
+
+export const logOutThunkCreator = () => (dispatch: (action: AuthReducerType | GetAuthUserDataType) => void) => {
+    authAPI.logout().then(response => {
+        console.log(response)
+        if (response.data.resultCode === 0) {
+            dispatch(setAuth( null as unknown as number,"","", false))
         }
     })
 }

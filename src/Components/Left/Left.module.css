@@ -1,5 +1,5 @@
 .left {
-    flex: 0 0 300px;
+    max-width: 300px;
 }
 
 .left > *:not(:last-child) {

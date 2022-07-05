@@ -38,10 +38,10 @@ const ProfileContainer = (props: ProfilePropsType) => {
 
     return (
         <>
-            {isFetching && <Preloader/>}
-            <div className={s.center__block}>
+            {isFetching ? <div className={s.center__block_preloader}><Preloader/></div> : <div className={s.center__block}>
                 <Profile status={status} updateStatus={updateStatus} profile={profile}/>
-            </div>
+            </div>}
+
             <div className={s.center__block}>
                 <NewPostContainer addPost={addPost}/>
             </div>

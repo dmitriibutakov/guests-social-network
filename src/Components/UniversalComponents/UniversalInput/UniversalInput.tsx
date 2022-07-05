@@ -1,6 +1,5 @@
 import React from 'react';
 import s from "./UniversalInput.module.css";
-import {warningImg} from "../../../Images/dir/icons";
 import {MetaType} from "./universalInputTypes";
 
 type UniversalInputPropsType = {
@@ -13,9 +12,7 @@ const UniversalInput: React.FC<UniversalInputPropsType> = ({input, meta, ...prop
     return (
         <div className={s.input__block}>
             <input {...props} {...input} className={metaData ? s.error__input : s.input}/>
-            <div className={s.error__block}>
-                {metaData && <img className={s.error__img} src={warningImg} alt="img"/>}
-            </div>
+            {metaData && <div className={s.error__block}></div>}
         </div>
     );
 };

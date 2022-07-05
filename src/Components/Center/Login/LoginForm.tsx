@@ -12,13 +12,13 @@ const LoginForm: React.FC<InjectedFormProps<FormDataType>> = (props) => {
         <div>
             <form className={s.form} onSubmit={props.handleSubmit}>
                 <div>
-                    <Field placeholder={"login"}
-                           name={"login"}
+                    <Field placeholder={"email, min 8 symbols"}
+                           name={"email"}
                            validate={[required, minLength]}
                            component={UniversalInput}/>
                 </div>
                 <div>
-                    <Field placeholder={"password"}
+                    <Field placeholder={"password, min 8 symbols"}
                            type="password"
                            validate={[required, minLength]}
                            name={"password"}

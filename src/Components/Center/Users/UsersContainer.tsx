@@ -6,6 +6,7 @@ import Preloader from "../../UniversalComponents/Preloader/Preloader";
 import Users from "./Users";
 import {compose} from "redux";
 import {withAuthRedirect} from "../../../HIghOrderComponents/AuthRedirect";
+import s from "../Center.module.css";
 
 class UsersAPIContainer extends React.Component<UsersAPIPropsType> {
 
@@ -19,16 +20,15 @@ class UsersAPIContainer extends React.Component<UsersAPIPropsType> {
     }
 
     render() {
-        return <> {this.props.isFetching ? <Preloader/>
-            : <Users
-                pageSize={this.props.pageSize}
-                users={this.props.users}
-                usersCount={this.props.usersCount}
-                currentPage={this.props.currentPage}
-                onPageChanged={this.onPageChanged}
-                followingInProgress={this.props.followingInProgress}
-                follow={this.props.follow}
-                unfollow={this.props.unfollow}/>}
+        return <> {this.props.isFetching ? <div className={s.center__block_preloader}> <Preloader/></div>
+            : <Users pageSize={this.props.pageSize}
+                     users={this.props.users}
+                     usersCount={this.props.usersCount}
+                     currentPage={this.props.currentPage}
+                     onPageChanged={this.onPageChanged}
+                     followingInProgress={this.props.followingInProgress}
+                     follow={this.props.follow}
+                     unfollow={this.props.unfollow}/>}
         </>
     }
 }
@@ -63,4 +63,7 @@ const mapStateToProps = (state: AppStateType): MapStateToPropsType => {
 export type UsersAPIPropsType = MapStateToPropsType & MapDispatchToPropsType
 
 export default compose<ComponentType>(
-    connect(mapStateToProps, {getUsers, follow, unfollow, setCurrentPage}))(UsersAPIContainer)
+    connect(mapStateToProps, {getUsers, follow, unfollow, setCurrentPage}),
+    withAuthRedirect
+)
+(UsersAPIContainer)
