@@ -14,7 +14,7 @@
 }
 
 .error__input {
-    border: 1px solid red;
+    border: 1px solid darkred;
     border-radius: 20px;
 }
 
@@ -25,9 +25,10 @@
 .error__block::after {
     position: absolute;
     content: "more symbols is requiered";
-    color: #db3737;
+    color: darkred;
     font-size: 10px;
     top: -40px;
     right: -100%;
     width: 200px;
 }
+

@@ -1,5 +1,7 @@
 import {IsFetchingType, setIsFetching} from "./actions/actions";
 import {usersAPI} from "../Api/api";
+import {Dispatch} from "redux";
+import {AppReducersTypes, AppThunk} from "./store";
 
 export type UsersPageType = {
     users: UserType[]
@@ -82,27 +84,27 @@ const setIsFollowing = (isFollowing: boolean, userId: number) => ({
     payload: {isFollowing, userId}
 } as const)
 
-export const getUsers = (currentPage: number, pageSize: number) => (dispatch: (action: UsersReducerType) => void) => {
+export const getUsers = (currentPage: number, pageSize: number): AppThunk => async dispatch => {
     dispatch(setIsFetching(true))
-    usersAPI.getUsers(currentPage, pageSize).then(data => {
-        dispatch(setIsFetching(false))
-        dispatch(setUsers(data.items))
-        dispatch(setUsersCount(data.totalCount))
-    })
+    const res = await usersAPI.getUsers(currentPage, pageSize)
+    await (
+        dispatch(setIsFetching(false)),
+            dispatch(setUsers(res.items)),
+            dispatch(setUsersCount(res.totalCount))
+    )
 }
 
-export const follow = (userId: number) => (dispatch: (action: UsersReducerType) => void) => {
+export const follow = (userId: number): AppThunk => async dispatch => {
     dispatch(setIsFollowing(true, userId))
-    usersAPI.followUser(userId).then(response => {
-        if (response.data.resultCode === 0) dispatch(setFollow(userId))
-        dispatch(setIsFollowing(false, userId))
-    })
+   const res = await usersAPI.followUser(userId)
+        if (res.data.resultCode === 0) dispatch(setFollow(userId))
+        await dispatch(setIsFollowing(false, userId))
 }
-export const unfollow = (userId: number) => (dispatch: (action: UsersReducerType) => void) => {
+
+export const unfollow = (userId: number): AppThunk => async dispatch => {
     dispatch(setIsFollowing(true, userId))
-    usersAPI.unfollowUser(userId).then(response => {
-        if (response.data.resultCode === 0) dispatch(setUnfollow(userId))
-        dispatch(setIsFollowing(false, userId))
-    })
+    const res = await usersAPI.unfollowUser(userId)
+        if (res.data.resultCode === 0) dispatch(setUnfollow(userId))
+        await dispatch(setIsFollowing(false, userId))
 }
 export default UsersReducer;

@@ -1,5 +1,7 @@
 import {IsFetchingType, setIsFetching} from "./actions/actions";
 import {profileAPI} from "../Api/api";
+import {Dispatch} from "redux";
+import {AppReducersTypes, AppThunk} from "./store";
 
 export type ProfilePageType = {
     posts: Array<PostType>
@@ -89,25 +91,21 @@ export const addPost = (newText: string) => ({type: "ADD-POST", newText} as cons
 const setUserProfile = (profile: ProfileURLType) => ({type: "SET-USER-PROFILE", profile} as const)
 const setStatus = (status: string) => ({type: "SET-STATUS", status} as const)
 
-export const getProfile = (userId: string) => (dispatch: (action: ProfileReducerType) => void) => {
+export const getProfile = (userId: string): AppThunk => async dispatch => {
     dispatch(setIsFetching(true))
-    profileAPI.getProfile(userId)
-        .then(response => {
-            profileAPI.getStatus(userId)
-                .then(response2 => {
-                    dispatch(setIsFetching(false))
-                    dispatch(setUserProfile(response.data))
-                    dispatch(setStatus(response2.data))
-                })
-        })
+    const res = await profileAPI.getProfile(userId)
+    const res2 = await profileAPI.getStatus(userId)
+    await (dispatch(setIsFetching(false)),
+        dispatch(setUserProfile(res.data)),
+        dispatch(setStatus(res2.data)))
 }
 
-export const updateStatus = (status: string) => (dispatch: (action: ProfileReducerType) => void) => {
-    profileAPI.updateStatus(status).then(response => {
-        if (response.data.resultCode === 0) {
-            dispatch(setStatus(status))
-        }
-    })
+
+export const updateStatus = (status: string): AppThunk => async dispatch => {
+    const res = await profileAPI.updateStatus(status)
+    if (res.data.resultCode === 0) {
+        dispatch(setStatus(status))
+    }
 }
 
 export default ProfileReducer;

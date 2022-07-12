@@ -1,4 +1,5 @@
 .form {
+    min-width: 400px;
     display: inline-block;
     padding: 15px;
     background-color: #fff;
@@ -17,4 +18,7 @@
     font-size: 18px;
     color: #3a4156;
     font-weight: 500;
+}
+.input__summary_error {
+    color: darkred;
 }

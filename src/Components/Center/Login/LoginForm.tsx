@@ -30,6 +30,7 @@ const LoginForm: React.FC<InjectedFormProps<FormDataType>> = (props) => {
                            name={"remember me"}
                            type="checkbox"/>remember me
                 </div>
+                {props.error && <div className={s.input__summary_error}>{props.error}</div>}
                 <UniversalBtn name={"send"} type={"submit"}/>
             </form>
         </div>

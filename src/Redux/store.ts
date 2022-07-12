@@ -1,11 +1,12 @@
 import {applyMiddleware, combineReducers, legacy_createStore} from "redux";
 import DialogsReducer, {DialogsReducerType} from "./dialogs-reducer";
 import ProfileReducer, {ProfileReducerType} from "./profile-reducer";
-import AuthReducer from "./auth-reducer";
+import AuthReducer, {AuthReducerType} from "./auth-reducer";
 import UsersReducer, {UsersReducerType} from "./users-reducer";
 import MenuFriendsReducer, {MenuFriendsReducerACType} from "./menu-friends-reducer";
-import thunkMiddleware from "redux-thunk";
+import thunkMiddleware, { ThunkAction } from "redux-thunk";
 import {reducer as formReducer} from 'redux-form';
+import appReducer from "./app-reducer";
 
 const rootReducer = combineReducers({
     ProfilePage: ProfileReducer,
@@ -13,10 +14,13 @@ const rootReducer = combineReducers({
     MenuFriends: MenuFriendsReducer,
     UsersPage: UsersReducer,
     Auth: AuthReducer,
-    form: formReducer
+    form: formReducer,
+    app: appReducer
 })
 const store = legacy_createStore(rootReducer, applyMiddleware(thunkMiddleware))
 export type AppStateType = ReturnType<typeof rootReducer>
-export type DispatchType = (action: DialogsReducerType | UsersReducerType | MenuFriendsReducerACType | ProfileReducerType) => void
 export default store;
 
+export type AppReducersTypes = AuthReducerType | DialogsReducerType | ProfileReducerType | UsersReducerType
+
+export type AppThunk<ReturnType = void> = ThunkAction<ReturnType, AppStateType, unknown, AppReducersTypes>

@@ -17,6 +17,7 @@ type MapStateToPropsType = {
     profile: ProfileURLType
     isFetching: boolean
     status: string
+    profileId: number
 }
 type MapDispatchToPropsType = {
     addPost: (newText: string) => void
@@ -33,7 +34,7 @@ const ProfileContainer = (props: ProfilePropsType) => {
     let {userId} = useParams<'userId'>()
 
     useEffect(() => {
-        props.getProfile(userId || '23985')
+        props.getProfile(userId ||`${props.profileId}`)
     }, [])
 
     return (
@@ -58,6 +59,7 @@ const mapStateToProps = (state: AppStateType): MapStateToPropsType => {
         posts: state.ProfilePage.posts,
         isFetching: state.ProfilePage.isFetching,
         status: state.ProfilePage.status,
+        profileId: state.Auth.id
     }
 }
 export default compose<ComponentType>(

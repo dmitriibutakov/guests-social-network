@@ -6,7 +6,6 @@ import {withRouter} from "../../../Redux/withRouter";
 import {getAuthUserDataThunkCreator, logOutThunkCreator} from "../../../Redux/auth-reducer";
 
 const AuthContainer = (props: AuthPropsType) => {
-    useEffect(() => props.getAuthUserDataThunkCreator(), [])
     return (
         <Auth logout={props.logOutThunkCreator} isAuth={props.isAuth}/>
     );
@@ -17,7 +16,6 @@ type MapStateToPropsType = {
     isAuth: boolean
 }
 type MapDispatchToPropsType = {
-    getAuthUserDataThunkCreator: () => void
     logOutThunkCreator: () => void
 }
 type AuthPropsType = MapStateToPropsType & MapDispatchToPropsType
@@ -27,4 +25,4 @@ const mapStateToProps = (state: AppStateType): MapStateToPropsType => {
         isAuth: state.Auth.isAuth,
     }
 }
-export default connect(mapStateToProps, {getAuthUserDataThunkCreator, logOutThunkCreator})(withRouter(AuthContainer));
+export default connect(mapStateToProps, {logOutThunkCreator})(withRouter(AuthContainer));
