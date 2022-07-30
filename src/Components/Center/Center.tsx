@@ -5,7 +5,7 @@ import Settings from "./Settings/Settings";
 import DialogsContainer from './Dialogs/DialogsContainer';
 import ProfileAPIContainer from "./Profile/ProfileContainer";
 import UsersContainer from "./Users/UsersContainer";
-import Login from "./Login/Login";
+import Login from './Login/Login';
 
 const Center = () => {
     return (

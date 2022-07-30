@@ -1,9 +1,5 @@
-import {authAPI} from "../Api/api";
-import {stopSubmit} from "redux-form";
-import {AppReducersTypes, AppStateType, AppThunk} from "./store";
-import {Dispatch} from "redux";
-import {ThunkAction} from "redux-thunk";
-import {getAuthUserDataThunkCreator} from "./auth-reducer";
+import {getAuthUserDataTC} from "./auth-reducer";
+import { AppThunk } from "./store";
 
 export type APPType = {
    initialized: boolean
@@ -22,12 +18,16 @@ const APPReducer = (state: APPType = initialState, action: APPReducerType): APPT
     }
 };
 
-export type APPReducerType = ReturnType<typeof setInitialized>
-
+//actions
 export const setInitialized = () => ({type: 'SET-INITIALIZED'} as const)
 
-export const initializeApp = ():AppThunk => async dispatch => {
-   await dispatch(getAuthUserDataThunkCreator())
+//thunks
+export const initializeAppTC = ():AppThunk => async dispatch => {
+  await dispatch(getAuthUserDataTC())
     dispatch(setInitialized())
 }
+
+//types
+export type APPReducerType = ReturnType<typeof setInitialized>
+
 export default APPReducer;

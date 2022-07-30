@@ -1,7 +1,6 @@
 import React from 'react';
 import s from "./Profile.module.css"
-
-import {ProfileURLType} from "../../../Redux/profile-reducer";
+import {ProfileURLType} from "../../../BLL/profile-reducer";
 import Preloader from "../../UniversalComponents/Preloader/Preloader";
 import {githubImg, incognito, instagramImg, noImg, twitterImg, wallpaperImg, yesImg} from "../../../Images/dir/icons";
 import Status from "./Status";

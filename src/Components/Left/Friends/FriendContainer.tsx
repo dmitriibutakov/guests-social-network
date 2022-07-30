@@ -1,7 +1,7 @@
 import {connect} from "react-redux";
 import Friend from "./Friend";
-import {AppStateType} from "../../../Redux/store";
-import {MenuFriendsType} from "../../../Redux/menu-friends-reducer";
+import {AppStateType} from "../../../BLL/store";
+import {MenuFriendsType} from "../../../BLL/menu-friends-reducer";
 
 type mapStateToPropsType = {
     friends: MenuFriendsType

@@ -1,6 +1,6 @@
 import React from "react";
 import s from "./UsersDialogs.module.css"
-import {UserDialogType} from "../../../../Redux/dialogs-reducer";
+import {UserDialogType} from "../../../../BLL/dialogs-reducer";
 import {incognito} from "../../../../Images/dir/icons";
 
 const UsersDialogs: React.FC<UserDialogType> = (props) => {

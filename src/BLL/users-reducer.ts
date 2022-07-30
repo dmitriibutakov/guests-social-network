@@ -1,7 +1,6 @@
 import {IsFetchingType, setIsFetching} from "./actions/actions";
-import {usersAPI} from "../Api/api";
-import {Dispatch} from "redux";
-import {AppReducersTypes, AppThunk} from "./store";
+import {usersAPI} from "../DAL/api";
+import {AppThunk} from "./store";
 
 export type UsersPageType = {
     users: UserType[]
@@ -61,6 +60,7 @@ const UsersReducer = (state: UsersPageType = initialState, action: UsersReducerT
     }
 };
 
+//types
 export type UsersReducerType = FollowType | UnfollowType | SetUsersType | SetCurrentPageType | SetUsersCountType
     | IsFetchingType | SetIsFollowingType
 
@@ -71,6 +71,7 @@ type SetCurrentPageType = ReturnType<typeof setCurrentPage>
 type SetUsersCountType = ReturnType<typeof setUsersCount>
 type SetIsFollowingType = ReturnType<typeof setIsFollowing>
 
+//actions
 const setFollow = (userID: number) => ({type: "FOLLOW", payload: {userID}} as const)
 const setUnfollow = (userID: number) => ({type: "UNFOLLOW", payload: {userID}} as const)
 const setUsers = (refreshUsers: UserType[]) => ({type: "SET-USERS", payload: {refreshUsers}} as const)
@@ -84,7 +85,8 @@ const setIsFollowing = (isFollowing: boolean, userId: number) => ({
     payload: {isFollowing, userId}
 } as const)
 
-export const getUsers = (currentPage: number, pageSize: number): AppThunk => async dispatch => {
+//thunks
+export const getUsersTC = (currentPage: number, pageSize: number): AppThunk => async dispatch => {
     dispatch(setIsFetching(true))
     const res = await usersAPI.getUsers(currentPage, pageSize)
     await (
@@ -94,14 +96,14 @@ export const getUsers = (currentPage: number, pageSize: number): AppThunk => asy
     )
 }
 
-export const follow = (userId: number): AppThunk => async dispatch => {
+export const followTC = (userId: number): AppThunk => async dispatch => {
     dispatch(setIsFollowing(true, userId))
    const res = await usersAPI.followUser(userId)
         if (res.data.resultCode === 0) dispatch(setFollow(userId))
         await dispatch(setIsFollowing(false, userId))
 }
 
-export const unfollow = (userId: number): AppThunk => async dispatch => {
+export const unfollowTC = (userId: number): AppThunk => async dispatch => {
     dispatch(setIsFollowing(true, userId))
     const res = await usersAPI.unfollowUser(userId)
         if (res.data.resultCode === 0) dispatch(setUnfollow(userId))

@@ -4,29 +4,33 @@ import Left from "./Components/Left/Left";
 import Center from "./Components/Center/Center";
 import Right from "./Components/Right/Right";
 import {connect} from "react-redux";
-import {getAuthUserDataThunkCreator, logOutThunkCreator} from "./Redux/auth-reducer";
-import {withRouter} from "./Redux/withRouter";
 import {compose} from "redux";
-import { initializeApp } from "./Redux/app-reducer";
-import {AppStateType} from "./Redux/store";
 import Preloader from "./Components/UniversalComponents/Preloader/Preloader";
+import { AppStateType } from "./BLL/store";
+import { withRouter } from "./BLL/withRouter";
+import { initializeAppTC } from "./BLL/app-reducer";
 
 const App = (props: AppPropsType) => {
-    useEffect(() => props.initializeApp(), [])
+    useEffect(() => {
+        async function fetchData() {
+            const response = await props.initializeAppTC();
+        }
+        fetchData();
+    }, [])
     if (!props.initialized) return <Preloader/>
-  return (
-    <div className="App">
-        <Left/>
-        <Center/>
-        <Right/>
-    </div>
-  );
+    return (
+        <div className="App">
+            <Left/>
+            <Center/>
+            <Right/>
+        </div>
+    );
 }
 const mapStateToProps = (state: AppStateType) => {
     return {
         initialized: state.app.initialized
     }
 }
-type AppPropsType = ReturnType<typeof mapStateToProps> & {initializeApp: () => void}
+type AppPropsType = ReturnType<typeof mapStateToProps> & {initializeAppTC: () => void}
 export default compose(withRouter,
-    connect(mapStateToProps, {initializeApp}))(App)
+    connect(mapStateToProps, {initializeAppTC}))(App)

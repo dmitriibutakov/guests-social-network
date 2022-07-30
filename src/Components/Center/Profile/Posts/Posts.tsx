@@ -1,7 +1,7 @@
 import React from "react";
 import s from "../../Center.module.css"
 import {Post} from "./Post";
-import {PostType} from "../../../../Redux/profile-reducer";
+import {PostType} from "../../../../BLL/profile-reducer";
 type PostsComponentType = {
     posts: Array<PostType>
 }

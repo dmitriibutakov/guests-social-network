@@ -1,14 +1,14 @@
 import React, {ComponentType, useEffect} from "react"
-import {AppStateType} from "../../../Redux/store";
+import {AppStateType} from "../../../BLL/store";
 import {connect} from "react-redux";
 import s from "../Center.module.css";
 import PostsContainer from "./Posts/PostsContainer";
 import Profile from "./Profile";
 import NewPostContainer from "./Posts/NewPost/NewPostContainer";
-import {addPost, getProfile, PostType, ProfileURLType, updateStatus} from "../../../Redux/profile-reducer";
+import {addPost, getProfileTC, PostType, ProfileURLType, updateStatusTC} from "../../../BLL/profile-reducer";
 import {useParams} from "react-router-dom";
 import Preloader from "../../UniversalComponents/Preloader/Preloader";
-import {withRouter} from "../../../Redux/withRouter";
+import {withRouter} from "../../../BLL/withRouter";
 import {compose} from "redux";
 import {withAuthRedirect} from "../../../HIghOrderComponents/AuthRedirect";
 
@@ -21,26 +21,29 @@ type MapStateToPropsType = {
 }
 type MapDispatchToPropsType = {
     addPost: (newText: string) => void
-    getProfile: (userId: string) => void
-    updateStatus: (status: string) => void
+    getProfileTC: (userId: string) => void
+    updateStatusTC: (status: string) => void
 }
 export type ProfilePropsType = MapStateToPropsType & MapDispatchToPropsType
 
 
 const ProfileContainer = (props: ProfilePropsType) => {
     const {
-        profile, addPost, posts, isFetching, updateStatus, status
+        profile, addPost, posts, isFetching, updateStatusTC, status
     } = props
     let {userId} = useParams<'userId'>()
 
     useEffect(() => {
-        props.getProfile(userId ||`${props.profileId}`)
-    }, [])
+            async function fetchData() {
+                const response = await props.getProfileTC(userId ||`${props.profileId}`)
+            }
+            fetchData();
+        }, [])
 
     return (
         <>
             {isFetching ? <div className={s.center__block_preloader}><Preloader/></div> : <div className={s.center__block}>
-                <Profile status={status} updateStatus={updateStatus} profile={profile}/>
+                <Profile status={status} updateStatus={updateStatusTC} profile={profile}/>
             </div>}
 
             <div className={s.center__block}>
@@ -63,6 +66,6 @@ const mapStateToProps = (state: AppStateType): MapStateToPropsType => {
     }
 }
 export default compose<ComponentType>(
-    connect(mapStateToProps, {addPost, getProfile, updateStatus}),
+    connect(mapStateToProps, {addPost, getProfileTC, updateStatusTC}),
     withAuthRedirect,
     withRouter)(ProfileContainer)

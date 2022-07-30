@@ -1,8 +1,6 @@
-import {authAPI} from "../Api/api";
+import {authAPI} from "../DAL/api";
 import {stopSubmit} from "redux-form";
-import {AppReducersTypes, AppStateType, AppThunk} from "./store";
-import {Dispatch} from "redux";
-import {ThunkAction} from "redux-thunk";
+import {AppThunk} from "./store";
 
 export type AuthType = {
     id: number
@@ -29,14 +27,12 @@ const AuthReducer = (state: AuthType = initialState, action: AuthReducerType): A
     }
 };
 
-export type AuthReducerType = SetAuthType | StopSubmitType
-type StopSubmitType = ReturnType<typeof stopSubmit>
-type SetAuthType = ReturnType<typeof setAuth>
-
+//actions
 const setAuth = (id: number, email: string, login: string, isAuth: boolean) =>
     ({type: "SET-USER-DATA", payload: {id, email, login, isAuth}} as const)
 
-export const getAuthUserDataThunkCreator = (): AppThunk => async dispatch => {
+//thunks
+export const getAuthUserDataTC = (): AppThunk => async dispatch => {
     const res = await authAPI.authMe()
     if (res.data.resultCode === 0) {
         const {id, email, login} = res.data.data
@@ -44,21 +40,26 @@ export const getAuthUserDataThunkCreator = (): AppThunk => async dispatch => {
     }
 }
 
-export const logInThunkCreator =
+export const logInTC =
     (email: string, password: string, rememberMe: boolean): AppThunk =>
         async dispatch => {
             const res = await authAPI.login(email, password, rememberMe)
             res.data.resultCode === 0 ?
-                dispatch(getAuthUserDataThunkCreator()) :
+                dispatch(getAuthUserDataTC()) :
                 dispatch(stopSubmit("login", {_error: res.data.messages}))
         }
 
 
-export const logOutThunkCreator = (): AppThunk => async dispatch => {
+export const logOutTC = (): AppThunk => async dispatch => {
     const res = await authAPI.logout()
     if (res.data.resultCode === 0) {
         dispatch(setAuth(null as unknown as number, "", "", false))
     }
 }
+
+//types
+export type AuthReducerType = SetAuthType | StopSubmitType
+type StopSubmitType = ReturnType<typeof stopSubmit>
+type SetAuthType = ReturnType<typeof setAuth>
 
 export default AuthReducer;

@@ -12,7 +12,7 @@ const Auth: React.FC<AuthCompType> = ({isAuth, logout}) => {
     return (
         <>
             {
-                isAuth ? <button onClick={logout} className={s.logo}><img src={exitImg} alt="exit"/></button >
+                isAuth ? <button onClick={logout} className={s.logo}><img src={exitImg} alt="exit"/></button>
                     : <NavLink to={'/login'}>
                         <button dir={'/login'} className={s.logo} onClick={logout}>
                         <img src={loginImg} alt="login"/>

@@ -1,7 +1,7 @@
 import {connect} from "react-redux";
-import {addMessage, DialogsPageType} from "../../../Redux/dialogs-reducer";
+import {addMessage, DialogsPageType} from "../../../BLL/dialogs-reducer";
 import Dialogs from "./Dialogs";
-import {AppStateType} from "../../../Redux/store";
+import {AppStateType} from "../../../BLL/store";
 import {ComponentType} from "react";
 import {compose} from "redux";
 import {withAuthRedirect} from "../../../HIghOrderComponents/AuthRedirect";

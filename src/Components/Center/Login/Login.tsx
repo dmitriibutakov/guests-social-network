@@ -3,8 +3,8 @@ import LoginForm from "./LoginForm";
 import {reduxForm} from "redux-form";
 import s from "./Login.module.css"
 import {connect} from "react-redux";
-import {logInThunkCreator, logOutThunkCreator} from "../../../Redux/auth-reducer";
-import {AppStateType} from "../../../Redux/store";
+import {logInTC, logOutTC} from "../../../BLL/auth-reducer";
+import {AppStateType} from "../../../BLL/store";
 import {Navigate} from "react-router-dom";
 
 export type FormDataType = {
@@ -14,7 +14,7 @@ export type FormDataType = {
 }
 const Login = (props: LoginPropsType) => {
     const onSubmit = (formData: FormDataType) => {
-        props.logInThunkCreator(formData.email, formData.password, formData.rememberMe)
+        props.logInTC(formData.email, formData.password, formData.rememberMe)
     }
     if (props.isAuth) return <Navigate to={"/profile"}/>
     return (
@@ -30,8 +30,8 @@ const LoginReduxForm = reduxForm<FormDataType>({
 })(LoginForm)
 
 type MapDispatchToPropsType = {
-    logInThunkCreator: (email: string, password: string, rememberMe: boolean) => void
-    logOutThunkCreator: () => void
+    logInTC: (email: string, password: string, rememberMe: boolean) => void
+    logOutTC: () => void
 }
 type MapStateToPropsType = {
     isAuth: boolean
@@ -43,4 +43,4 @@ const mapStateToProps = (state: AppStateType):MapStateToPropsType => {
 }
 type LoginPropsType = MapDispatchToPropsType & MapStateToPropsType
 
-export default connect(mapStateToProps, {logInThunkCreator, logOutThunkCreator})(Login)
+export default connect(mapStateToProps, {logInTC, logOutTC})(Login)

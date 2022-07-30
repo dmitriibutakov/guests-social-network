@@ -1,5 +1,5 @@
 import Posts from "./Posts";
-import {PostType} from "../../../../Redux/profile-reducer";
+import {PostType} from "../../../../BLL/profile-reducer";
 
 type MapStateToPropsType = {
     posts: Array<PostType>

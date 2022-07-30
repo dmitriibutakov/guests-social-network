@@ -3,7 +3,7 @@ import s from "./Users.module.css";
 import incognito from "../../../Images/incognito.png";
 import UniversalBtn from "../../UniversalComponents/UniversalBtn/UniversalBtn";
 import {NavLink} from "react-router-dom";
-import {UserType} from "../../../Redux/users-reducer";
+import {UserType} from "../../../BLL/users-reducer";
 
 type UsersType = {
     usersCount: number
