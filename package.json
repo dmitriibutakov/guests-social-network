@@ -1,6 +1,6 @@
 {
   "name": "social",
-  "homepage": "https://dmitryload.github.io/Guests",
+  "homepage": "https://dmitryload.github.io/guests-social-network",
   "version": "0.1.0",
   "private": true,
   "dependencies": {
