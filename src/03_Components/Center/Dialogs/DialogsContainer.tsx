@@ -6,17 +6,15 @@ import {ComponentType} from "react";
 import {compose} from "redux";
 import {withAuthRedirect} from "../../HIghOrderComponents/AuthRedirect";
 
-type MapStateToPropsType = {
-    dialogsPage: DialogsPageType
-}
+type MapStateToPropsType = ReturnType<typeof mapStateToProps>
 
 type MapDispatchToPropsType = {
     addMessage: (message: string) => void
 }
 export type DialogsPropsType = MapStateToPropsType & MapDispatchToPropsType
 
-const mapStateToProps = (state: AppStateType):MapStateToPropsType => { return {dialogsPage: state.DialogsPage}}
+const mapStateToProps = (state: AppStateType) => ({dialogsPage: state.DialogsPage})
 
 export default compose<ComponentType>(
-    connect(mapStateToProps, {addMessage}),
+    connect<MapStateToPropsType, MapDispatchToPropsType, {}, AppStateType>(mapStateToProps, {addMessage}),
     withAuthRedirect)(Dialogs)

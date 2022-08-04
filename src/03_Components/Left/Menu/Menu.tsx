@@ -14,7 +14,7 @@ const Menu = () => {
                     <img src={profileImg} alt="profile" className={s.icon}/>
                     <NavLink to="/profile"
                              className={({isActive}) => isActive ? `${s.link__active}` : `${s.link}`}>Profile</NavLink>
-                    <span className={s.contactsPush}>25</span>
+                    {/*<span className={s.contactsPush}>25</span>*/}
                 </li>
                 <li className={s.item}>
                     <img src={chatImg} alt="Dialogs" className={s.icon}/>

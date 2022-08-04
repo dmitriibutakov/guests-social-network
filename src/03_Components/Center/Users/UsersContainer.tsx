@@ -15,15 +15,8 @@ import {
     getUsersSuperSelector
 } from "../../../01_BLL/users-selectors";
 
-type MapStateToPropsType = {
-    state: UsersPageType
-    users: UserType[]
-    pageSize: number
-    usersCount: number
-    currentPage: number
-    isFetching: boolean
-    followingInProgress: Array<number>
-}
+type MapStateToPropsType = ReturnType<typeof mapStateToProps>
+
 type MapDispatchToPropsType = {
     getUsersTC: (currentPage: number, pageSize: number) => void
     followTC: (userId: number) => void
@@ -37,7 +30,6 @@ const UsersAPIContainer: React.FC<UsersAPIPropsType> = (props) => {
         async function fetchData() {
             const response = await props.getUsersTC(props.currentPage, props.pageSize);
         }
-
         fetchData();
     }, [])
 
@@ -61,7 +53,7 @@ const UsersAPIContainer: React.FC<UsersAPIPropsType> = (props) => {
     )
 }
 
-const mapStateToProps = (state: AppStateType): MapStateToPropsType => {
+const mapStateToProps = (state: AppStateType) => {
     return {
         state: state.UsersPage,
         users: getUsersSuperSelector(state),
@@ -73,6 +65,6 @@ const mapStateToProps = (state: AppStateType): MapStateToPropsType => {
     }
 }
 export default compose<ComponentType>(
-    connect(mapStateToProps, {getUsersTC, followTC, unfollowTC, setCurrentPage})
+    connect<MapStateToPropsType, MapDispatchToPropsType, {}, AppStateType>(mapStateToProps, {getUsersTC, followTC, unfollowTC, setCurrentPage})
 )
 (UsersAPIContainer)

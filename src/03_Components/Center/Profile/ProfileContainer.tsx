@@ -12,13 +12,7 @@ import {withRouter} from "../../../01_BLL/withRouter";
 import {compose} from "redux";
 import {withAuthRedirect} from "../../HIghOrderComponents/AuthRedirect";
 
-type MapStateToPropsType = {
-    posts: Array<PostType>
-    profile: ProfileURLType
-    isFetching: boolean
-    status: string
-    profileId: number
-}
+type MapStateToPropsType = ReturnType<typeof mapStateToProps>
 type MapDispatchToPropsType = {
     addPost: (newText: string) => void
     getProfileTC: (userId: string) => void
@@ -56,7 +50,7 @@ const ProfileContainer = (props: ProfilePropsType) => {
     )
 }
 
-const mapStateToProps = (state: AppStateType): MapStateToPropsType => {
+const mapStateToProps = (state: AppStateType) => {
     return {
         profile: state.ProfilePage.profile,
         posts: state.ProfilePage.posts,
@@ -66,6 +60,6 @@ const mapStateToProps = (state: AppStateType): MapStateToPropsType => {
     }
 }
 export default compose<ComponentType>(
-    connect(mapStateToProps, {addPost, getProfileTC, updateStatusTC}),
+    connect<MapStateToPropsType, MapDispatchToPropsType, {}, AppStateType>(mapStateToProps, {addPost, getProfileTC, updateStatusTC}),
     withAuthRedirect,
     withRouter)(ProfileContainer)
