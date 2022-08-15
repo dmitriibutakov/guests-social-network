@@ -17,7 +17,7 @@ const Login = (props: LoginPropsType) => {
     const onSubmit = (formData: FormDataType) => {
         props.logInTC(formData.email, formData.password, formData.rememberMe)
     }
-    if (props.isAuth) return <Navigate to={"/profile"}/>
+    if (props.isAuth) return <Navigate to={"#/profile"}/>
     if (props.isFetching) return <Loader/>
     return (
         <div className={s.login}>
