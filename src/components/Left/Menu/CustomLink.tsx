@@ -1,6 +1,5 @@
 import React from 'react';
 import s from "./Menu.module.css";
-import {images} from "../../../03_commons/images/dir/icons";
 import {NavLink} from "react-router-dom";
 
 type LinkProps = {

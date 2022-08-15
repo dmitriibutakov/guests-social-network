@@ -1,6 +1,5 @@
 import React, {useState} from 'react';
 import s from "./Paginator.module.css";
-import UniversalBtn from "../UniversalBtn/UniversalBtn";
 import {images} from '../../images/dir/icons';
 
 type UsersPaginatorType = {

@@ -1,10 +1,10 @@
 import React from "react";
 import {Field, InjectedFormProps} from "redux-form";
-import {FormDataType} from "./Login";
-import s from "./LoginForm.module.css"
 import UniversalBtn from "../../../03_commons/common_components/UniversalBtn/UniversalBtn";
 import UniversalInput from "../../../03_commons/common_components/UniversalInput/UniversalInput";
-import {minLengthCreator, required} from "../../../03_commons/utils/validators/validators";
+import { minLengthCreator, required } from "../../../03_commons/utils/validators/validators";
+import {FormDataType} from "./Login";
+import s from "./LoginForm.module.css"
 
 const minLength = minLengthCreator(8)
 const LoginForm: React.FC<InjectedFormProps<FormDataType>> = ({handleSubmit, error}) => {

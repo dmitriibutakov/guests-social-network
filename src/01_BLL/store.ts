@@ -3,7 +3,7 @@ import DialogsReducer, {DialogsReducerType} from "./dialogs-reducer";
 import ProfileReducer, {ProfileReducerType} from "./profile-reducer";
 import AuthReducer, {AuthReducerType} from "./auth-reducer";
 import UsersReducer, {UsersReducerType} from "./users-reducer";
-import MenuFriendsReducer, {MenuFriendsReducerACType} from "./menu-friends-reducer";
+import MenuFriendsReducer from "./menu-friends-reducer";
 import thunkMiddleware, {ThunkAction} from "redux-thunk";
 import {reducer as formReducer} from 'redux-form';
 import appReducer from "./app-reducer";

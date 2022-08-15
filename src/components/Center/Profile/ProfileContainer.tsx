@@ -31,7 +31,6 @@ const ProfileContainer = (props: ProfilePropsType) => {
         async function fetchData() {
             await props.getProfileTC(userId || `${props.profileId}`)
         }
-
         fetchData();
     }, [userId])
     if (isFetching) return <CenterPreloader/>
@@ -65,4 +64,5 @@ export default compose<ComponentType>(
         getProfileTC,
         updateStatusTC
     }),
+    withAuthRedirect,
     withRouter)(ProfileContainer)

@@ -16,7 +16,7 @@ const UniversalBtn: React.FC<BtnType> = ({
                                              type
                                          }) => {
     return (
-        <button disabled={disable} type={type} className={disable ? s.disabled : s.default} onClick={callback}>
+        <button disabled={disable} type={type} className={disable ? s.disabled : s.default} onClick={(callback)}>
             {name}</button>
     );
 };

@@ -1,7 +1,6 @@
 import React from 'react';
 import Menu from "./Menu/Menu";
 import s from "./Left.module.css"
-import SwitchMode from "./SwitchMode/SwitchMode";
 
 const Left = () => {
     return (
