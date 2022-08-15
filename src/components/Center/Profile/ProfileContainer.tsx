@@ -65,5 +65,4 @@ export default compose<ComponentType>(
         getProfileTC,
         updateStatusTC
     }),
-    withAuthRedirect,
     withRouter)(ProfileContainer)
