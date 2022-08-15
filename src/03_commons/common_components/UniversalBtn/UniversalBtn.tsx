@@ -9,11 +9,8 @@ type BtnType = {
     type?: "submit"
 }
 const UniversalBtn: React.FC<BtnType> = ({
-                                             className,
-                                             name,
-                                             disable,
-                                             callback,
-                                             type
+                                             className, name,
+                                             disable, callback, type
                                          }) => {
     return (
         <button disabled={disable} type={type} className={disable ? s.disabled : s.default} onClick={(callback)}>

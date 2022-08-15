@@ -1,6 +1,6 @@
 import React from 'react';
 import s from "./Post.module.css";
-import {PostType} from "../../../../01_BLL/profile-reducer";
+import {PostType} from "../../../../02_BLL/profile-reducer";
 
 export const Post: React.FC<PostType> = ({
                                              message,

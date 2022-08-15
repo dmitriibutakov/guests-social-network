@@ -1,5 +1,5 @@
 import {IsFetchingType, setIsFetching} from "./actions/actions";
-import {usersAPI} from "../02_DAL/api";
+import {usersAPI} from "../01_DAL/api";
 import {AppThunk} from "./store";
 import {Dispatch} from "redux";
 import {updateObjInArray} from "../03_commons/utils/helpers";
@@ -78,7 +78,6 @@ const followUnfollowFlow = async (dispatch: Dispatch, userId: number, apiMethod:
 //types
 export type UsersReducerType = FollowType | UnfollowType | SetUsersType | SetCurrentPageType | SetUsersCountType
     | IsFetchingType | SetIsFollowingType
-
 type FollowType = ReturnType<typeof setFollow>
 type UnfollowType = ReturnType<typeof setUnfollow>
 type SetUsersType = ReturnType<typeof setUsers>
@@ -90,7 +89,6 @@ type SetIsFollowingType = ReturnType<typeof setIsFollowing>
 const setFollow = (userID: number) => ({type: "FOLLOW", payload: {userID}} as const)
 const setUnfollow = (userID: number) => ({type: "UNFOLLOW", payload: {userID}} as const)
 const setUsers = (refreshUsers: UserType[]) => ({type: "SET-USERS", payload: {refreshUsers}} as const)
-export const setCurrentPage = (currentPage: number) => ({type: "SET-CURRENT-PAGE", payload: {currentPage}} as const)
 const setUsersCount = (totalUsersCount: number) => ({
     type: "SET-USERS-COUNT",
     payload: {totalUsersCount}
@@ -99,6 +97,7 @@ const setIsFollowing = (isFollowing: boolean, userId: number) => ({
     type: "SET-FOLLOWING",
     payload: {isFollowing, userId}
 } as const)
+export const setCurrentPage = (currentPage: number) => ({type: "SET-CURRENT-PAGE", payload: {currentPage}} as const)
 
 //thunks
 export const getUsersTC = (currentPage: number, pageSize: number): AppThunk => async dispatch => {

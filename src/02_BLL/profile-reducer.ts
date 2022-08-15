@@ -1,5 +1,5 @@
 import {IsFetchingType, setIsFetching} from "./actions/actions";
-import {profileAPI} from "../02_DAL/api";
+import {profileAPI} from "../01_DAL/api";
 import {AppThunk} from "./store";
 import {errorUtils} from "./errors-utils";
 import {AxiosError} from "axios";

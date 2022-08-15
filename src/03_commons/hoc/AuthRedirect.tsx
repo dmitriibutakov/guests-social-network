@@ -1,6 +1,6 @@
 import React, {ComponentType} from "react";
 import {Navigate} from "react-router-dom";
-import {AppStateType} from "../../01_BLL/store";
+import {AppStateType} from "../../02_BLL/store";
 import {connect} from "react-redux";
 
 type MapStateToRedirectPropsType = {

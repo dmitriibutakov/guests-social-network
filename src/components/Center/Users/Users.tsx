@@ -1,6 +1,6 @@
 import React from "react";
 import s from "./Users.module.css";
-import {UserType} from "../../../01_BLL/users-reducer";
+import {UserType} from "../../../02_BLL/users-reducer";
 import UsersPaginator from "../../../03_commons/common_components/Paginator/Paginator";
 import User from "./User/User";
 

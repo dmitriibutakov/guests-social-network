@@ -1,7 +1,7 @@
 import React from "react";
 import s from "./UsersInDialogs.module.css";
 import {NavLink} from "react-router-dom";
-import {UserInDialType} from "../../../../01_BLL/dialogs-reducer";
+import {UserInDialType} from "../../../../02_BLL/dialogs-reducer";
 import {images} from "../../../../03_commons/images/dir/icons";
 
 

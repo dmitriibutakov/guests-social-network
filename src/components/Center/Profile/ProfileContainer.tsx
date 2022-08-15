@@ -1,25 +1,16 @@
 import React, {ComponentType, useEffect} from "react"
-import {AppStateType} from "../../../01_BLL/store";
+import {AppStateType} from "../../../02_BLL/store";
 import {connect} from "react-redux";
 import s from "../Center.module.css";
 import PostsContainer from "./Posts/PostsContainer";
 import Profile from "./Profile";
 import NewPostContainer from "./Posts/NewPost/NewPostContainer";
-import {addPost, getProfileTC, updateStatusTC} from "../../../01_BLL/profile-reducer";
+import {addPost, getProfileTC, updateStatusTC} from "../../../02_BLL/profile-reducer";
 import {useParams} from "react-router-dom";
 import {compose} from "redux";
 import {withAuthRedirect} from "../../../03_commons/hoc/AuthRedirect";
 import CenterPreloader from "../CenterPreloader/CenterPreloader";
 import {withRouter} from "../../../03_commons/hoc/withRouter";
-
-type MapStateToPropsType = ReturnType<typeof mapStateToProps>
-type MapDispatchToPropsType = {
-    addPost: (newText: string) => void
-    getProfileTC: (userId: string) => void
-    updateStatusTC: (status: string) => void
-}
-export type ProfilePropsType = MapStateToPropsType & MapDispatchToPropsType
-
 
 const ProfileContainer = (props: ProfilePropsType) => {
     const {
@@ -66,3 +57,12 @@ export default compose<ComponentType>(
     }),
     withAuthRedirect,
     withRouter)(ProfileContainer)
+
+//types
+type MapStateToPropsType = ReturnType<typeof mapStateToProps>
+type MapDispatchToPropsType = {
+    addPost: (newText: string) => void
+    getProfileTC: (userId: string) => void
+    updateStatusTC: (status: string) => void
+}
+export type ProfilePropsType = MapStateToPropsType & MapDispatchToPropsType

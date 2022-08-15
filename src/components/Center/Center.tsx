@@ -3,6 +3,7 @@ import s from "./Center.module.css"
 import {Route, Routes} from "react-router-dom";
 import Login from './Login/Login';
 import Loader from "../../03_commons/common_components/Loader/Loader";
+
 const DialogsContainer = React.lazy(() => import('./Dialogs/DialogsContainer'));
 const ProfileAPIContainer = React.lazy(() => import('./Profile/ProfileContainer'));
 const UsersContainer = React.lazy(() => import("./Users/UsersContainer"));

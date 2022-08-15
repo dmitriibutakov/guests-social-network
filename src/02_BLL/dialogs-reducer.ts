@@ -47,9 +47,11 @@ const DialogsReducer = (state: DialogsPageType = initialState, action: DialogsRe
     }
 };
 
+//types
 export type DialogsReducerType = AddMessageType
 type AddMessageType = ReturnType<typeof addMessage>
 
+//actions
 export const addMessage = (newMessage: string) => ({type: "ADD-MESSAGE", newMessage} as const)
 
 export default DialogsReducer;

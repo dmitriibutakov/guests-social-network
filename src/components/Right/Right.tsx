@@ -3,7 +3,7 @@ import AuthContainer from "./Auth/AuthContainer";
 
 const Right = () => {
     return (
-                <AuthContainer/>
+        <AuthContainer/>
     );
 };
 

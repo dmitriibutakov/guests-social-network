@@ -6,9 +6,10 @@ import Right from "./components/Right/Right";
 import {connect} from "react-redux";
 import {compose} from "redux";
 import Preloader from "./03_commons/common_components/Preloader/Preloader";
-import { AppStateType } from "./01_BLL/store";
+import { AppStateType } from "./02_BLL/store";
 import { withRouter } from "./03_commons/hoc/withRouter";
-import { initializeAppTC } from "./01_BLL/app-reducer";
+import { initializeAppTC } from "./02_BLL/app-reducer";
+import InitPreloader from "./03_commons/common_components/InitPreloader/InitPreloader";
 
 const App = (props: AppPropsType) => {
     useEffect(() => {
@@ -18,7 +19,7 @@ const App = (props: AppPropsType) => {
         fetchData();
     }, [])
     if (!props.initialized) {
-        return <div className={"preloader"}><Preloader/></div>
+        return <div className={"preloader"}><InitPreloader/></div>
     }
     return (
         <div className="App">

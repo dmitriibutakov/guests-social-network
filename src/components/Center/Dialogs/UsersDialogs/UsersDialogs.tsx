@@ -1,6 +1,6 @@
 import React from "react";
 import s from "./UsersDialogs.module.css"
-import {UserDialogType} from "../../../../01_BLL/dialogs-reducer";
+import {UserDialogType} from "../../../../02_BLL/dialogs-reducer";
 import {images} from "../../../../03_commons/images/dir/icons";
 
 const UsersDialogs: React.FC<UserDialogType> = (props) => {

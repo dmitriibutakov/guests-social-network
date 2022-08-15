@@ -1,13 +1,12 @@
 import React from "react";
 import s from "../../Center.module.css"
 import {Post} from "./Post";
-import {PostType} from "../../../../01_BLL/profile-reducer";
+import {PostType} from "../../../../02_BLL/profile-reducer";
 
 type PostsComponentType = {
     posts: Array<PostType>
 }
 const Posts = React.memo((props: PostsComponentType) => {
-    console.log('yoo')
     return (
         <>
             {props.posts.map((el) => {

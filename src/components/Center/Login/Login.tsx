@@ -3,8 +3,8 @@ import LoginForm from "./LoginForm";
 import {reduxForm} from "redux-form";
 import s from "./Login.module.css"
 import {connect} from "react-redux";
-import {logInTC, logOutTC} from "../../../01_BLL/auth-reducer";
-import {AppStateType} from "../../../01_BLL/store";
+import {logInTC, logOutTC} from "../../../02_BLL/auth-reducer";
+import {AppStateType} from "../../../02_BLL/store";
 import {Navigate} from "react-router-dom";
 import Loader from "../../../03_commons/common_components/Loader/Loader";
 import ErrorResponse from "../../../03_commons/common_components/ErrorResponse/ErrorResponse";
@@ -33,6 +33,17 @@ const LoginReduxForm = reduxForm<FormDataType>({
     form: 'login'
 })(LoginForm)
 
+const mapStateToProps = (state: AppStateType): MapStateToPropsType => {
+    return {
+        isAuth: state.Auth.isAuth,
+        isFetching: state.Auth.isFetching,
+        errorOfResponse: state.app.errorOfResponse
+    }
+}
+export default connect(mapStateToProps, {logInTC, logOutTC})(Login)
+
+//types
+type LoginPropsType = MapDispatchToPropsType & MapStateToPropsType
 type MapDispatchToPropsType = {
     logInTC: (email: string, password: string, rememberMe: boolean) => void
     logOutTC: () => void
@@ -42,13 +53,3 @@ type MapStateToPropsType = {
     isFetching: boolean
     errorOfResponse: string | null
 }
-const mapStateToProps = (state: AppStateType): MapStateToPropsType => {
-    return {
-        isAuth: state.Auth.isAuth,
-        isFetching: state.Auth.isFetching,
-        errorOfResponse: state.app.errorOfResponse
-    }
-}
-type LoginPropsType = MapDispatchToPropsType & MapStateToPropsType
-
-export default connect(mapStateToProps, {logInTC, logOutTC})(Login)

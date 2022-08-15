@@ -1,4 +1,4 @@
-import {authAPI} from "../02_DAL/api";
+import {authAPI} from "../01_DAL/api";
 import {stopSubmit} from "redux-form";
 import {AppThunk} from "./store";
 import {errorUtils} from "./errors-utils";
@@ -29,6 +29,11 @@ const AuthReducer = (state: AuthType = initialState, action: AuthReducerType): A
     }
 };
 
+//types
+export type AuthReducerType = SetAuthType | StopSubmitType
+type StopSubmitType = ReturnType<typeof stopSubmit>
+type SetAuthType = ReturnType<typeof setAuth>
+
 //actions
 const setAuth = (id: number, email: string, login: string, isAuth: boolean) =>
     ({type: "SET-USER-DATA", payload: {id, email, login, isAuth}} as const)
@@ -46,8 +51,9 @@ export const getAuthUserDataTC = (): AppThunk => async dispatch => {
     }
 
 }
-export const logInTC = (email: string, password: string, rememberMe: boolean): AppThunk =>
-    async dispatch => {
+export const logInTC = (email: string,
+                        password: string,
+                        rememberMe: boolean): AppThunk => async dispatch => {
         try {
             const res = await authAPI.login(email, password, rememberMe)
             res.data.resultCode === 0 ?
@@ -57,7 +63,6 @@ export const logInTC = (email: string, password: string, rememberMe: boolean): A
             errorUtils(err as Error | AxiosError, dispatch)
         }
     }
-
 export const logOutTC = (): AppThunk => async dispatch => {
     try {
         const res = await authAPI.logout()
@@ -68,10 +73,5 @@ export const logOutTC = (): AppThunk => async dispatch => {
         errorUtils(err as Error | AxiosError, dispatch)
     }
 }
-
-//types
-export type AuthReducerType = SetAuthType | StopSubmitType
-type StopSubmitType = ReturnType<typeof stopSubmit>
-type SetAuthType = ReturnType<typeof setAuth>
 
 export default AuthReducer;
