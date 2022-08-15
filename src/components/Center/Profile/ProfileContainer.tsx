@@ -8,9 +8,9 @@ import NewPostContainer from "./Posts/NewPost/NewPostContainer";
 import {addPost, getProfileTC, updateStatusTC} from "../../../01_BLL/profile-reducer";
 import {useParams} from "react-router-dom";
 import {compose} from "redux";
-import {withAuthRedirect} from "../../HIghOrderComponents/AuthRedirect";
-import CenterLoader from "../CenterLoader/CenterLoader";
-import { withRouter } from "../../../01_BLL/withRouter";
+import {withAuthRedirect} from "../../../03_commons/hoc/AuthRedirect";
+import CenterPreloader from "../CenterPreloader/CenterPreloader";
+import {withRouter} from "../../../03_commons/hoc/withRouter";
 
 type MapStateToPropsType = ReturnType<typeof mapStateToProps>
 type MapDispatchToPropsType = {
@@ -28,12 +28,13 @@ const ProfileContainer = (props: ProfilePropsType) => {
     let {userId} = useParams<'userId'>()
 
     useEffect(() => {
-            async function fetchData() {
-                await props.getProfileTC(userId ||`${props.profileId}`)
-            }
-            fetchData();
-        }, [userId])
-if (isFetching) return <CenterLoader/>
+        async function fetchData() {
+            await props.getProfileTC(userId || `${props.profileId}`)
+        }
+
+        fetchData();
+    }, [userId])
+    if (isFetching) return <CenterPreloader/>
     return (
         <>
             <div className={s.center__block}>
@@ -59,6 +60,10 @@ const mapStateToProps = (state: AppStateType) => {
     }
 }
 export default compose<ComponentType>(
-    connect<MapStateToPropsType, MapDispatchToPropsType, {}, AppStateType>(mapStateToProps, {addPost, getProfileTC, updateStatusTC}),
+    connect<MapStateToPropsType, MapDispatchToPropsType, {}, AppStateType>(mapStateToProps, {
+        addPost,
+        getProfileTC,
+        updateStatusTC
+    }),
     withAuthRedirect,
     withRouter)(ProfileContainer)

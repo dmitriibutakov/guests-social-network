@@ -4,7 +4,7 @@ import UniversalBtn from "../../../../../03_commons/common_components/UniversalB
 import {Field, reduxForm} from "redux-form";
 import {maxLengthCreator, required} from "../../../../../03_commons/utils/validators/validators";
 import UniversalInput from "../../../../../03_commons/common_components/UniversalInput/UniversalInput";
-import { images } from '../../../../../03_commons/images/dir/icons';
+import {images} from '../../../../../03_commons/images/dir/icons';
 
 type NewPostType = {
     handleSubmit: any
@@ -16,7 +16,7 @@ const NewPost: React.FC<NewPostType> = ({handleSubmit}) => {
             <h2 className={s.title}>New Post</h2>
             <div className={s.input__block}>
                 <Field validate={[required, maxLengthPost]}
-                    component={UniversalInput}
+                       component={UniversalInput}
                        type={"text"}
                        name={"addPostText"}
                        placeholder={"Write a Something...."}/>
@@ -32,4 +32,4 @@ const NewPost: React.FC<NewPostType> = ({handleSubmit}) => {
     );
 };
 
-export const NewPostReduxForm = reduxForm<{}, {onSubmit: any}, string>({form: "profileAddPost"})(NewPost)
+export const NewPostReduxForm = reduxForm<{}, { onSubmit: any }, string>({form: "profileAddPost"})(NewPost)

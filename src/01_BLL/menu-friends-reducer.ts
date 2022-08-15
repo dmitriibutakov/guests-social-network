@@ -1,4 +1,3 @@
-
 export type FriendType = {
     name: string
     id: number

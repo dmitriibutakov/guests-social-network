@@ -2,7 +2,7 @@ import React from 'react';
 import Auth from "./Auth";
 import {connect} from "react-redux";
 import {AppStateType} from "../../../01_BLL/store";
-import {withRouter} from "../../../01_BLL/withRouter";
+import {withRouter} from "../../../03_commons/hoc/withRouter";
 import {logOutTC} from "../../../01_BLL/auth-reducer";
 
 const AuthContainer = (props: AuthPropsType) => {

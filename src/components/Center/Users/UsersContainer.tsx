@@ -1,10 +1,9 @@
 import React, {ComponentType, useEffect} from "react"
 import {connect} from "react-redux";
-import {UserType, UsersPageType, getUsersTC, unfollowTC, followTC, setCurrentPage} from "../../../01_BLL/users-reducer";
+import {getUsersTC, unfollowTC, followTC, setCurrentPage} from "../../../01_BLL/users-reducer";
 import {AppStateType} from "../../../01_BLL/store";
 import Users from "./Users";
 import {compose} from "redux";
-import s from "../Center.module.css";
 import {
     getCurrentPageSelector,
     getFollowingInProgressSelector,
@@ -13,7 +12,7 @@ import {
     getUsersCountSelector,
     getUsersSuperSelector
 } from "../../../01_BLL/users-selectors";
-import CenterLoader from "../CenterLoader/CenterLoader";
+import CenterPreloader from "../CenterPreloader/CenterPreloader";
 
 type MapStateToPropsType = ReturnType<typeof mapStateToProps>
 
@@ -34,7 +33,7 @@ const UsersAPIContainer: React.FC<UsersAPIPropsType> = (props) => {
     } = props
     useEffect(() => {
         async function fetchData() {
-            const response = await getUsersTC(currentPage, pageSize);
+            await getUsersTC(currentPage, pageSize);
         }
 
         fetchData();
@@ -44,7 +43,7 @@ const UsersAPIContainer: React.FC<UsersAPIPropsType> = (props) => {
         getUsersTC(pageNumber, pageSize)
         setCurrentPage(pageNumber)
     }
-    if (isFetching) return <CenterLoader/>
+    if (isFetching) return <CenterPreloader/>
     return (
         <Users
             {...props}

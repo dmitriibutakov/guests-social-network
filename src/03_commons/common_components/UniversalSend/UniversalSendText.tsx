@@ -3,7 +3,7 @@ import s from "./UniversalSendText.module.css"
 import {Field, reduxForm} from "redux-form";
 import UniversalInput from "../UniversalInput/UniversalInput";
 import {required} from "../../utils/validators/validators";
-import { images } from '../../images/dir/icons';
+import {images} from '../../images/dir/icons';
 
 type SendTextType = {
     handleSubmit: any

@@ -13,18 +13,18 @@ const Dialogs: React.FC<DialogsPropsType> = ({dialogsPage, addMessage}) => {
     const addNewMessage = (value: { newMessageBody: string }) => (addMessage(value.newMessageBody))
 
     return (
-            <div className={s.body}>
-                <div className={s.body__users}>
-                    <div className={s.users}>
-                        {user}
-                    </div>
-                    <div className={s.messages}>
-                        {userChat}
-                    </div>
+        <div className={s.body}>
+            <div className={s.body__users}>
+                <div className={s.users}>
+                    {user}
                 </div>
-                <div className={s.sendText}><UniversalSendText onSubmit={addNewMessage}/></div>
-
+                <div className={s.messages}>
+                    {userChat}
+                </div>
             </div>
+            <div className={s.sendText}><UniversalSendText onSubmit={addNewMessage}/></div>
+
+        </div>
     );
 };
 

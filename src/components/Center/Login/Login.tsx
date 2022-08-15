@@ -39,7 +39,7 @@ type MapStateToPropsType = {
     isAuth: boolean
     isFetching: boolean
 }
-const mapStateToProps = (state: AppStateType):MapStateToPropsType => {
+const mapStateToProps = (state: AppStateType): MapStateToPropsType => {
     return {
         isAuth: state.Auth.isAuth,
         isFetching: state.Auth.isFetching

@@ -7,9 +7,6 @@ type InputType = {
     className: string
 }
 const Input: React.FC<InputType> = ({className, placeholder, value, onChangeCallBack}) => {
-    // const onChangeHandler = (event: ChangeEvent<HTMLInputElement>) => {
-    //     changeCallback(event)
-    // }
     return (
         <input onChange={onChangeCallBack}
                value={value}

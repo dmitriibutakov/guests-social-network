@@ -93,19 +93,19 @@ const setStatus = (status: string) => ({type: "SET-STATUS", status} as const)
 
 //thunks
 export const getProfileTC = (userId: string): AppThunk => async dispatch => {
-        dispatch(setIsFetching(true))
-        const res = await profileAPI.getProfile(userId)
-        const res2 = await profileAPI.getStatus(userId)
-        await (dispatch(setIsFetching(false)),
-            dispatch(setUserProfile(res.data)),
-            dispatch(setStatus(res2.data)))
+    dispatch(setIsFetching(true))
+    const res = await profileAPI.getProfile(userId)
+    const res2 = await profileAPI.getStatus(userId)
+    await (dispatch(setIsFetching(false)),
+        dispatch(setUserProfile(res.data)),
+        dispatch(setStatus(res2.data)))
 }
 
 export const updateStatusTC = (status: string): AppThunk => async dispatch => {
-        const res = await profileAPI.updateStatus(status)
-        if (res.data.resultCode === 0) {
-            dispatch(setStatus(status))
-        }
+    const res = await profileAPI.updateStatus(status)
+    if (res.data.resultCode === 0) {
+        dispatch(setStatus(status))
+    }
 }
 
 export default ProfileReducer;

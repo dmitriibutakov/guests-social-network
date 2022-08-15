@@ -7,7 +7,7 @@ import {connect} from "react-redux";
 import {compose} from "redux";
 import Preloader from "./03_commons/common_components/Preloader/Preloader";
 import { AppStateType } from "./01_BLL/store";
-import { withRouter } from "./01_BLL/withRouter";
+import { withRouter } from "./03_commons/hoc/withRouter";
 import { initializeAppTC } from "./01_BLL/app-reducer";
 
 const App = (props: AppPropsType) => {

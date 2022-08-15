@@ -28,10 +28,6 @@ const Users: React.FC<UsersType> = (props) => {
     const arrSome = (userId: number) => followingInProgress.some(id => id === userId)
     return (
         <div className={s.users__block}>
-            <UsersPaginator onPageChanged={onPageChanged}
-                            pageSize={pageSize}
-                            currentPage={currentPage}
-                            usersCount={usersCount}/>
             <div className={s.users}>
                 {users.map(el => {
                     return (
@@ -47,6 +43,10 @@ const Users: React.FC<UsersType> = (props) => {
                 })}
 
             </div>
+            <UsersPaginator onPageChanged={onPageChanged}
+                            pageSize={pageSize}
+                            currentPage={currentPage}
+                            usersCount={usersCount}/>
         </div>
     );
 };

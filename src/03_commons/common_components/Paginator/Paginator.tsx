@@ -27,7 +27,7 @@ const UsersPaginator: React.FC<UsersPaginatorType> = ({
 
     return (
         <div className={s.paginator__body}>
-            <button className={s.paginator__btn_left} disabled={portionNumber < 1}
+            <button className={s.paginator__btn_left} disabled={portionNumber <= 1}
                     onClick={() => setPortionNumber(portionNumber - 1)}>
                 <img src={images.previousImg} alt="previous"/>
             </button>
