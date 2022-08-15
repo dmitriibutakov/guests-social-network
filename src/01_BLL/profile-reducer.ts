@@ -1,6 +1,8 @@
 import {IsFetchingType, setIsFetching} from "./actions/actions";
 import {profileAPI} from "../02_DAL/api";
 import {AppThunk} from "./store";
+import {errorUtils} from "./errors-utils";
+import {AxiosError} from "axios";
 
 export type ProfilePageType = {
     posts: Array<PostType>
@@ -93,18 +95,29 @@ const setStatus = (status: string) => ({type: "SET-STATUS", status} as const)
 
 //thunks
 export const getProfileTC = (userId: string): AppThunk => async dispatch => {
-    dispatch(setIsFetching(true))
-    const res = await profileAPI.getProfile(userId)
-    const res2 = await profileAPI.getStatus(userId)
-    await (dispatch(setIsFetching(false)),
-        dispatch(setUserProfile(res.data)),
-        dispatch(setStatus(res2.data)))
+    try {
+        dispatch(setIsFetching(true))
+        const res = await profileAPI.getProfile(userId)
+        const res2 = await profileAPI.getStatus(userId)
+        await (
+            dispatch(setUserProfile(res.data)),
+                dispatch(setStatus(res2.data))
+        )
+    } catch (err) {
+        errorUtils(err as Error | AxiosError, dispatch)
+    } finally {
+        dispatch(setIsFetching(false))
+    }
 }
 
 export const updateStatusTC = (status: string): AppThunk => async dispatch => {
-    const res = await profileAPI.updateStatus(status)
-    if (res.data.resultCode === 0) {
-        dispatch(setStatus(status))
+    try {
+        const res = await profileAPI.updateStatus(status)
+        if (res.data.resultCode === 0) {
+            dispatch(setStatus(status))
+        }
+    } catch (err) {
+        errorUtils(err as Error | AxiosError, dispatch)
     }
 }
 

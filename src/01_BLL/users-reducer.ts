@@ -3,6 +3,8 @@ import {usersAPI} from "../02_DAL/api";
 import {AppThunk} from "./store";
 import {Dispatch} from "redux";
 import {updateObjInArray} from "../03_commons/utils/helpers";
+import {errorUtils} from "./errors-utils";
+import {AxiosError} from "axios";
 
 export type UsersPageType = {
     users: UserType[]
@@ -100,18 +102,31 @@ const setIsFollowing = (isFollowing: boolean, userId: number) => ({
 
 //thunks
 export const getUsersTC = (currentPage: number, pageSize: number): AppThunk => async dispatch => {
-    dispatch(setIsFetching(true))
-    const res = await usersAPI.getUsers(currentPage, pageSize)
-    await (
-        dispatch(setIsFetching(false)),
-            dispatch(setUsers(res.items)),
-            dispatch(setUsersCount(res.totalCount))
-    )
+    try {
+        dispatch(setIsFetching(true))
+        const res = await usersAPI.getUsers(currentPage, pageSize)
+        await (
+            dispatch(setIsFetching(false)),
+                dispatch(setUsers(res.items)),
+                dispatch(setUsersCount(res.totalCount))
+        )
+    } catch (err) {
+        errorUtils(err as Error | AxiosError, dispatch)
+    }
+
 }
 export const followTC = (userId: number): AppThunk => async dispatch => {
-    await followUnfollowFlow(dispatch, userId, usersAPI.followUser.bind(usersAPI), setFollow(userId))
+    try {
+        await followUnfollowFlow(dispatch, userId, usersAPI.followUser.bind(usersAPI), setFollow(userId))
+    } catch (err) {
+        errorUtils(err as Error | AxiosError, dispatch)
+    }
 }
 export const unfollowTC = (userId: number): AppThunk => async dispatch => {
-    followUnfollowFlow(dispatch, userId, usersAPI.unfollowUser.bind(usersAPI), setUnfollow(userId))
+    try {
+        followUnfollowFlow(dispatch, userId, usersAPI.unfollowUser.bind(usersAPI), setUnfollow(userId))
+    } catch (err) {
+        errorUtils(err as Error | AxiosError, dispatch)
+    }
 }
 export default UsersReducer;

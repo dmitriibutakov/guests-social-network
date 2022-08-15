@@ -1,7 +1,8 @@
 import {authAPI} from "../02_DAL/api";
 import {stopSubmit} from "redux-form";
 import {AppThunk} from "./store";
-import {Simulate} from "react-dom/test-utils";
+import {errorUtils} from "./errors-utils";
+import {AxiosError} from "axios";
 
 export type AuthType = {
     id: number
@@ -34,23 +35,37 @@ const setAuth = (id: number, email: string, login: string, isAuth: boolean) =>
 
 //thunks
 export const getAuthUserDataTC = (): AppThunk => async dispatch => {
-    const res = await authAPI.authMe()
-    if (res.data.resultCode === 0) {
-        const {id, email, login} = res.data.data
-        dispatch(setAuth(id, email, login, true))
+    try {
+        const res = await authAPI.authMe()
+        if (res.data.resultCode === 0) {
+            const {id, email, login} = res.data.data
+            dispatch(setAuth(id, email, login, true))
+        }
+    } catch (err) {
+        errorUtils(err as Error | AxiosError, dispatch)
     }
+
 }
 export const logInTC = (email: string, password: string, rememberMe: boolean): AppThunk =>
     async dispatch => {
-        const res = await authAPI.login(email, password, rememberMe)
-        res.data.resultCode === 0 ?
-            dispatch(getAuthUserDataTC()) :
-            dispatch(stopSubmit("login", {_error: res.data.messages}))
+        try {
+            const res = await authAPI.login(email, password, rememberMe)
+            res.data.resultCode === 0 ?
+                dispatch(getAuthUserDataTC()) :
+                dispatch(stopSubmit("login", {_error: res.data.messages}))
+        } catch (err) {
+            errorUtils(err as Error | AxiosError, dispatch)
+        }
     }
+
 export const logOutTC = (): AppThunk => async dispatch => {
-    const res = await authAPI.logout()
-    if (res.data.resultCode === 0) {
-        dispatch(setAuth(null as unknown as number, "", "", false))
+    try {
+        const res = await authAPI.logout()
+        if (res.data.resultCode === 0) {
+            dispatch(setAuth(null as unknown as number, "", "", false))
+        }
+    } catch (err) {
+        errorUtils(err as Error | AxiosError, dispatch)
     }
 }
 
