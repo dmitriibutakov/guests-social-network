@@ -7,4 +7,4 @@ using custom HOC's.
 into the app you can use test email: test_projects@yahoo.com
 and password: test123456
 
-link on gh-pages: https://dmitryload.github.io/guests-social-network
+link on https://guests.herokuapp.com
