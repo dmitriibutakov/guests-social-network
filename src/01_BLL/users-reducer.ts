@@ -1,8 +1,8 @@
 import {IsFetchingType, setIsFetching} from "./actions/actions";
 import {usersAPI} from "../02_DAL/api";
-import {AppReducersTypes, AppThunk} from "./store";
+import {AppThunk} from "./store";
 import {Dispatch} from "redux";
-import {updateObjInArray} from "../Utils/helpers";
+import {updateObjInArray} from "../03_commons/utils/helpers";
 
 export type UsersPageType = {
     users: UserType[]
@@ -100,20 +100,18 @@ const setIsFollowing = (isFollowing: boolean, userId: number) => ({
 
 //thunks
 export const getUsersTC = (currentPage: number, pageSize: number): AppThunk => async dispatch => {
-    dispatch(setIsFetching(true))
-    const res = await usersAPI.getUsers(currentPage, pageSize)
-    await (
-        dispatch(setIsFetching(false)),
-            dispatch(setUsers(res.items)),
-            dispatch(setUsersCount(res.totalCount))
-    )
+        dispatch(setIsFetching(true))
+        const res = await usersAPI.getUsers(currentPage, pageSize)
+        await (
+            dispatch(setIsFetching(false)),
+                dispatch(setUsers(res.items)),
+                dispatch(setUsersCount(res.totalCount))
+        )
 }
-
 export const followTC = (userId: number): AppThunk => async dispatch => {
-    await followUnfollowFlow(dispatch, userId, usersAPI.followUser.bind(usersAPI), setFollow(userId))
+        await followUnfollowFlow(dispatch, userId, usersAPI.followUser.bind(usersAPI), setFollow(userId))
 }
-
 export const unfollowTC = (userId: number): AppThunk => async dispatch => {
-    followUnfollowFlow(dispatch, userId, usersAPI.unfollowUser.bind(usersAPI), setUnfollow(userId))
+        followUnfollowFlow(dispatch, userId, usersAPI.unfollowUser.bind(usersAPI), setUnfollow(userId))
 }
 export default UsersReducer;

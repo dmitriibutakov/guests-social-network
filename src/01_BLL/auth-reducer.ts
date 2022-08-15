@@ -1,6 +1,7 @@
 import {authAPI} from "../02_DAL/api";
 import {stopSubmit} from "redux-form";
 import {AppThunk} from "./store";
+import {Simulate} from "react-dom/test-utils";
 
 export type AuthType = {
     id: number
@@ -39,17 +40,13 @@ export const getAuthUserDataTC = (): AppThunk => async dispatch => {
         dispatch(setAuth(id, email, login, true))
     }
 }
-
-export const logInTC =
-    (email: string, password: string, rememberMe: boolean): AppThunk =>
-        async dispatch => {
-            const res = await authAPI.login(email, password, rememberMe)
-            res.data.resultCode === 0 ?
-                dispatch(getAuthUserDataTC()) :
-                dispatch(stopSubmit("login", {_error: res.data.messages}))
-        }
-
-
+export const logInTC = (email: string, password: string, rememberMe: boolean): AppThunk =>
+    async dispatch => {
+        const res = await authAPI.login(email, password, rememberMe)
+        res.data.resultCode === 0 ?
+            dispatch(getAuthUserDataTC()) :
+            dispatch(stopSubmit("login", {_error: res.data.messages}))
+    }
 export const logOutTC = (): AppThunk => async dispatch => {
     const res = await authAPI.logout()
     if (res.data.resultCode === 0) {

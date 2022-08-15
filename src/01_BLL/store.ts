@@ -22,5 +22,4 @@ export type AppStateType = ReturnType<typeof rootReducer>
 export default store;
 
 export type AppReducersTypes = AuthReducerType | DialogsReducerType | ProfileReducerType | UsersReducerType
-
 export type AppThunk<ReturnType = void> = ThunkAction<ReturnType, AppStateType, unknown, AppReducersTypes>

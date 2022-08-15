@@ -3,3 +3,8 @@
   margin: 15px;
   display: flex;
 }
+.preloader {
+  display: flex;
+  justify-content: center;
+  padding-top: 130px;
+}
