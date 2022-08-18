@@ -20,6 +20,7 @@ import picture from "../picture.png"
 import warning from "../warning.png"
 import next from "../next.png"
 import previous from "../previous.png"
+import plus from "../plus.png"
 
 const incognito = avatar
 const exitImg = exit
@@ -43,9 +44,10 @@ const pictureImg = picture
 const warningImg = warning
 const nextImg = next
 const previousImg = previous
+const plusImg = plus
 
 export const images = {
     warningImg, pictureImg, likeImg, sendImg, settingsImg, chatImg, usersImg, profileImg, messageImg,
     noImg, yesImg, twitterImg, instagramImg, githubImg, wallpaperImg, smileImg, imageImg, loginImg,
-    exitImg, incognito, nextImg, previousImg
+    exitImg, incognito, nextImg, previousImg, plusImg
 }

@@ -10,11 +10,15 @@
     flex-direction: column;
 }
 .cover {
+    position: relative;
     margin: 0 auto;
 }
 .cover img {
-    height: 100px;
-    width: 120px;
+    border-radius: 20px;
+    width: 350px;
+    height: 250px;
+    object-fit: cover;
+    object-position: center;
 }
 .user {
     flex-direction: column;
@@ -23,12 +27,27 @@
 }
 
 .user__image {
+    position: relative;
     margin-top: -20px;
 }
-
+.btn {
+    background-color: rgba(255, 255, 255, 0);
+    position: absolute;
+    right: -10px;
+    bottom: 0;
+    width: 34px;
+    height: 34px;
+    border-radius: 50%;
+    font-weight: 700;
+    background-color: #4c67a6;
+    color: white;
+}
 .user__image img {
-    width: 58px;
-    height: 58px;
+    width: 100px;
+    height: 100px;
+    background-color: rgba(32, 51, 176, 0.7);
+    object-fit: cover;
+    object-position: center;
     border-radius: 50%;
     box-shadow: 0 -3px 5px 3px rgba(125, 128, 138, 0.25);
 }

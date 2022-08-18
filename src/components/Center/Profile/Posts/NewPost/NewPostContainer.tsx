@@ -1,7 +1,7 @@
 import {NewPostReduxForm} from "./NewPost";
 
 const NewPostContainer = (props: NewPostProps) => {
-    const addNewPost = (value: { addPostText: string }) => props.addPost(value.addPostText)
+    const addNewPost = (value: { addPostText: string}) => props.addPost(value.addPostText)
     return (
         <NewPostReduxForm onSubmit={addNewPost}/>
     )

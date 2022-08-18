@@ -4,7 +4,7 @@ import {PostType} from "../../../../02_BLL/profile-reducer";
 
 export const Post: React.FC<PostType> = ({
                                              message,
-                                             id,
+                                             id, avatar,
                                          }) => {
 
     const day = new Date().getDay()
@@ -15,9 +15,9 @@ export const Post: React.FC<PostType> = ({
     console.log("post")
     return (
         <div className={s.body} key={id}>
-            <div className={s.user__ava}><img src="" alt="avatar"/></div>
+            <div className={s.user__ava}><img src={avatar} alt="avatar"/></div>
             <div>
-                <h4 className={s.user__name}>Ginny Churchills</h4>
+                <h4 className={s.user__name}>{"profile"}</h4>
                 <div className={s.user__text}>{message}</div>
             </div>
             <div className={s.date}>

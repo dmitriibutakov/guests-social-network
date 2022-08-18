@@ -13,7 +13,8 @@ const Avatar: React.FC<AvatarPropsType> = ({profile, profileId, changeAvatar}) =
     return (
         <div className={s.user__image}>
             <img src={profile.photos.small || images.incognito} alt="avatar"/>
-            {profile.userId === profileId && <InputFile callback={changeAvatar}/>}</div>
+            {profile.userId === profileId && <button className={s.btn}>
+                <InputFile index={1} accept={"image/*"} callback={changeAvatar}>add</InputFile></button>}</div>
     )
 };
 

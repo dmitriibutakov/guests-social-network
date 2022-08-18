@@ -4,6 +4,7 @@ import {AppThunk} from "./store";
 import {errorUtils} from "./errors-utils";
 import {AxiosError} from "axios";
 import {numberInit, stringInit} from "./inits";
+import {images} from "../03_commons/images/dir/icons";
 
 export type ProfilePageType = {
     posts: Array<PostType>
@@ -33,6 +34,7 @@ export type ContactsType = {
     mainLink: string,
 }
 export type PostType = {
+    avatar: string
     id: number
     message: string
     likes: number
@@ -57,8 +59,8 @@ let initialState: ProfilePageType = {
         photos: {small: stringInit, large: stringInit}
     },
     posts: [
-        {id: Math.random(), message: 'I find a new Collection', likes: 22},
-        {id: Math.random(), message: 'Hi! It\'s my first post!', likes: 13}
+        {avatar: images.incognito, id: 1, message: 'I find a new Collection', likes: 22},
+        {avatar: images.incognito, id: 2, message: 'Hi! It\'s my first post!', likes: 13}
     ],
     status: "",
 }
@@ -67,6 +69,7 @@ const ProfileReducer = (state: ProfilePageType = initialState, action: ProfileRe
     switch (action.type) {
         case "ADD-POST":
             const newPost = {
+                avatar: images.incognito,
                 id: Math.random(),
                 message: action.newText,
                 likes: 5,
@@ -98,9 +101,7 @@ export const getProfileTC = (userId: string): AppThunk => async dispatch => {
     try {
         dispatch(setIsFetching(true))
         const response = await profileAPI.getProfile(userId)
-        console.log(response)
         const response2 = await profileAPI.getStatus(userId)
-        console.log(response2)
         await (
             dispatch(setUserProfile(response.data)),
                 dispatch(setStatus(response2.data))

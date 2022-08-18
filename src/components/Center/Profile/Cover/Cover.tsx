@@ -11,8 +11,10 @@ type CoverPropsType = {
 }
 const Cover:React.FC<CoverPropsType> = ({profile, profileId, changeCover}) => {
     return (
-        <div className={s.cover}><img src={profile.photos.large || images.wallpaperImg} alt="cover"/>
-            {profile.userId === profileId && <InputFile callback={changeCover}/>}</div>
+        <div className={s.cover}>
+            <img src={profile.photos.large || images.wallpaperImg} alt="cover"/>
+            {profile.userId === profileId && <button className={s.btn}>
+                <InputFile index={0} accept={"image/*"} callback={changeCover}>add</InputFile></button>}</div>
     );
 };
 

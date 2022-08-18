@@ -12,7 +12,7 @@ const Posts = React.memo((props: PostsComponentType) => {
             {props.posts.map((el) => {
                 return (
                     <div key={el.id} className={s.center__block_posted}>
-                        <Post
+                        <Post avatar={el.avatar}
                             id={el.id}
                             likes={el.likes}
                             message={el.message}/>
