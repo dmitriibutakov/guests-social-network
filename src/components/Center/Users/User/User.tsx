@@ -1,8 +1,9 @@
 import React from 'react';
-import s from "../Users.module.css";
+import s from "../Users.module.scss";
 import {NavLink} from "react-router-dom";
 import incognito from "../../../../03_commons/images/incognito.png";
 import UniversalBtn from "../../../../03_commons/common_components/UniversalBtn/UniversalBtn";
+import {useAppSelector} from "../../../../02_BLL/store";
 
 type UserPropsType = {
     id: number
@@ -20,8 +21,10 @@ const User: React.FC<UserPropsType> = ({
                                            followed, follow,
                                            unfollow, arrSome
                                        }) => {
+    const theme = useAppSelector(state => state.app.darkMode)
+    const themeBlock = theme ? s.user__block_dark : s.user__block
     return (
-        <div className={s.user__block} key={id}>
+        <div className={themeBlock} key={id}>
             <div className={s.avatar}>
                 <NavLink to={"/profile/" + id}>
                     <img className={s.avatar__img} src={ava != null ? ava : incognito}

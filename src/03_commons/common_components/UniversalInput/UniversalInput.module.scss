@@ -1,0 +1,35 @@
+.input__block {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  margin-bottom: 5px;
+
+  .input, .error__input {
+    padding: 0 10px;
+    border-radius: 20px;
+    min-width: 100%;
+    height: 50px;
+    color: #3a4156;
+  }
+
+  .error__input {
+    border: 1px solid #ff6464;
+  }
+
+  .error__block {
+    position: relative;
+    display: inline-flex;
+
+    &::after {
+      position: absolute;
+      content: "more symbols is requiered";
+      color: #ff6464;
+      font-size: 10px;
+      top: -40px;
+      right: -100%;
+      width: 200px;
+    }
+  }
+}
+
+

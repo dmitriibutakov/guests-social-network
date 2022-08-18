@@ -1,5 +1,5 @@
 import React from "react";
-import s from "./UsersDialogs.module.css"
+import s from "./UsersDialogs.module.scss"
 import {UserDialogType} from "../../../../02_BLL/dialogs-reducer";
 import {images} from "../../../../03_commons/images/dir/icons";
 

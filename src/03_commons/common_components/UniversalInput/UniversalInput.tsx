@@ -1,5 +1,5 @@
 import React from 'react';
-import s from "./UniversalInput.module.css";
+import s from "./UniversalInput.module.scss";
 import {MetaType} from "./universalInputTypes";
 
 type UniversalInputPropsType = {

@@ -1,0 +1,38 @@
+.body {
+  position: relative;
+  display: flex;
+  align-items: center;
+  font-size: 14px;
+
+  .user__ava {
+    margin-right: 15px;
+
+    img {
+      height: 58px;
+      width: 58px;
+      border-radius: 50%;
+    }
+  }
+
+  .user__name {
+    font-weight: 700;
+    margin-bottom: 12px;
+    font-size: 20px;
+  }
+
+  .user__text {
+    max-width: 380px;
+    font-weight: 500;
+    font-size: 16px;
+  }
+
+  .date {
+    display: flex;
+    position: absolute;
+    right: 0;
+    bottom: 0;
+    font-weight: 700;
+  }
+}
+
+

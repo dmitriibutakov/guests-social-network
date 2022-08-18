@@ -1,0 +1,31 @@
+@import "src/03_commons/classes/variables";
+.user {
+    display: flex;
+    align-items: center;
+    min-width: 200px;
+    &:first-of-type {
+         margin-top: 20px;
+     }
+    &:not(:last-of-type) {
+        margin-bottom: 20px;
+    }
+    .user__avatar {
+        margin-right: 15px;
+        img {
+            height: 40px;
+            width: 40px;
+            border-radius: 50%;
+        }
+    }
+    .link, .link__dark {
+        font-weight: 500;
+        text-decoration: none;
+    }
+    .link {
+        color: $lightThemeTextColor;
+    }
+    .link__dark {
+        color: $darkThemeLinkColor;
+    }
+}
+

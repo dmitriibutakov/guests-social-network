@@ -1,0 +1,14 @@
+@import "src/03_commons/classes/variables.scss";
+.app, .app__dark {
+  padding: 15px;
+  display: flex;
+}
+.preloader {
+  display: flex;
+  justify-content: center;
+  padding-top: 130px;
+}
+.app__dark {
+  background-color: $darkBackgroundColor;
+  color: $darkThemeTextColor;
+}

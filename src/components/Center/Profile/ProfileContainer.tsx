@@ -1,7 +1,7 @@
 import React, {ComponentType, useEffect} from "react"
-import {AppStateType} from "../../../02_BLL/store";
+import {AppStateType, useAppSelector} from "../../../02_BLL/store";
 import {connect} from "react-redux";
-import s from "../Center.module.css";
+import s from "../Center.module.scss";
 import PostsContainer from "./Posts/PostsContainer";
 import Profile from "./Profile";
 import NewPostContainer from "./Posts/NewPost/NewPostContainer";
@@ -13,6 +13,8 @@ import CenterPreloader from "../CenterPreloader/CenterPreloader";
 import {withRouter} from "../../../03_commons/hoc/withRouter";
 
 const ProfileContainer = (props: ProfilePropsType) => {
+    const theme = useAppSelector(state => state.app.darkMode)
+    const themeBlock = theme ? s.center__block_dark : s.center__block
     const {
         profile, addPost, posts, isFetching,
         updateStatusTC, updatePhotosTC,
@@ -30,17 +32,17 @@ const ProfileContainer = (props: ProfilePropsType) => {
     if (isFetching) return <CenterPreloader/>
     return (
         <>
-            <div className={s.center__block}>
+            <div className={themeBlock}>
                 <Profile status={status}
                          profileId={profileId}
                          updatePhotos={updatePhotosTC}
                          updateStatus={updateStatusTC}
                          profile={profile}/>
             </div>
-            <div className={s.center__block}>
+            <div className={themeBlock}>
                 <NewPostContainer addPost={addPost}/>
             </div>
-            <div className={s.center__block}>
+            <div className={themeBlock}>
                 <PostsContainer posts={posts}/>
             </div>
         </>
@@ -53,7 +55,8 @@ const mapStateToProps = (state: AppStateType) => {
         posts: state.profilePage.posts,
         isFetching: state.app.isFetching,
         status: state.profilePage.status,
-        profileId: state.auth.id
+        profileId: state.auth.id,
+        theme: state.app.darkMode
     }
 }
 export default compose<ComponentType>(

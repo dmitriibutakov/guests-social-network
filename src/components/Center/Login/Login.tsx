@@ -1,7 +1,7 @@
 import React from 'react';
 import LoginForm from "./LoginForm";
 import {reduxForm} from "redux-form";
-import s from "./Login.module.css"
+import s from "./Login.module.scss"
 import {connect} from "react-redux";
 import {logInTC, logOutTC} from "../../../02_BLL/auth-reducer";
 import {AppStateType} from "../../../02_BLL/store";

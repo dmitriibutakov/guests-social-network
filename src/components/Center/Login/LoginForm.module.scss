@@ -1,0 +1,43 @@
+@import "src/03_commons/classes/variables";
+
+.test__data {
+  margin-bottom: 10px;
+}
+
+.form, .form__dark {
+  min-width: 400px;
+  display: inline-block;
+  padding: 15px;
+  border-radius: 30px;
+  .checkbox__text {
+    color: $lightThemeLinkColor;
+  }
+  .checkbox__text_dark {
+    color: $darkThemeLinkColor;
+  }
+  .checkbox__text, .checkbox__text_dark {
+    font-size: 18px;
+    font-weight: 500;
+    .checkbox {
+      margin-right: 7px;
+    }
+  }
+
+  & > *:not(:last-child) {
+    margin-bottom: 20px;
+  }
+}
+
+.input__summary_error {
+  color: #ff4848;
+}
+
+.form {
+  background-color: $lightBackgroundColor;
+  box-shadow: $boxShadowVariable;
+}
+
+.form__dark {
+  background-color: #232323;
+  box-shadow: $boxShadowDarkVariable;
+}

@@ -1,5 +1,5 @@
 import React, {useState} from 'react';
-import s from "./Profile.module.css";
+import s from "./Profile.module.scss";
 
 type StatusType = {
     updateStatus: (status: string) => void
@@ -16,6 +16,7 @@ const Status: React.FC<StatusType> = ({updateStatus, status}) => {
                                    setEditMode(false)
                                    updateStatus(localStatus)
                                }}
+                               className={s.user__status_active}
                                type="text"
                                value={localStatus}/>
                 : <p onDoubleClick={() => setEditMode(true)}

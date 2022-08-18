@@ -8,6 +8,7 @@ import store from "./02_BLL/store";
 import {BrowserRouter} from "react-router-dom";
 
 const root = ReactDOM.createRoot(
+
     document.getElementById('root') as HTMLElement
 );
 root.render(

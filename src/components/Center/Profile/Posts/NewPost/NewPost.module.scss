@@ -22,21 +22,18 @@
 
 .send__block {
     padding-top: 10px;
-}
-
-.send__block_left {
-    display: flex;
-}
-.send__block_left >*:not(:last-of-type) {
-    margin-right: 8px;
-}
-
-.add {
-    width: 30px;
-    height: 30px;
-}
-
-.add img {
-    height: 100%;
-    width: 100%;
+    .send__block_left {
+        display: flex;
+        .add {
+            width: 30px;
+            height: 30px;
+            img {
+                height: 100%;
+                width: 100%;
+            }
+        }
+        &>*:not(:last-of-type) {
+            margin-right: 8px;
+        }
+    }
 }

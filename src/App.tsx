@@ -1,16 +1,18 @@
 import React, {useEffect} from "react";
-import "./App.css";
+import privateClass from "./App.module.scss";
 import Left from "./components/Left/Left";
 import Center from "./components/Center/Center";
 import Right from "./components/Right/Right";
 import {connect} from "react-redux";
 import {compose} from "redux";
-import { AppStateType } from "./02_BLL/store";
+import {AppStateType, useAppSelector} from "./02_BLL/store";
 import { withRouter } from "./03_commons/hoc/withRouter";
 import { initializeAppTC } from "./02_BLL/app-reducer";
 import InitPreloader from "./03_commons/common_components/InitPreloader/InitPreloader";
 
 const App = (props: AppPropsType) => {
+    const theme = useAppSelector(state => state.app.darkMode)
+    console.log(theme)
     useEffect(() => {
         async function fetchData() {
             await props.initializeAppTC();
@@ -21,7 +23,7 @@ const App = (props: AppPropsType) => {
         return <div className={"preloader"}><InitPreloader/></div>
     }
     return (
-        <div className="App">
+        <div className={theme ? privateClass.app__dark : privateClass.app}>
             <Left/>
             <Center/>
             <Right/>

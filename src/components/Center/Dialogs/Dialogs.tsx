@@ -1,5 +1,5 @@
 import React from "react";
-import s from "./Dialogs.module.css"
+import s from "./Dialogs.module.scss"
 import {DialogsPropsType} from "./DialogsContainer";
 import UsersDialogs from "./UsersDialogs/UsersDialogs";
 import UsersInDialogs from "./UsersInDialogs/UsersInDialogs";
@@ -22,7 +22,7 @@ const Dialogs: React.FC<DialogsPropsType> = ({dialogsPage, addMessage}) => {
                     {userChat}
                 </div>
             </div>
-            <div className={s.sendText}><UniversalSendText onSubmit={addNewMessage}/></div>
+<UniversalSendText onSubmit={addNewMessage}/>
 
         </div>
     );

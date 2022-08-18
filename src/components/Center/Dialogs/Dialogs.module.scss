@@ -1,0 +1,18 @@
+
+.body {
+  display: flex;
+  margin: 0 auto;
+    align-items: center;
+    flex-direction: column;
+    max-width: 630px;
+  .body__users {
+    display: flex;
+    margin: 0 auto;
+    .users {
+      border-right: 1px solid rgba(106, 122, 140, 0.37);
+    }
+  }
+  .messages {
+    margin-left: 30px;
+  }
+}

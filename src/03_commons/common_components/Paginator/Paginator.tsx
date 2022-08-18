@@ -1,5 +1,5 @@
 import React, {useState} from 'react';
-import s from "./Paginator.module.css";
+import s from "./Paginator.module.scss";
 import {images} from '../../images/dir/icons';
 
 type UsersPaginatorType = {

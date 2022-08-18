@@ -8,12 +8,14 @@ export type APPType = {
     initialized: boolean
     errorOfResponse: string | null
     isFetching: boolean
+    darkMode: boolean
 }
 
 let initialState: APPType = {
     initialized: false,
     errorOfResponse: null,
-    isFetching: false
+    isFetching: false,
+    darkMode: false
 }
 
 const APPReducer = (state: APPType = initialState, action: APPReducerType): APPType => {
@@ -24,18 +26,21 @@ const APPReducer = (state: APPType = initialState, action: APPReducerType): APPT
             return {...state, ...action}
         case "SET-IS-FETCHING":
             return {...state, isFetching: action.payload.isFetching}
+        case "SET-DARK-MODE":
+            return {...state, darkMode: action.darkMode}
         default:
             return state
     }
 };
 
 //types
-export type APPReducerType = ReturnType<typeof setInitialized> | SetAppErrorType | IsFetchingType
+export type APPReducerType = ReturnType<typeof setInitialized> | SetAppErrorType | IsFetchingType | ReturnType<typeof setDarkMode>
 export type SetAppErrorType = ReturnType<typeof setAppError>
 
 //actions
 export const setInitialized = () => ({type: 'SET-INITIALIZED'} as const)
 export const setAppError = (errorOfResponse: string | null) => ({type: 'SET-ERROR', errorOfResponse} as const)
+export const setDarkMode = (darkMode: boolean) => ({type: 'SET-DARK-MODE', darkMode} as const)
 
 //thunks
 export const initializeAppTC = (): AppThunk => async dispatch => {

@@ -4,15 +4,19 @@ import UniversalBtn from "../../../03_commons/common_components/UniversalBtn/Uni
 import UniversalInput from "../../../03_commons/common_components/UniversalInput/UniversalInput";
 import { minLengthCreator, required } from "../../../03_commons/utils/validators/validators";
 import {FormDataType} from "./Login";
-import s from "./LoginForm.module.css"
+import s from "./LoginForm.module.scss"
+import {useAppSelector} from "../../../02_BLL/store";
 
 const minLength = minLengthCreator(8)
 const LoginForm: React.FC<InjectedFormProps<FormDataType>> = ({handleSubmit, error}) => {
+    const theme = useAppSelector(state => state.app.darkMode)
+    const themeForm = theme ? s.form__dark : s.form
+    const themeCheckbox = theme ? s.checkbox__text_dark : s.checkbox__text
     return (
-        <div>
+        <>
             <p className={s.test__data}>test-email: <b>test_projects@yahoo.com</b></p>
             <p className={s.test__data}>password: <b>test123456</b></p>
-            <form className={s.form} onSubmit={handleSubmit}>
+            <form className={themeForm} onSubmit={handleSubmit}>
                 <div>
                     <Field placeholder={"email, min 8 symbols"}
                            name={"email"}
@@ -26,7 +30,7 @@ const LoginForm: React.FC<InjectedFormProps<FormDataType>> = ({handleSubmit, err
                            name={"password"}
                            component={UniversalInput}/>
                 </div>
-                <div className={s.checkbox__text}>
+                <div className={themeCheckbox}>
                     <Field className={s.checkbox}
                            component="input"
                            name={"remember me"}
@@ -35,7 +39,7 @@ const LoginForm: React.FC<InjectedFormProps<FormDataType>> = ({handleSubmit, err
                 {error && <div className={s.input__summary_error}>{error}</div>}
                 <UniversalBtn name={"send"} type={"submit"}/>
             </form>
-        </div>
+        </>
     );
 };
 

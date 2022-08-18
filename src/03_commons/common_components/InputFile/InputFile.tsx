@@ -1,7 +1,7 @@
 import React, { ChangeEvent } from 'react';
 import { ButtonHTMLAttributes } from 'react';
 import { DetailedHTMLProps } from 'react';
-import s from "../../../components/Center/Profile/Profile.module.css";
+import s from "../../../components/Center/Profile/Profile.module.scss";
 import { images } from '../../images/dir/icons';
 import UniversalBtn from "../UniversalBtn/UniversalBtn";
 

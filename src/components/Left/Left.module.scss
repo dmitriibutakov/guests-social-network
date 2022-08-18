@@ -1,0 +1,25 @@
+@import "src/03_commons/classes/variables";
+.left  {
+    flex: 0 0 300px;
+    &>*:not(:last-child) {
+        margin-bottom: 20px;
+    }
+    .left__block, .left__dark_block {
+        min-width: 200px;
+        padding: 20px;
+        background-color: #fff;
+        border-radius: 30px;
+    }
+    .left__block {
+        box-shadow: $boxShadowVariable;
+    }
+    .left__dark_block {
+        background-color: $darkBackgroundColor;
+        box-shadow: $boxShadowDarkVariable;
+    }
+}
+@media (max-width: 650px) {
+    .left {
+        flex: 0;
+    }
+}

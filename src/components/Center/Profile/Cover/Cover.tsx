@@ -1,5 +1,5 @@
 import React from 'react';
-import s from "../Profile.module.css";
+import s from "../Profile.module.scss";
 import {images} from "../../../../03_commons/images/dir/icons";
 import InputFile from "../../../../03_commons/common_components/InputFile/InputFile";
 import {ProfileURLType} from "../../../../02_BLL/profile-reducer";

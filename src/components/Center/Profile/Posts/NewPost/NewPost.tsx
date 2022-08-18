@@ -1,5 +1,5 @@
 import React from 'react';
-import s from "./NewPost.module.css"
+import s from "./NewPost.module.scss"
 import UniversalBtn from "../../../../../03_commons/common_components/UniversalBtn/UniversalBtn";
 import {Field, reduxForm} from "redux-form";
 import {maxLengthCreator, required} from "../../../../../03_commons/utils/validators/validators";
@@ -9,7 +9,7 @@ import {images} from '../../../../../03_commons/images/dir/icons';
 type NewPostType = {
     handleSubmit: any
 }
-const maxLengthPost = maxLengthCreator(10)
+const maxLengthPost = maxLengthCreator(120)
 const NewPost: React.FC<NewPostType> = ({handleSubmit}) => {
     return (
         <form onSubmit={handleSubmit}>

@@ -1,11 +1,12 @@
 import React from 'react';
-import s from "./Profile.module.css"
+import s from "./Profile.module.scss"
 import {ProfileURLType} from "../../../02_BLL/profile-reducer";
 import Status from "./Status";
 import {images} from '../../../03_commons/images/dir/icons';
 import InputFile from "../../../03_commons/common_components/InputFile/InputFile";
 import Cover from "./Cover/Cover";
 import Avatar from "./Avatar/Avatar";
+import {useAppSelector} from "../../../02_BLL/store";
 
 type ProfileComponentType = {
     profile: ProfileURLType
@@ -21,18 +22,20 @@ const Profile: React.FC<ProfileComponentType> = ({
                                                      updatePhotos,
                                                      profileId
                                                  }) => {
+    const theme = useAppSelector(state => state.app.darkMode)
     return (
         <div className={s.body}>
             <Cover profile={profile} profileId={profileId} changeCover={updatePhotos}/>
-            <div className={s.user}>
+            <div className={theme ? s.user__dark : s.user}>
                 <Avatar profile={profile} profileId={profileId} changeAvatar={updatePhotos}/>
                 <h1 className={s.user__name}>{profile.fullName || "incognito"}</h1>
                 <Status status={status} updateStatus={updateStatus}/>
-                <p className={s.user__aboutMe}>{profile.aboutMe || "about me"}</p>
-                <img className={s.user__lookingJob} src={profile.lookingForAJob ? images.yesImg : images.noImg}
+                <p className={theme ? s.user__aboutMe_dark : s.user__aboutMe}>{profile.aboutMe || "about me"}</p>
+                <img className={s.user__lookingJob_img} src={profile.lookingForAJob ? images.yesImg : images.noImg}
                      alt="lookingJob"/>
                 <div
-                    className={s.user__lookingJob_text}>{profile.lookingForAJob ? "Yeah! I'm looking for a job" : "I'm not looking for a job"}</div>
+                    className={theme ? s.user__lookingJob_text_dark
+                        : s.user__lookingJob_text}>{profile.lookingForAJob ? "I'm working in" : "I'm not working in yet"}</div>
             </div>
             <div className={s.socials}>
                 <div className={s.social}><img src={images.githubImg} alt="github"/></div>

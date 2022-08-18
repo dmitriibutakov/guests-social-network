@@ -1,5 +1,5 @@
 import React from 'react';
-import s from "./Post.module.css";
+import s from "./Post.module.scss";
 import {PostType} from "../../../../02_BLL/profile-reducer";
 
 export const Post: React.FC<PostType> = ({
