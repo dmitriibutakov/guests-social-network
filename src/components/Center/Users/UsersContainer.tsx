@@ -44,7 +44,7 @@ const UsersAPIContainer: React.FC<UsersAPIPropsType> = (props) => {
 
 const mapStateToProps = (state: AppStateType) => {
     return {
-        state: state.UsersPage,
+        state: state.usersPage,
         users: getUsersSuperSelector(state),
         pageSize: getPageSizeSelector(state),
         usersCount: getUsersCountSelector(state),

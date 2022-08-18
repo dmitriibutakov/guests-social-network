@@ -5,7 +5,6 @@ import Center from "./components/Center/Center";
 import Right from "./components/Right/Right";
 import {connect} from "react-redux";
 import {compose} from "redux";
-import Preloader from "./03_commons/common_components/Preloader/Preloader";
 import { AppStateType } from "./02_BLL/store";
 import { withRouter } from "./03_commons/hoc/withRouter";
 import { initializeAppTC } from "./02_BLL/app-reducer";

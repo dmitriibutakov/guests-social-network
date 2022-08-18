@@ -1,17 +1,19 @@
 import {getAuthUserDataTC} from "./auth-reducer";
 import {AppThunk} from "./store";
-import {setIsFetching} from "./actions/actions";
+import {IsFetchingType, setIsFetching} from "./actions/actions";
 import {errorUtils} from "./errors-utils";
 import {AxiosError} from "axios";
 
 export type APPType = {
     initialized: boolean
     errorOfResponse: string | null
+    isFetching: boolean
 }
 
 let initialState: APPType = {
     initialized: false,
-    errorOfResponse: null
+    errorOfResponse: null,
+    isFetching: false
 }
 
 const APPReducer = (state: APPType = initialState, action: APPReducerType): APPType => {
@@ -20,13 +22,15 @@ const APPReducer = (state: APPType = initialState, action: APPReducerType): APPT
             return {...state, initialized: true}
         case "SET-ERROR":
             return {...state, ...action}
+        case "SET-IS-FETCHING":
+            return {...state, isFetching: action.payload.isFetching}
         default:
             return state
     }
 };
 
 //types
-export type APPReducerType = ReturnType<typeof setInitialized> | SetAppErrorType
+export type APPReducerType = ReturnType<typeof setInitialized> | SetAppErrorType | IsFetchingType
 export type SetAppErrorType = ReturnType<typeof setAppError>
 
 //actions

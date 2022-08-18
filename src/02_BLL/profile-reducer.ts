@@ -3,12 +3,15 @@ import {profileAPI} from "../01_DAL/api";
 import {AppThunk} from "./store";
 import {errorUtils} from "./errors-utils";
 import {AxiosError} from "axios";
+import {numberInit, stringInit} from "./inits";
 
 export type ProfilePageType = {
     posts: Array<PostType>
     profile: ProfileURLType
-    isFetching: boolean,
     status: string,
+}
+export type FilePhotosType = {
+    small: string, large: string
 }
 export type ProfileURLType = {
     aboutMe: string
@@ -17,7 +20,7 @@ export type ProfileURLType = {
     lookingForAJobDescription: string
     fullName: string
     contacts: ContactsType
-    photos: { small: string, large: string }
+    photos: { small: string, large: string}
 }
 export type ContactsType = {
     github: string,
@@ -34,36 +37,33 @@ export type PostType = {
     message: string
     likes: number
 }
-
-let stringInitial = null as unknown as string
 let initialState: ProfilePageType = {
     profile: {
-        aboutMe: stringInitial,
-        userId: null as unknown as number,
+        aboutMe: stringInit,
+        userId: numberInit,
         lookingForAJob: null as unknown as boolean,
-        lookingForAJobDescription: stringInitial,
-        fullName: stringInitial,
+        lookingForAJobDescription: stringInit,
+        fullName: stringInit,
         contacts: {
-            github: stringInitial,
-            vk: stringInitial,
-            facebook: stringInitial,
-            instagram: stringInitial,
-            twitter: stringInitial,
-            website: stringInitial,
-            youtube: stringInitial,
-            mainLink: stringInitial,
+            github: stringInit,
+            vk: stringInit,
+            facebook: stringInit,
+            instagram: stringInit,
+            twitter: stringInit,
+            website: stringInit,
+            youtube: stringInit,
+            mainLink: stringInit,
         },
-        photos: {small: stringInitial, large: stringInitial}
+        photos: {small: stringInit, large: stringInit}
     },
     posts: [
         {id: Math.random(), message: 'I find a new Collection', likes: 22},
         {id: Math.random(), message: 'Hi! It\'s my first post!', likes: 13}
     ],
-    isFetching: false,
     status: "",
 }
 
-const ProfileReducer = (state: ProfilePageType = initialState, action: ProfileReducerType): ProfilePageType => {
+const ProfileReducer = (state: ProfilePageType = initialState, action: ProfileReducersType): ProfilePageType => {
     switch (action.type) {
         case "ADD-POST":
             const newPost = {
@@ -74,34 +74,36 @@ const ProfileReducer = (state: ProfilePageType = initialState, action: ProfileRe
             return {...state, posts: [newPost, ...state.posts]}
         case "SET-USER-PROFILE":
             return {...state, profile: action.profile}
-        case "SET-IS-FETCHING":
-            return {...state, isFetching: action.payload.isFetching}
         case "SET-STATUS":
             return {...state, status: action.status}
+        case "SET-PHOTOS":
+            return {...state, profile: {...state.profile, photos: action.photos}}
         default:
             return state
     }
 };
 
-export type ProfileReducerType = addPostType | SetUserProfileType | IsFetchingType | SetStatusType
-type addPostType = ReturnType<typeof addPost>
-type SetUserProfileType = ReturnType<typeof setUserProfile>
-type SetStatusType = ReturnType<typeof setStatus>
+export type ProfileReducersType = ReturnType<typeof setUserProfile>
+    | ReturnType<typeof addPost>
+    | ReturnType<typeof setStatus> | ReturnType<typeof setPhotos>
 
 //actions
 export const addPost = (newText: string) => ({type: "ADD-POST", newText} as const)
 const setUserProfile = (profile: ProfileURLType) => ({type: "SET-USER-PROFILE", profile} as const)
 const setStatus = (status: string) => ({type: "SET-STATUS", status} as const)
+const setPhotos = (photos: any) => ({type: "SET-PHOTOS", photos} as const)
 
 //thunks
 export const getProfileTC = (userId: string): AppThunk => async dispatch => {
     try {
         dispatch(setIsFetching(true))
-        const res = await profileAPI.getProfile(userId)
-        const res2 = await profileAPI.getStatus(userId)
+        const response = await profileAPI.getProfile(userId)
+        console.log(response)
+        const response2 = await profileAPI.getStatus(userId)
+        console.log(response2)
         await (
-            dispatch(setUserProfile(res.data)),
-                dispatch(setStatus(res2.data))
+            dispatch(setUserProfile(response.data)),
+                dispatch(setStatus(response2.data))
         )
     } catch (err) {
         errorUtils(err as Error | AxiosError, dispatch)
@@ -109,13 +111,18 @@ export const getProfileTC = (userId: string): AppThunk => async dispatch => {
         dispatch(setIsFetching(false))
     }
 }
-
 export const updateStatusTC = (status: string): AppThunk => async dispatch => {
     try {
-        const res = await profileAPI.updateStatus(status)
-        if (res.data.resultCode === 0) {
-            dispatch(setStatus(status))
-        }
+        const response = await profileAPI.updateStatus(status)
+        if (response.data.resultCode === 0) dispatch(setStatus(status))
+    } catch (err) {
+        errorUtils(err as Error | AxiosError, dispatch)
+    }
+}
+export const updatePhotosTC = (photos: any): AppThunk => async dispatch => {
+    try {
+        const response = await profileAPI.fetchPhoto(photos)
+        if (response.data.resultCode === 0) dispatch(setPhotos(photos))
     } catch (err) {
         errorUtils(err as Error | AxiosError, dispatch)
     }

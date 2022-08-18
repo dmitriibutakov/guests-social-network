@@ -35,8 +35,8 @@ const LoginReduxForm = reduxForm<FormDataType>({
 
 const mapStateToProps = (state: AppStateType): MapStateToPropsType => {
     return {
-        isAuth: state.Auth.isAuth,
-        isFetching: state.Auth.isFetching,
+        isAuth: state.auth.isAuth,
+        isFetching: state.app.isFetching,
         errorOfResponse: state.app.errorOfResponse
     }
 }

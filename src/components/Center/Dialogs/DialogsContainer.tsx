@@ -6,7 +6,7 @@ import {ComponentType} from "react";
 import {compose} from "redux";
 import {withAuthRedirect} from "../../../03_commons/hoc/AuthRedirect";
 
-const mapStateToProps = (state: AppStateType) => ({dialogsPage: state.DialogsPage})
+const mapStateToProps = (state: AppStateType) => ({dialogsPage: state.dialogsPage})
 export default compose<ComponentType>(
     connect<MapStateToPropsType, MapDispatchToPropsType, {}, AppStateType>(mapStateToProps, {addMessage}),
     withAuthRedirect)(Dialogs)

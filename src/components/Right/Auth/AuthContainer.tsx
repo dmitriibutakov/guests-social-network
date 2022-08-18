@@ -13,8 +13,8 @@ const AuthContainer = (props: AuthPropsType) => {
 
 const mapStateToProps = (state: AppStateType): MapStateToPropsType => {
     return {
-        login: state.Auth.login,
-        isAuth: state.Auth.isAuth,
+        login: state.auth.login,
+        isAuth: state.auth.isAuth,
     }
 }
 export default connect(mapStateToProps, {logOutTC})(withRouter(AuthContainer));

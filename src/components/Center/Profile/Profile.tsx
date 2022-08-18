@@ -3,20 +3,29 @@ import s from "./Profile.module.css"
 import {ProfileURLType} from "../../../02_BLL/profile-reducer";
 import Status from "./Status";
 import {images} from '../../../03_commons/images/dir/icons';
+import InputFile from "../../../03_commons/common_components/InputFile/InputFile";
+import Cover from "./Cover/Cover";
+import Avatar from "./Avatar/Avatar";
 
 type ProfileComponentType = {
     profile: ProfileURLType
     updateStatus: (status: string) => void
+    updatePhotos: (photos: any) => void
     status: string
+    profileId: number
 }
-const Profile: React.FC<ProfileComponentType> = ({profile, status, updateStatus}) => {
+const Profile: React.FC<ProfileComponentType> = ({
+                                                     profile,
+                                                     status,
+                                                     updateStatus,
+                                                     updatePhotos,
+                                                     profileId
+                                                 }) => {
     return (
         <div className={s.body}>
-            <div className={s.cover}><img src={profile.photos.large || images.wallpaperImg} alt="cover"/></div>
+            <Cover profile={profile} profileId={profileId} changeCover={updatePhotos}/>
             <div className={s.user}>
-                <div className={s.user__image}>
-                    <img src={profile.photos.small || images.incognito} alt="avatar"/>
-                </div>
+                <Avatar profile={profile} profileId={profileId} changeAvatar={updatePhotos}/>
                 <h1 className={s.user__name}>{profile.fullName || "incognito"}</h1>
                 <Status status={status} updateStatus={updateStatus}/>
                 <p className={s.user__aboutMe}>{profile.aboutMe || "about me"}</p>

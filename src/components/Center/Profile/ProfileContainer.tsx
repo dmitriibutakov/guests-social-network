@@ -5,7 +5,7 @@ import s from "../Center.module.css";
 import PostsContainer from "./Posts/PostsContainer";
 import Profile from "./Profile";
 import NewPostContainer from "./Posts/NewPost/NewPostContainer";
-import {addPost, getProfileTC, updateStatusTC} from "../../../02_BLL/profile-reducer";
+import {addPost, getProfileTC, updatePhotosTC, updateStatusTC} from "../../../02_BLL/profile-reducer";
 import {useParams} from "react-router-dom";
 import {compose} from "redux";
 import {withAuthRedirect} from "../../../03_commons/hoc/AuthRedirect";
@@ -14,21 +14,28 @@ import {withRouter} from "../../../03_commons/hoc/withRouter";
 
 const ProfileContainer = (props: ProfilePropsType) => {
     const {
-        profile, addPost, posts, isFetching, updateStatusTC, status
+        profile, addPost, posts, isFetching,
+        updateStatusTC, updatePhotosTC,
+        status, profileId
     } = props
     let {userId} = useParams<'userId'>()
 
     useEffect(() => {
         async function fetchData() {
-            await props.getProfileTC(userId || `${props.profileId}`)
+            await props.getProfileTC(userId || `${profileId}`)
         }
+
         fetchData();
     }, [userId])
     if (isFetching) return <CenterPreloader/>
     return (
         <>
             <div className={s.center__block}>
-                <Profile status={status} updateStatus={updateStatusTC} profile={profile}/>
+                <Profile status={status}
+                         profileId={profileId}
+                         updatePhotos={updatePhotosTC}
+                         updateStatus={updateStatusTC}
+                         profile={profile}/>
             </div>
             <div className={s.center__block}>
                 <NewPostContainer addPost={addPost}/>
@@ -42,18 +49,19 @@ const ProfileContainer = (props: ProfilePropsType) => {
 
 const mapStateToProps = (state: AppStateType) => {
     return {
-        profile: state.ProfilePage.profile,
-        posts: state.ProfilePage.posts,
-        isFetching: state.ProfilePage.isFetching,
-        status: state.ProfilePage.status,
-        profileId: state.Auth.id
+        profile: state.profilePage.profile,
+        posts: state.profilePage.posts,
+        isFetching: state.app.isFetching,
+        status: state.profilePage.status,
+        profileId: state.auth.id
     }
 }
 export default compose<ComponentType>(
     connect<MapStateToPropsType, MapDispatchToPropsType, {}, AppStateType>(mapStateToProps, {
         addPost,
         getProfileTC,
-        updateStatusTC
+        updateStatusTC,
+        updatePhotosTC
     }),
     withAuthRedirect,
     withRouter)(ProfileContainer)
@@ -64,5 +72,6 @@ type MapDispatchToPropsType = {
     addPost: (newText: string) => void
     getProfileTC: (userId: string) => void
     updateStatusTC: (status: string) => void
+    updatePhotosTC: (photos: any) => void
 }
 export type ProfilePropsType = MapStateToPropsType & MapDispatchToPropsType

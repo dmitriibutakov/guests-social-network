@@ -3,20 +3,21 @@ import {stopSubmit} from "redux-form";
 import {AppThunk} from "./store";
 import {errorUtils} from "./errors-utils";
 import {AxiosError} from "axios";
+import {numberInit, stringInit} from "./inits";
 
 export type AuthType = {
     id: number
     email: string
     login: string
-    isFetching: boolean
     isAuth: boolean
+    adminId: string
 }
 
 let initialState: AuthType = {
-    id: null as unknown as number,
-    email: null as unknown as string,
-    login: null as unknown as string,
-    isFetching: false,
+    id: numberInit,
+    email: stringInit,
+    login: stringInit,
+    adminId: stringInit,
     isAuth: false,
 }
 
