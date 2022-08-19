@@ -1,6 +1,7 @@
 import React, {useState} from 'react';
 import s from "./Paginator.module.scss";
 import {images} from '../../images/dir/icons';
+import {setCurrentPage} from "../../../02_BLL/users-reducer";
 
 type UsersPaginatorType = {
     usersCount: number
@@ -15,14 +16,14 @@ const UsersPaginator: React.FC<UsersPaginatorType> = ({
                                                           currentPage, portionSize = 5
                                                       }) => {
     const pagesCount = Math.ceil(usersCount / pageSize)
-    const pages = []
+    const pages: number[] = []
     for (let i = 1; i <= pagesCount; i++) {
         pages.push(i)
     }
     const portionCount = Math.ceil(pagesCount / portionSize)
-    const [portionNumber, setPortionNumber] = useState(1)
-    const leftPortionNumber = (portionNumber - 1) * portionSize + 1
-    const rightPortionNumber = portionNumber * portionSize
+    const [portionNumber, setPortionNumber] = useState(currentPage)
+    const leftPortionNumber = currentPage < 3 ? 1 : portionNumber - 2
+    const rightPortionNumber = currentPage < 3 ? 5:  portionNumber + 2
 
     return (
         <div className={s.paginator__body}>
@@ -32,7 +33,10 @@ const UsersPaginator: React.FC<UsersPaginatorType> = ({
             </button>
             <div className={s.paginator}>
                 {pages.filter(e => e >= leftPortionNumber && e <= rightPortionNumber).map(e => {
-                    return <span key={Math.random()} onClick={() => onPageChanged(e)}
+                    return <span key={Math.random()} onClick={() => {
+                        onPageChanged(e)
+                        setCurrentPage(e)
+                    }}
                                  className={currentPage === e ? s.selectedPage : ""}>{e}</span>
                 })}
                 <button className={s.paginator__btn_right} disabled={portionCount < portionNumber}

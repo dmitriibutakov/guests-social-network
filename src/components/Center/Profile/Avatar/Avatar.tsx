@@ -8,7 +8,7 @@ import {useAppSelector} from "../../../../02_BLL/store";
 type AvatarPropsType = {
     profile: ProfileURLType
     profileId: number
-    changeAvatar: (avatar: any) => void
+    changeAvatar: (avatar: string) => void
 }
 const Avatar: React.FC<AvatarPropsType> = ({profile, profileId, changeAvatar}) => {
     const theme = useAppSelector(state => state.app.darkMode)

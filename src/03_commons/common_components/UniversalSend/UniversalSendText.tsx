@@ -1,15 +1,13 @@
-import React from 'react'
+import React, { FormEvent } from 'react'
 import s from "./UniversalSendText.module.scss"
-import {Field, reduxForm, reset} from "redux-form";
+import {Field, InjectedFormProps, reduxForm, reset} from "redux-form";
 import UniversalInput from "../UniversalInput/UniversalInput";
 import {required} from "../../utils/validators/validators";
 import {images} from '../../images/dir/icons';
 
-type SendTextType = {
-    handleSubmit: any
-}
 
-const UniversalSendText: React.FC<SendTextType> = ({handleSubmit}) => {
+const UniversalSendText: React.FC<InjectedFormProps<{ newPostBody: string; },
+    { onSubmit: (e: FormEvent<HTMLFormElement>) => void }, string>> = ({handleSubmit}) => {
 
     return (
         <form onSubmit={handleSubmit} className={s.sendText}>
@@ -33,4 +31,4 @@ const UniversalSendText: React.FC<SendTextType> = ({handleSubmit}) => {
     );
 };
 
-export default reduxForm<{}, { onSubmit: any }, string>({form: "dialogSendText" })(UniversalSendText)
+export default reduxForm<{ newPostBody: string }, { onSubmit: any }, string>({form: "dialogSendText"})(UniversalSendText)

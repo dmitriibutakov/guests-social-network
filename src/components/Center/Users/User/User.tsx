@@ -4,6 +4,7 @@ import {NavLink} from "react-router-dom";
 import incognito from "../../../../03_commons/images/incognito.png";
 import UniversalBtn from "../../../../03_commons/common_components/UniversalBtn/UniversalBtn";
 import {useAppSelector} from "../../../../02_BLL/store";
+import {images} from "../../../../03_commons/images/dir/icons";
 
 type UserPropsType = {
     id: number
@@ -19,7 +20,7 @@ const User: React.FC<UserPropsType> = ({
                                            id, ava,
                                            name, status,
                                            followed, follow,
-                                           unfollow, arrSome
+                                           unfollow, arrSome,
                                        }) => {
     const theme = useAppSelector(state => state.app.darkMode)
     const themeBlock = theme ? s.user__block_dark : s.user__block
@@ -27,14 +28,14 @@ const User: React.FC<UserPropsType> = ({
         <div className={themeBlock} key={id}>
             <div className={s.avatar}>
                 <NavLink to={"/profile/" + id}>
-                    <img className={s.avatar__img} src={ava != null ? ava : incognito}
+                    <img className={s.avatar__img} src={ ava || images.incognito}
                          alt="avatar"/>
                 </NavLink>
             </div>
             <h3 className={s.name}>{name}</h3>
-            <span className={s.status}>{status}</span>
+            <div>{id}</div>
+            <span className={s.status}>{status || "no status"}</span>
             <p className={s.location}>
-                <span>{"el.location.country"}</span>, <span>{"el.location.city"}</span>
             </p>
             {followed
                 ? <UniversalBtn disable={arrSome(id)} callback={() => unfollow(id)}

@@ -34,9 +34,10 @@ const Users: React.FC<UsersType> = (props) => {
             <div className={s.users}>
                 {users.map(el => {
                     return (
-                        <User key={el.id}
+                        <User
+                            key={el.id}
                               id={el.id}
-                              ava={el.ava}
+                              ava={el.photos.small}
                               name={el.name}
                               status={el.status}
                               followed={el.followed} follow={follow}

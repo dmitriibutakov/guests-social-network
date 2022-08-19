@@ -18,9 +18,8 @@ export type UserType = {
     name: string,
     followed: boolean,
     id: number,
-    ava: string,
+    photos: { small: string, large: string },
     status: string,
-    location: { city: string, country: string }
 }
 
 let initialState: UsersPageType = {
