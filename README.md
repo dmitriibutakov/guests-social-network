@@ -7,4 +7,4 @@ using custom HOC's.
 into the app you can use test email: test_projects@yahoo.com
 and password: test123456
 
-link on https://guests.herokuapp.com
+link on https://guests-social-network.herokuapp.com
