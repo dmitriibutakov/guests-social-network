@@ -1,17 +1,16 @@
 import React from "react";
 import s from "./UsersInDialogs.module.scss";
-import {NavLink} from "react-router-dom";
-import {UserInDialType} from "../../../../02_BLL/dialogs-reducer";
+import {NavLink, useParams} from "react-router-dom";
+import {setDialog, UserInDialType} from "../../../../02_BLL/dialogs-reducer";
 import {images} from "../../../../03_commons/images/dir/icons";
-import {useAppSelector} from "../../../../02_BLL/store";
 
 
-const UsersInDialogs: React.FC<UserInDialType> = ({id, name}) => {
-    const theme = useAppSelector(state => state.app.darkMode)
-    const linkTheme = theme ? s.link__dark : s.link
-    let path = "/dialogs/" + id
+const UsersInDialogs: React.FC<UserInDialType & {setDialog: (name: string) => void, darkMode: boolean}> = ({id, name, setDialog, darkMode}) => {
+    const {userName} = useParams<'userName'>()
+    const linkTheme = darkMode ? s.link__dark : s.link
+    const path = `/dialogs/` + userName
     return (
-        <NavLink to={path} className={s.user}>
+        <NavLink to={path} onClick={()=> setDialog(name)} className={s.user}>
             <span className={s.user__avatar}>
                     <img src={images.incognito} alt="avatar"/>
             </span>

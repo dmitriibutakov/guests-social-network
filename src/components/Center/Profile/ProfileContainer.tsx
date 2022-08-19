@@ -21,7 +21,6 @@ const ProfileContainer = (props: ProfilePropsType) => {
         status, profileId
     } = props
     let {userId} = useParams<'userId'>()
-
     useEffect(() => {
         async function fetchData() {
             await props.getProfileTC(userId || `${profileId}`)

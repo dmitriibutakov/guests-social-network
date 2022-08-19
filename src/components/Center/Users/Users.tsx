@@ -14,6 +14,7 @@ type UsersType = {
     followingInProgress: Array<number>
     follow: (userId: number) => void
     unfollow: (userId: number) => void
+    theme: boolean
 }
 
 const Users: React.FC<UsersType> = (props) => {
@@ -23,11 +24,10 @@ const Users: React.FC<UsersType> = (props) => {
         users, currentPage,
         onPageChanged,
         followingInProgress,
-        follow, unfollow
+        follow, unfollow, theme
     } = props
 
     const arrSome = (userId: number) => followingInProgress.some(id => id === userId)
-    const theme = useAppSelector(state => state.app.darkMode)
     const themeBlock = theme ? s.users__block_dark : s.users__block
     return (
         <div className={themeBlock}>

@@ -1,14 +1,15 @@
+@import "src/03_commons/classes/variables";
 .sendText {
   display: flex;
   justify-content: center;
-  padding: 10px 15px;
+  padding: 20px 0 0 15px;
   margin-top: 20px;
-  border: 1px solid #7ba9ff;
-  border-radius: 20px;
   align-items: center;
   width: 100%;
   .sendText__input {
     flex: 0 0 60%;
+    border-radius: 20px;
+    box-shadow: $boxShadowVariable;
   }
   & > * {
     margin-right: 10px;

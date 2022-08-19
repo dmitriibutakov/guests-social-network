@@ -4,7 +4,7 @@ import {NavLink} from "react-router-dom";
 import {useAppSelector} from "../../../02_BLL/store";
 
 type LinkProps = {
-    image: string
+    image?: string
     name: string
 }
 const CustomLink: React.FC<LinkProps> = ({image, name}) => {

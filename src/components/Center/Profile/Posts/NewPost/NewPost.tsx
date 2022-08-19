@@ -4,7 +4,6 @@ import UniversalBtn from "../../../../../03_commons/common_components/UniversalB
 import {Field, reduxForm} from "redux-form";
 import {maxLengthCreator, required} from "../../../../../03_commons/utils/validators/validators";
 import UniversalInput from "../../../../../03_commons/common_components/UniversalInput/UniversalInput";
-import {images} from '../../../../../03_commons/images/dir/icons';
 
 type NewPostType = {
     handleSubmit: any
@@ -23,8 +22,6 @@ const NewPost: React.FC<NewPostType> = ({handleSubmit}) => {
             </div>
             <div className={s.send__block}>
                 <div className={s.send__block_left}>
-                    <div className={s.add}><img src={images.imageImg} alt=""/></div>
-                    <div className={s.add}><img src={images.smileImg} alt=""/></div>
                 </div>
                 <UniversalBtn name={"Share"}/>
             </div>

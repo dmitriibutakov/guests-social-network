@@ -1,18 +1,14 @@
 import React from 'react';
 import s from "./Post.module.scss";
 import {PostType} from "../../../../02_BLL/profile-reducer";
+import {day, hours, minutes, month, year } from '../../../../03_commons/utils/helpers';
 
 export const Post: React.FC<PostType> = ({
                                              message,
                                              id, avatar,
                                          }) => {
 
-    const day = new Date().getDay()
-    const hours = new Date().getHours()
-    const minutes = new Date().getMinutes()
-    const month = new Date().getMonth()
-    const year = new Date().getFullYear()
-    console.log("post")
+
     return (
         <div className={s.body} key={id}>
             <div className={s.user__ava}><img src={avatar} alt="avatar"/></div>

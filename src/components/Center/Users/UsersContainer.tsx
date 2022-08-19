@@ -44,6 +44,7 @@ const UsersAPIContainer: React.FC<UsersAPIPropsType> = (props) => {
 
 const mapStateToProps = (state: AppStateType) => {
     return {
+        theme: state.app.darkMode,
         state: state.usersPage,
         users: getUsersSuperSelector(state),
         pageSize: getPageSizeSelector(state),

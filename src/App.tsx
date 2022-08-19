@@ -12,7 +12,6 @@ import InitPreloader from "./03_commons/common_components/InitPreloader/InitPrel
 
 const App = (props: AppPropsType) => {
     const theme = useAppSelector(state => state.app.darkMode)
-    console.log(theme)
     useEffect(() => {
         async function fetchData() {
             await props.initializeAppTC();

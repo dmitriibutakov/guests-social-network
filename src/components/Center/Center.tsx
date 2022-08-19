@@ -23,6 +23,9 @@ const Center = () => {
                     <Route path={"/dialogs"} element={<div className={themeBlock}>
                         <DialogsContainer/>
                     </div>}/>
+                    <Route path={`/dialogs/:userName`} element={<div className={themeBlock}>
+                        <DialogsContainer/>
+                    </div>}/>
                     <Route path={"/login"} element={<div className={themeBlock}>
                         <Login/>
                     </div>}/>

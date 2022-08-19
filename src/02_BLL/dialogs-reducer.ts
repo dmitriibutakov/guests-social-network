@@ -1,4 +1,6 @@
 import {v1} from "uuid";
+import {log} from "util";
+import {day, hours, minutes, month, year} from "../03_commons/utils/helpers";
 
 export type UserInDialType = {
     name: string
@@ -8,11 +10,13 @@ export type UserDialogType = {
     id: string
     name: string
     text: string
-    time: number
+    time: number | string
+    to?: string
 }
 export type DialogsPageType = {
     users: Array<UserInDialType>
     usersDialogs: Array<UserDialogType>
+    activeDialog: Array<UserDialogType>
     newMessageText?: string
 }
 
@@ -25,11 +29,21 @@ let initialState: DialogsPageType = {
         {name: 'Jacky Swarbe', id: v1()},
     ],
     usersDialogs: [
-        {id: v1(), name: 'Lisa', text: 'Hello', time: 22.14},
-        {id: v1(), name: 'Me', text: 'How are you?', time: 22.24},
-        {id: v1(), name: 'Lisa', text: 'I love you', time: 22.34},
-        {id: v1(), name: 'Me', text: 'Love you 2', time: 22.44}
+        {id: v1(), name: 'Lucky', text: 'Heeey', time: '18:24 5.2.2022'},
+        {id: v1(), name: 'Jacky Swarbe', text: "I wanna meet you", time: '15:24 5.1.2022'},
+        {id: v1(), name: 'Lisa', text: `Good evening, I'm Lisa`, time: '18:42 5.7.2021'},
+        {id: v1(), name: 'Mike', text: `Yo, man! I'm Mike`, time: '18:24 5.7.2021'},
+        {id: v1(), name: 'Lucky', text: 'Hello', time: '11:21 9.10.2021'},
+        {id: v1(), name: 'Me', to: "Mike", text: 'How are you?', time: '18:02 1.2.2021'},
+        {id: v1(), name: 'Me', to: "Lucky", text: 'How are you?', time: '13:25 2.9.2021'},
+        {id: v1(), name: 'Me', to: "Jacky Swarbe", text: 'Gone', time: '06:12 5.7.2021'},
+        {id: v1(), name: 'Lucky', text: 'I am nice.', time: '18:24 5.7.2021'},
+        {id: v1(), name: 'Me', to: "Emily Martin", text: 'Have a good day', time: '18:24 7.4.2021'},
+        {id: v1(), name: 'Emily Martin', text: 'Good morning, my friend', time:'9:47 22.7.2021'},
+        {id: v1(), name: 'Me', to: "Lisa", text: 'Have a good day', time: '19:24 5.8.2021'},
+
     ],
+    activeDialog: []
 }
 
 const DialogsReducer = (state: DialogsPageType = initialState, action: DialogsReducerType): DialogsPageType => {
@@ -39,19 +53,22 @@ const DialogsReducer = (state: DialogsPageType = initialState, action: DialogsRe
                 id: v1(),
                 name: "me",
                 text: action.newMessage,
-                time: 22.45,
+                to: action.to,
+                time: `${hours}:${minutes} ${day}.${month}.${year}`,
             }
-            return {...state, usersDialogs: [...state.usersDialogs, newMessage]}
+            return {...state, activeDialog: [...state.activeDialog, newMessage]}
+        case "SET-DIALOG":
+            return {...state, activeDialog: state.usersDialogs.filter(el => el.name === action.name || el.to === action.name)}
         default:
             return state
     }
 };
 
 //types
-export type DialogsReducerType = AddMessageType
-type AddMessageType = ReturnType<typeof addMessage>
+export type DialogsReducerType = ReturnType<typeof addMessage> | ReturnType<typeof setDialog>
 
 //actions
-export const addMessage = (newMessage: string) => ({type: "ADD-MESSAGE", newMessage} as const)
+export const addMessage = (newMessage: string, to: string) => ({type: "ADD-MESSAGE", newMessage, to} as const)
+export const setDialog = (name: string) => ({type: "SET-DIALOG", name} as const)
 
 export default DialogsReducer;

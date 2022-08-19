@@ -3,7 +3,6 @@ import s from "./Profile.module.scss"
 import {ProfileURLType} from "../../../02_BLL/profile-reducer";
 import Status from "./Status";
 import {images} from '../../../03_commons/images/dir/icons';
-import InputFile from "../../../03_commons/common_components/InputFile/InputFile";
 import Cover from "./Cover/Cover";
 import Avatar from "./Avatar/Avatar";
 import {useAppSelector} from "../../../02_BLL/store";
