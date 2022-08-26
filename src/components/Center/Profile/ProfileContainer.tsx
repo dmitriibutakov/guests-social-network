@@ -25,9 +25,8 @@ const ProfileContainer = (props: ProfilePropsType) => {
         async function fetchData() {
             await props.getProfileTC(userId || `${profileId}`)
         }
-
         fetchData();
-    }, [userId])
+    }, [userId, profile.photos.small])
     if (isFetching) return <CenterPreloader/>
     return (
         <>
@@ -55,7 +54,8 @@ const mapStateToProps = (state: AppStateType) => {
         isFetching: state.app.isFetching,
         status: state.profilePage.status,
         profileId: state.auth.id,
-        theme: state.app.darkMode
+        theme: state.app.darkMode,
+        photos: state.profilePage.profile.photos
     }
 }
 export default compose<ComponentType>(

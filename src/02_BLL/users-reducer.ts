@@ -102,11 +102,11 @@ export const setCurrentPage = (currentPage: number) => ({type: "SET-CURRENT-PAGE
 export const getUsersTC = (currentPage: number, pageSize: number): AppThunk => async dispatch => {
     try {
         dispatch(setIsFetching(true))
-        const res = await usersAPI.getUsers(currentPage, pageSize)
+        const result = await usersAPI.getUsers(currentPage, pageSize)
         await (
             dispatch(setIsFetching(false)),
-                dispatch(setUsers(res.items)),
-                dispatch(setUsersCount(res.totalCount))
+                dispatch(setUsers(result.items)),
+                dispatch(setUsersCount(result.totalCount))
         )
     } catch (err) {
         errorUtils(err as Error | AxiosError, dispatch)

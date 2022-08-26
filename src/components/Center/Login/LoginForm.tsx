@@ -6,9 +6,10 @@ import { minLengthCreator, required } from "../../../03_commons/utils/validators
 import {FormDataType} from "./Login";
 import s from "./LoginForm.module.scss"
 import {useAppSelector} from "../../../02_BLL/store";
+import {log} from "util";
 
 const minLength = minLengthCreator(8)
-const LoginForm: React.FC<InjectedFormProps<FormDataType>> = ({handleSubmit, error}) => {
+const LoginForm: React.FC<InjectedFormProps<FormDataType> & any> = ({handleSubmit, error, captchaUrl}) => {
     const theme = useAppSelector(state => state.app.darkMode)
     const themeForm = theme ? s.form__dark : s.form
     const themeCheckbox = theme ? s.checkbox__text_dark : s.checkbox__text
@@ -37,6 +38,13 @@ const LoginForm: React.FC<InjectedFormProps<FormDataType>> = ({handleSubmit, err
                            type="checkbox"/>remember me
                 </div>
                 {error && <div className={s.input__summary_error}>{error}</div>}
+                {captchaUrl && <div><img src={captchaUrl} alt="captcha"/></div>}
+                {captchaUrl && <div className={themeCheckbox}>
+                    <Field
+                        validate={[required]}
+                        name={"captcha"}
+                        component={UniversalInput}/>
+                </div>}
                 <UniversalBtn name={"send"} type={"submit"}/>
             </form>
         </>
